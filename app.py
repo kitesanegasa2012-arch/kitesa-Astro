@@ -12,7 +12,30 @@ menu = st.sidebar.selectbox(
     "Filannoo Qabiyyee:",
     ["Hiika Saayinsii Hawwaa", "H-R Diagram", "P-Pdot Diagram (Neutron Stars)", "Baafata & Qabiyyee Kitaabichaa", "Galata fi Waraqa Qorannoo", "Waa'ee Qopheessaa"]
 )
-
+# 0. FUULA JALQABAA (COVER PAGE)
+if menu == "Fuula Jalqabaa (Cover Page)":
+    # Suuraa Teeleskooppii Hawaa bareedaa onlaayinii irraa fida
+    telescope_url = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
+    st.image(telescope_url, use_column_width=True)
+    
+    # Mataduree Guddicha
+    st.markdown("<h1 style='text-align: center; color: #1E3A8A;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #4B5563;'>Icciitii Uumama Hawwaa, Sochii Urjiilee fi Bal'ina Daangaa Hin Qabne</h3>", unsafe_allow_html=True)
+    
+    st.write("---")
+    
+    # Maqaa Kee fi Unka Qorannoo Kee
+    st.markdown("""
+    <div style='background-color: #F3F4F6; padding: 20px; border-radius: 10px; border-left: 6px solid #1E3A8A; text-align: center;'>
+        <p style='font-size: 1.2em; margin-bottom: 5px;'><strong>Qopheessaa:</strong></p>
+        <h2 style='margin-top: 0; color: #111827;'>Barsiisaa Qixxeessaa Nagaasaa Fayisaa</h2>
+        <p style='font-size: 1.1em; color: #374151;'>MSc Candidate in Astrophysics | Wallaga University</p>
+        <p style='font-style: italic; color: #6B7280; font-size: 0.95em;'>"The study of Evolutionary characteristics of rotating neutron star"</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.write("")
+    st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka **'Filannoo Qabiyyee'** jedhu tuquun boqonnaalee barbaaddan filadhaa!")
 # 1. Hiika Saayinsii Hawwaa
 if menu == "Hiika Saayinsii Hawwaa":
     st.header("🔭 Hiika Saayinsii Hawwaa fi Astroonoomii")
