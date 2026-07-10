@@ -79,6 +79,15 @@ elif menu == "Galata fi Waraqa Qorannoo":
 # 6. Waa'ee Qopheessaa
 elif menu == "Waa'ee Qopheessaa":
     st.header("👤 Profile Qopheessaa")
+    
+    # Suuraa kee isa GitHub irratti ol-feete onlaayiniitti fida
+    suuraa_url = "https://raw.githubusercontent.com/kitesanegasa2012-arch/kitesa-Astro/main/qixxeessaa.jpg"
+    
+    try:
+        st.image(suuraa_url, caption="Barsiisaa Qixxeessaa Nagaasaa", width=250)
+    except:
+        st.warning("⚠️ Suuraan kee onlaayinii irratti argamuu hin dandeenye. Maqaan faayilii keetii 'qixxeessaa.jpg' ta'uu isaa mirkaneessi.")
+        
     st.subheader("Baga Gammaddan, Maqaan Koo Barsiisaa Qixxeessaa Nagaasaa Fayisaa Ti!")
     st.write(
         "Ani Yuunivarsiitii Wallaggaatti barataa digrii lammaffaa (**MSc Astrophysics**) ti. Jaallataa fi qorataa saayinsii hawwaa "
