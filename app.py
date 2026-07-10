@@ -1,127 +1,87 @@
-<!DOCTYPE html>
-<html lang="om">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitesa Astro - Astrophysics Research</title>
-    <!-- MathJax for rendering LaTeX formulas correctly -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/MathJax-global.js"></script>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
-        header { background-color: #1a252f; color: white; padding: 30px; text-align: center; border-radius: 8px; margin-bottom: 30px; }
-        h1 { margin: 0; font-size: 2.2em; }
-        h2 { color: #2c3e50; border-bottom: 2px solid #34495e; padding-bottom: 8px; margin-top: 30px; }
-        h3 { color: #16a085; }
-        .lang-sec { background-color: white; padding: 15px; border-left: 5px solid #3498db; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .lang-en { border-left-color: #e67e22; font-style: italic; background-color: #fdfaf7; }
-        .formula { background-color: #2c3e50; color: #fff; padding: 15px; text-align: center; border-radius: 6px; font-size: 1.1em; margin: 20px 0; overflow-x: auto; }
-        .image-box { text-align: center; margin: 25px 0; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .image-box img { max-width: 100%; height: auto; border-radius: 4px; }
-        .caption { font-style: italic; color: #666; margin-top: 8px; font-size: 0.9em; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #2c3e50; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
-    </style>
-</head>
-<body>
+import streamlit as st
 
-<header>
-    <h1>ASTROPHYSICS</h1>
-    <p>MSc Research & Course Framework</p>
-</header>
+# Maqaa Appii fi Waamicha Jalqabaa
+st.set_page_config(page_title="Kitesa Astro", page_icon="🌌", layout="centered")
 
-<div class="lang-sec">
-    <p><strong>Afaan Oromoo:</strong> Astrofiiziksiin damee saayinsii qabiyyee fi uumama (physics) wantoota hawaa keessaa kan qo’atudha. Inni kun waa’ee urjiilee, pilaaneetotaa, galaksiiwwanii fi dhaloota yuunivarsii (universe) hunda seerota fiiziksii fi herregaatiin ibsa.</p>
-    <p><em>Fakkeenya: Urjiin tokko akkamitti ifa kenna? Boolli gurraachi (Black hole) maali?</em></p>
-</div>
+st.title("🌌 Kitesa Astro")
+st.markdown("### Appilikeeshinii Barumsa Astroonoomii fi Fiiziksii Hawwaa")
+st.write("---")
 
-<div class="lang-sec lang-en">
-    <p><strong>English:</strong> Astrophysics is a branch of astronomy that deals with the physical nature of stars and other celestial bodies. It applies the laws of physics and chemistry to explain how stars, planets, and galaxies are born, live, and die.</p>
-    <p><em>Example: How do stars produce light? What is the nature of Black holes?</em></p>
-</div>
+# Menu Appii keetii (Sidebar)
+menu = st.sidebar.selectbox(
+    "Filannoo Qabiyyee:",
+    ["Hiika Saayinsii Hawwaa", "H-R Diagram", "P-Pdot Diagram (Neutron Stars)", "Baafata & Qabiyyee Kitaabichaa", "Galata fi Waraqa Qorannoo", "Waa'ee Qopheessaa"]
+)
 
-<h2>1. Tiyoori Big Baang (The Big Bang Theory)</h2>
-<div class="lang-sec">
-    <ul>
-        <li>Tiyoorin kun yuunivarsiin akkamitti akka eegale ibsa. Yuunivarsiin waggoota biliyoona 13.8 dura qabxii baay'ee xiqqoo, ho'aa fi tuuta'aa taate tokko irraa dhohuun (expansion) gara bal'achuu amma jiruutti akka dhufe barsiisa.</li>
-        <li>"Big Bang" jechuun dhohiinsa akka boombii osoo hin taane, bal'achuu (expansion) saffisa guddaa fi akkaan ariifataa ta'edha. Hammi yuunivarsii yeroo sanaa baay'ee xiqqoo (atomiin gadi) ture.</li>
-    </ul>
-</div>
+# 1. Hiika Saayinsii Hawwaa
+if menu == "Hiika Saayinsii Hawwaa":
+    st.header("🔭 Hiika Saayinsii Hawwaa fi Astroonoomii")
+    st.write("**Astroonoomiin** saayinsii hawwaa (Universe) keessatti waa'ee urjiilee, pilaaneetota, galaaksiiwwan fi dhabama duudaa (black holes) qoratudha. Fiiziksiin hawwaa (**Astrophysics**) immoo seera fiiziksii fayyadamee amaloota fi soochii wantoota kanneenii xiinxala.")
 
-<div class="lang-sec lang-en">
-    <p>This theory explains the origin of the universe. It states that the universe began approximately 13.8 billion years ago from an extremely hot and dense point that began to expand and continues to do so today.</p>
-</div>
+# 2. H-R Diagram
+elif menu == "H-R Diagram":
+    st.header("📊 Hertzsprung-Russell (H-R) Diagram")
+    st.write("**H-R Diagram**-iin wal-itti dhufeenya ho'a urjiilee (Effective Temperature) fi ifa isaanii (Luminosity) agarsiisa. Urjiileen baay'een sarara qajeelaa 'Main Sequence' jedhamu irratti argamu.")
+    st.latex(r"L = 4\pi R^2 \sigma T^4")
 
-<div class="image-box">
-    <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRfdzPSbFjXsHW6iasC0Gzc1njkuw4RXhV2-1q4Ld6UEHXAwsCpj9kh11A8I0lyU77AIAK_M4FIOtxdCwY" alt="Big Bang Expansion">
-    <div class="caption">Figure 1: Evolution and Expansion of the Universe from Singularity.</div>
-</div>
+# 3. P-Pdot Diagram
+elif menu == "P-Pdot Diagram (Neutron Stars)":
+    st.header("⏱️ P-Pdot Diagram & Rotating Neutron Stars")
+    st.write("**P-Pdot Diagram**-iin marsaa naanna'uu urjii Neutron Star ($P$) fi ariitii ittiin naanna'uu gadi bu'u ($\dot{P}$) walitti hidhuun gosa Pulsar-oota addaan baasuuf gargaara.")
+    st.info("💡 Anniisaan dhangala'u (Radiative energy loss relation) formulaa kanaan ibsama:")
+    st.latex(r"\dot{E} \propto f^6")
 
-<h2>2. Seera Harkisa Addunyaa Niwuuton</h2>
-<div class="lang-sec">
-    <p>Seerri kun wantoonni ulfaatinna qaban hundi wal harkisuu isaanii ibsa. Inni kun pilaaneetonni akkamitti Aduu akka naanna’an fi urjiiwwan akkamitti walitti qabamanii galaaksii uuman ibsa.</p>
-</div>
-<div class="formula">
-    $$\mathbf{F = G \frac{m_1 m_2}{r^2}}$$
-</div>
+# 4. BAAFATA FI QABIYYEE KITAABICHAA
+elif menu == "Baafata & Qabiyyee Kitaabichaa":
+    st.header("📖 Seensafi Baafata Qabiyyee Kitaaba Saayinsii Hawwaa")
+    st.write("---")
+    
+    st.subheader("SEENSA KITAABAA")
+    st.write(
+        "Duniyaan ykn hawwaan (Universe) amala guutummaatti adda ta'e, ballina dhuma hin qabne, "
+        "fi icciitiiwwan heedduu qorannoodhaan bira hin gahamne of keessaa qaba. Ilmi namaa tanuma uumamaa "
+        "jalqabeefi lafa kana irra qubatee kaasee, ija isaa gara gubbaatti ol deebisee waa'ee urjiilee, "
+        "addeessaa, aduufi wantoota fageenya hamiitiin ala jiran xiinxaluun halkaniifi guyyaa sammuu isaa rarraasaa "
+        "tureera. Saayinsiin hawwaafi fiiziksiin hawwaa (Astronomy and Astrophysics) icciitiiwwan fageenya fagoo "
+        "sanatti uumamanii dhoohan, kanneen akka dhalachuufi du'uu urjiilee, guunguma dhabama duudaa (black holes), "
+        "fi sochii galaaksiiwwanii seera fiiziksiifi herregaa fayyadamanii saayinsii kallattiidhaan ibsa itti kennani dha."
+    )
+    
+    st.write("---")
+    st.subheader("TARTEEFI BAAFATA QABIYYEE KITAABICHAA")
+    st.markdown("### 📘 Boqonnaa 1: Sirna Pilaaneetotaa (Planetary Systems)")
+    st.write("**1.1 Uumama Sirna Aduu:** Nebular Hypothesis fi akkamitti aduun dhalattee naannoo isiitti pilaaneetonni uumaman.")
+    st.write("**1.2 Pilaaneetota Dhagaa:** Amaloota Mercury, Venus, Earth, fi Mars.")
+    
+    st.markdown("### 📘 Boqonnaa 2: Fiiziksii Urjiilee (Stellar Physics & Evolution)")
+    st.write("**2.1 Protostars:** Urjiileen haaraa dhalachaa jiran fi Nuclear Fusion.")
+    st.write("**2.2 Hertzsprung-Russell (H-R) Diagram:** Wal-itti dhufeenya Luminosity fi Temperature.")
 
-<h2>3. Seerota Keppler (Kepler’s Laws)</h2>
-<h3>Seera Jalqabaa (Law of Ellipses)</h3>
-<div class="formula">
-    $$\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$$
-</div>
+    st.markdown("### 📘 Boqonnaa 3: Compact Objects Sadan (The Three Compact Objects)")
+    st.write("**3.1 White Dwarfs:** Electron Degeneracy Pressure.")
+    st.write("**3.2 Neutron Stars:** Supernova, Neutron Degeneracy Pressure.")
+    st.write("**3.3 Black Holes:** Event Horizon fi Singularity.")
 
-<h3>Seera Lammaffaa (Law of Equal Areas)</h3>
-<div class="formula">
-    $$\frac{dA}{dt} = \text{constant}$$
-</div>
+# 5. KUTAA GALATAA
+elif menu == "Galata fi Waraqa Qorannoo":
+    st.header("🙏 Kutaa Galataa")
+    st.write("---")
+    st.markdown("### **Galata Addaa Fi Guddinaa**")
+    st.write(
+        "Kallattiidhaan kitaaba kanaafi hojii qorannoo koo dhimma saayinsii hawwaa xumuruu keessatti, "
+        "gorsa, ogummaa saayinsawaa, fi deeggarsa sammuu walirraa hin cinne qajeelfama naaf kennaa kan turan "
+        "**Dr. Darajjee Wakgaarii** muummicha Fiiziksii keessatti gorsaakoo qorannoo ta'aniif galanni koo "
+        "olaanaadha."
+    )
+    st.markdown("#### 🔬 Mataduree Qorannoo MSc:")
+    st.info("📊 *'The study of Evolutionary characteristics of rotating neutron star'*")
 
-<h3>Seera Sadeffaa (Law of Harmonies)</h3>
-<div class="formula">
-    $$\mathbf{P^2 = \left( \frac{4\pi^2}{G(M + m)} \right) a^3}$$
-</div>
-
-<h2>4. Compact Objects & Neutron Stars</h2>
-<div class="lang-sec">
-    <p><strong>Rukkina Addaa (Extreme Density):</strong> Urjiin Niiwutiroonii wanta 'visible' ta'e keessaa isa rukkina guddaa qabudha. Rukkinni isaa hamma niwuukilaaraa caala.</p>
-</div>
-<div class="formula">
-    $$\rho \approx 10^{17} \text{ kg/m}^3$$
-</div>
-
-<h2>Summary of Compact Objects</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Amala (Property)</th>
-            <th>Normal Pulsar</th>
-            <th>Millisecond Pulsar (MSP)</th>
-            <th>Magnetar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><strong>Period (P)</strong></td>
-            <td>0.1 - 5 s</td>
-            <td>1 - 10 ms</td>
-            <td>1 - 10 s</td>
-        </tr>
-        <tr>
-            <td><strong>Magnetic Field (B)</strong></td>
-            <td>10<sup>12</sup> G</td>
-            <td>10<sup>8</sup> - 10<sup>9</sup> G</td>
-            <td>10<sup>14</sup> - 10<sup>15</sup> G</td>
-        </tr>
-        <tr>
-            <td><strong>Age (&tau;)</strong></td>
-            <td>Young / Middle-aged</td>
-            <td>Very Old (Recycled)</td>
-            <td>Very Young</td>
-        </tr>
-    </tbody>
-</table>
-
-</body>
-</html>
+# 6. Waa'ee Qopheessaa
+elif menu == "Waa'ee Qopheessaa":
+    st.header("👤 Profile Qopheessaa")
+    st.subheader("Baga Gammaddan, Maqaan Koo Barsiisaa Qixxeessaa Nagaasaa Fayisaa Ti!")
+    st.write(
+        "Ani Yuunivarsiitii Wallaggaatti barataa digrii lammaffaa (**MSc Astrophysics**) ti. Jaallataa fi qorataa saayinsii hawwaa "
+        "yoon ta'u, waraqaan qorannoo koo (*MSc Thesis*) mataduree **'The study of Evolutionary characteristics of rotating neutron star'** "
+        "irratti xiyyeeffata."
+    )
