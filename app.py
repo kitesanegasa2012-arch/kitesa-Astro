@@ -16,8 +16,8 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     st.image(telescope_url, use_column_width=True)
     
     # Mataduree Guddicha
-   st.markdown("<h1 style='text-align: center; color: #1E3A8A;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; color: #4B5563;'> Saayinsii Hawwaa, Sochii Urjiilee fi Bal'ina Daangaa Hin Qabne</h3>", unsafe_allow_html=True)
+  st.markdown("<h1 style='text-align: center; color: #1E3A8A;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #4B5563;'>Icciitii Uumama Hawwaa, Sochii Urjiilee fi Bal'ina Daangaa Hin Qabne</h3>", unsafe_allow_html=True)
     
     st.write("---")
     # Maqaa Kee fi Unka Qorannoo Kee
