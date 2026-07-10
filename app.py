@@ -88,9 +88,9 @@ elif menu == "Waa'ee Qopheessaa":
     except:
         st.warning("⚠️ Suuraan kee onlaayinii irratti argamuu hin dandeenye. Maqaan faayilii keetii 'qixxeessaa.jpg' ta'uu isaa mirkaneessi.")
         
-    st.subheader("Baga Gammaddan, Maqaan Koo Barsiisaa Qixxeessaa Nagaasaa Fayisaa Ti!")
+    st.subheader("Maqaan Koo Barsiisaa Qixxeessaa Nagaasaa Fayisaa ti!")
     st.write(
-        "Ani Yuunivarsiitii Wallaggaatti barataa digrii lammaffaa (**MSc Astrophysics**) ti. Jaallataa fi qorataa saayinsii hawwaa "
+        "Ani Yuunivarsiitii Wallaggaatti barataa digrii lammaffaa (**MSc Astrophysics**) ti. barataa fi qorataa saayinsii hawwaa "
         "yoon ta'u, waraqaan qorannoo koo (*MSc Thesis*) mataduree **'The study of Evolutionary characteristics of rotating neutron star'** "
         "irratti xiyyeeffata."
     )
