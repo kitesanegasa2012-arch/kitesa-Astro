@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(page_title="Kitesa Astro", page_icon="🌌", layout="centered")
 
 st.title("🌌 Kitesa Astro")
-st.markdown("### Appilikeeshinii Barumsa Astroonoomii fi Fiiziksii Hawwaa")
+st.markdown("### ASTIRONOOMII(SAAYINSII HAWWAA)")
 st.write("---")
 
 # Menu Appii keetii (Sidebar)
