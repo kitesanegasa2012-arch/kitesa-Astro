@@ -69,9 +69,9 @@ elif menu == "Galata fi Waraqa Qorannoo":
     st.markdown("### **Galata Addaa Fi Guddinaa**")
     st.write(
         "Kallattiidhaan kitaaba kanaafi hojii qorannoo koo dhimma saayinsii hawwaa xumuruu keessatti, "
-        "gorsa, ogummaa saayinsawaa, fi deeggarsa sammuu walirraa hin cinne qajeelfama naaf kennaa kan turan "
-        "**Dr. Darajjee Wakgaarii** muummicha Fiiziksii keessatti gorsaakoo qorannoo ta'aniif galanni koo "
-        "olaanaadha."
+        "gorsa, ogummaa saayinsawaa, fi deeggarsa  walirraa hin cinne qajeelfama naaf kennaa kan turan "
+        "**Dr. Darajjee Wakgaarii** Yuunversitii wallaggaatti B/saa astronoomii fi gorsaakoo   kan ta'an galanni koo "
+        "guddaadha."
     )
     st.markdown("#### 🔬 Mataduree Qorannoo MSc:")
     st.info("📊 *'The study of Evolutionary characteristics of rotating neutron star'*")
