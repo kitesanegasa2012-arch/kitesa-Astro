@@ -3,15 +3,12 @@ import streamlit as st
 # Maqaa Appii fi Waamicha Jalqabaa
 st.set_page_config(page_title="Kitesa Astro", page_icon="🌌", layout="centered")
 
-st.title("🌌 Kitesa Astro")
-st.markdown("### ASTIRONOOMII(SAAYINSII HAWWAA)")
-st.write("---")
-
-# Menu Appii keetii (Sidebar)
+# --- MENU SIDEBAR ---
 menu = st.sidebar.selectbox(
     "Filannoo Qabiyyee:",
-    ["Hiika Saayinsii Hawwaa", "H-R Diagram", "P-Pdot Diagram (Neutron Stars)", "Baafata & Qabiyyee Kitaabichaa", "Galata fi Waraqa Qorannoo", "Waa'ee Qopheessaa"]
+    ["Fuula Jalqabaa (Cover Page)", "Hiika Saayinsii Hawwaa", "H-R Diagram", "P-Pdot Diagram (Neutron Stars)", "Baafata & Qabiyyee Kitaabichaa", "Galata fi Waraqa Qorannoo", "Waa'ee Qopheessaa"]
 )
+
 # 0. FUULA JALQABAA (COVER PAGE)
 if menu == "Fuula Jalqabaa (Cover Page)":
     # Suuraa Teeleskooppii Hawaa bareedaa onlaayinii irraa fida
