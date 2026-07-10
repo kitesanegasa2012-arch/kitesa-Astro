@@ -16,7 +16,7 @@ menu = st.sidebar.selectbox(
 # 1. Hiika Saayinsii Hawwaa
 if menu == "Hiika Saayinsii Hawwaa":
     st.header("🔭 Hiika Saayinsii Hawwaa fi Astroonoomii")
-    st.write("**Astroonoomiin** Astronoomiin (Xin-hawaan) saayinsii uumamaa wantoota qilleensa lafaatiin alatti (hawaa keessatti) argaman hunda qoratudha. Argama, geeddaramiinsa, amaloota fizikaalaa fi amala wantoota hawaa—kanneen akka pilaaneetotaa, urjiilee, gaalaaksotaa fi neebulaawwanii qorachuuf herrega, fiziksii fi keemistrii fayyadama..")
+    st.write("**Astroonoomiin** saayinsii uumamaa wantoota qilleensa lafaatiin alatti (hawaa keessatti) argaman hunda qoratudha. Argama, geeddaramiinsa, amaloota fizikaalaa fi amala wantoota hawaa—kanneen akka pilaaneetotaa, urjiilee, gaalaaksotaa fi neebulaawwanii qorachuuf herrega, fiziksii fi keemistrii fayyadama..")
 
 # 2. H-R Diagram
 elif menu == "H-R Diagram":
