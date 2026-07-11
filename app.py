@@ -4,20 +4,19 @@ import streamlit as st
 st.set_page_config(page_title="Kitesa Astro", page_icon="🌌", layout="centered")
 
 # ==========================================
-# 🔍 KUTAA BARBAACHAA (SEARCH FUNCTION)
+# 🔍 KUTAA BARBAACHAA (SEARCH BAR FUNCTION)
 # ==========================================
-# Qabiyyee appii keetii hunda as jalatti kuusna, search bar-ichi as keessaa barbaada
+# Qabiyyee kee hunda kan search-ichi keessaa barbaadu as jalatti kuusna
 database = {
-    "cover": "Astrophysics & Cosmology Icciitii Uumama Hawwaa, Sochii Urjiilee Barsiisaa Qixxeessaa Nagaasaa Fayisaa Wallaga University Thesis Rotating neutron star",
-    "galata": "Kutaa Galataa Addaa Dr. Darajjee Wakgaarii Yuunivarsiitii Wallaggaatti Barsiisaa Astroonoomii gorsaa koo",
-    "qorataa": "Profile Qopheessaa Qorataa Barsiisaa Qixxeessaa Nagaasaa Fayisaa MSc Astrophysics Wallaga University rotating neutron star",
-    "seensa": "Seensa Kitaaba Saayinsii Hawwaa Universo Duniyaan Astroonoomiin saayinsii uumamaa herrega fiziksii fi keemistrii",
-    "kaayyoo": "Kaayyoo fi Mul'ata Objectives Vision Afaan Oromootiin dhiyeessuu Rotating Neutron Stars",
+    "galata": "Galataa Acknowledgement Uumaa Koo Waaqayyoon Dr. Darajjee Wakgaarii Amantee Aadde Mulee Baqqalaa Nagaasaa Fayisaa Qixxaattuu Darajjee Lalisaa Eebbisaa Eebbisee Araaree Hiikaa Latii",
+    "qorataa": "Waa'ee Qorataa Profile Barsiisaa Qixxeessaa Nagaasaa Fayisaa MSc Astrophysics Wallaga University rotating neutron star",
+    "seensa": "Seensa Kitaabaa Hiika Saayinsii Hawwaa Universo Duniyaan Astroonoomiin fiziksii keemistrii",
+    "kaayyoo": "Kaayyoo fi Mul'ata Objectives Vision Afaan Oromootiin Rotating Neutron Stars",
     "boqonnaa1": "Boqonnaa 1 Sirna Pilaaneetotaa Planetary Systems Uumama Sirna Aduu Nebular Hypothesis Pilaaneetota Dhagaa Mercury Venus Earth Mars",
-    "boqonnaa2": "Boqonnaa 2 Fiiziksii Urjiilee Stellar Physics & Evolution Protostars Nuclear Fusion Hertzsprung-Russell H-R Diagram Luminosity Temperature",
-    "boqonnaa3": "Boqonnaa 3 Compact Objects Sadan White Dwarfs Electron Degeneracy Pressure Neutron Stars Supernova Neutron Degeneracy Pressure Black Holes Event Horizon Singularity",
-    "hr_diagram": "Hertzsprung-Russell H-R Diagram Luminosity Effective Temperature Main Sequence L = 4pi R^2 sigma T^4",
-    "ppdot_diagram": "P-Pdot Diagram Neutron Stars Rotating Neutron Stars Pulsar E = f^6 Radiative energy loss"
+    "boqonnaa2": "Boqonnaa 2 Fiiziksii Urjiilee Stellar Physics & Evolution Protostars Nuclear Fusion Hertzsprung-Russell H-R Diagram",
+    "boqonnaa3": "Boqonnaa 3 Compact Objects Sadan White Dwarfs Electron Degeneracy Neutron Stars Supernova Black Holes Event Horizon",
+    "hr_diagram": "Hertzsprung-Russell H-R Diagram Luminosity Effective Temperature Main Sequence",
+    "ppdot_diagram": "P-Pdot Diagram Neutron Stars Rotating Neutron Stars Pulsar f^6 Radiative energy loss"
 }
 
 st.sidebar.markdown("### 🔍 Barbaacha (Search)")
@@ -26,7 +25,7 @@ search_query = st.sidebar.text_input("Jecha barbaaddan asitti barreessaa:", "")
 # Tartiiba menu sidebar
 menu_options = [
     "Fuula Jalqabaa (Cover Page)", 
-    "Kutaa Galataa",
+    "Galataa (Acknowledgement)", 
     "Waa'ee Qorataa (Profile)",
     "Seensa Kitaabaa & Hiika", 
     "Kaayyoo fi Mul'ata",
@@ -37,13 +36,13 @@ menu_options = [
     "P-Pdot Diagram (Neutron Stars)"
 ]
 
-# Yoo namni tokko search bar fayyadame, menu ofumaan jijjiirama
+# Yoo search bar fayyadaman, menu ofumaan jijjiirama
 current_menu = "Fuula Jalqabaa (Cover Page)"
 
 if search_query:
     q = search_query.lower()
     if any(word in database["galata"].lower() for word in q.split()):
-        current_menu = "Kutaa Galataa"
+        current_menu = "Galataa (Acknowledgement)"
     elif any(word in database["qorataa"].lower() for word in q.split()):
         current_menu = "Waa'ee Qorataa (Profile)"
     elif any(word in database["seensa"].lower() for word in q.split()):
@@ -63,7 +62,7 @@ if search_query:
     
     st.sidebar.success(f"🔍 '{search_query}' kanaan argameera!")
 
-# Menu dhumarratti saagma
+# Selectbox menu ittiin filatan
 menu = st.sidebar.selectbox("Filannoo Qabiyyee:", menu_options, index=menu_options.index(current_menu))
 
 
@@ -75,24 +74,9 @@ menu = st.sidebar.selectbox("Filannoo Qabiyyee:", menu_options, index=menu_optio
 if menu == "Fuula Jalqabaa (Cover Page)":
     telescope_url = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
     st.image(telescope_url, use_column_width=True)
-    
-    st.markdown("<h1 style='text-align: center; color: #0F172A; font-family: sans-serif; font-weight: 800; margin-bottom: 0;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748B; font-size: 1.2em; font-style: italic; margin-top: 5px;'>Icciitii Uumama Hawwaa, Sochii Urjiilee fi Bal'ina Daangaa Hin Qabne</p>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
     st.write("---")
-    
-    # Card Border bareedaa qabu
-    st.markdown("""
-    <div style='background-color: #FAFCDA; padding: 25px; border-radius: 12px; border: 2px solid #0EA5E9; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); text-align: center;'>
-        <p style='font-size: 1.1em; color: #0284C7; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px;'>MSc RESEARCH FRAMEWORK</p>
-        <h2 style='margin-top: 0; color: #0F172A; font-size: 1.8em; font-weight: 700;'>Barsiisaa Qixxeessaa Nagaasaa Fayisaa</h2>
-        <p style='font-size: 1.1em; color: #334155; margin-bottom: 15px;'>MSc Candidate in Astrophysics | Wallaga University</p>
-        <div style='background-color: #FFFFFF; padding: 10px; border-radius: 8px; border-left: 4px solid #F59E0B;'>
-            <p style='font-style: italic; color: #475569; font-size: 1em; margin: 0;'><strong>Thesis Title:</strong> "The study of Evolutionary characteristics of rotating neutron star"</p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.write("")
-    st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka **'Filannoo Qabiyyee'** jedhu tuquun boqonnaalee barbaaddan filadhaa!")
+    st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka 'Filannoo Qabiyyee' jedhu tuquun boqonnaalee barbaaddan filadhaa!")
 
 # 1. GALATAA
 elif menu == "Galataa (Acknowledgement)":
