@@ -91,7 +91,7 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     st.write("")
     
     # Suuraa kee (Size 2x2) gidduutti fi boorderoo waliin
-    st.markdown("<p style='text-align: center; font-weight: bold; color: #4B5563; margin-bottom: 5px;'>👤 QORATAA KANNAA</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; font-weight: bold; color: #4B5563; margin-bottom: 5px;'>👤 SUURA QOPHEESSAA</p>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 1, 1])
     with col2: # Gidduutti akka bahuuf col2 fayyadamna
         suuraa_url = "https://raw.githubusercontent.com/kitesanegasa2012-arch/kitesa-Astro/main/qixxeessaa.jpg"
