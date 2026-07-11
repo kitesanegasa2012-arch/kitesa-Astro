@@ -93,7 +93,6 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     """, unsafe_allow_html=True)
     st.write("")
     st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka **'Filannoo Qabiyyee'** jedhu tuquun boqonnaalee barbaaddan filadhaa!")
-
 # 1. GALATAA
 elif menu == "Galataa(Acknowledgement)":
     st.header("🙏 Galataa ")
@@ -132,6 +131,7 @@ elif menu == "Galataa(Acknowledgement)":
         "**Araaree** fi ijoollee koo qunxurroo, abdiwwan koo **Hiikaa** fi **Latii**-f galanni ani qabu "
         "ibsa jechaa olitti. Isin hundi keessanuu miidhagina fi utubaa jireenya kooti!"
     )
+
 # 2. WAA'EE QORATAA (PROFILE)
 elif menu == "Waa'ee Qorataa (Profile)":
     st.header("👤 Profile Qopheessaa / Qorataa")
