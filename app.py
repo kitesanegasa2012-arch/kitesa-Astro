@@ -94,10 +94,10 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     st.write("")
     st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka **'Filannoo Qabiyyee'** jedhu tuquun boqonnaalee barbaaddan filadhaa!")
 
-# 1.  GALATAA
+# 1. GALATAA
 elif menu == "Galataa(Acknowledgement)":
     st.header("🙏 Galataa ")
-    
+     
     # 1. Waaqayyoon Galateeffachuu
     st.markdown("### 🛐 Uumaa Koo Waaqayyoon")
     st.write(
@@ -105,26 +105,26 @@ elif menu == "Galataa(Acknowledgement)":
         "gadi fagoo kana keessa lixee akkan qoradhuuf humna, beekumsaa fi obsa naaf kenne, "
         "Waaqayyo Uumaa kootiif galanni guddaan,  fi dhuma hin qabne haa ta'u. "
     )
-    
+     
     # 2. Gorsaa Keetiif (Dr. Darajjee)
     st.markdown("### 🔬 Gorsaa Koo ")
     st.write(
-       " Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
-        "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turan ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an"
+        " Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
+        "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turan ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an "
         "**Dr. Darajjee Wakgaarii Amantee**  guddaan galateeffadha. "
-        )
-    
-   # 3. Maatii Keetiif (Warra Koo, Araaree, Hiikaa fi Latii)
+    )
+     
+    # 3. Maatii Keetiif (Warra Koo, Araaree, Hiikaa fi Latii)
     st.markdown("### 🏡 Maatii Koo")
-    
+     
     # Warra Keetiif (Haadha fi Abbaa)
     st.write(
         "Duraan dursee, Maatiikoo, dhalachuu koo irraa eegalanii nama ta'uu kootiif na guddisuun,na barsiisuun "
-        "bu'uura cimaa kan naaf kuusan, **Haadha koo** deessuu koo fi dandeessuu koo kan taatee "Aadde Mulee Baqqalaa**fi **Abbaa koo**  Lafa kana irratti utubaa "
-        "jireenya kootii kan ta'aani Waan hundaan na bira dhaabbachaa jiran Barsiisaa **Nagaasaa Fayisaa** tiif obbolaankoo **Qixxaattuu Nagaasaa,Darajjee Nagaasa,Lalisaa Nagaasa,Eebbisaa Nagaasaa Fi EEbbisee Nagaasaa ** kallattii hundaan deggersa obbolummaa naaf taasisaa hundaaf galannikoo haa ta'uuf "
+        "bu'uura cimaa kan naaf kuusan, **Haadha koo** deessuu koo fi dandeessuu koo kan taatee **Aadde Mulee Baqqalaa** fi **Abbaa koo**  Lafa kana irratti utubaa "
+        "jireenya kootiii kan ta'aani Waan hundaan na bira dhaabbachaa jiran Barsiisaa **Nagaasaa Fayisaa** tiif obbolaankoo **Qixxaattuu Nagaasaa,Darajjee Nagaasa,Lalisaa Nagaasa,Eebbisaa Nagaasaa Fi EEbbisee Nagaasaa** kallattii hundaan deggersa obbolummaa naaf taasisaa hundaaf galannikoo haa ta'uuf "
         "har'a kanaan na geessan; lafee dugdaa fi ifa jireenya kooti!"
     )
-    
+     
     # Haadha Manaa fi Ijoolleedhaaf
     st.write(
         "Halkanii fi guyyaa osoo hin jedhiin, yeroo ani qo'annoo fi qorannoon rarra'ee jiru kanneen obsaan "
@@ -132,7 +132,6 @@ elif menu == "Galataa(Acknowledgement)":
         "**Araaree** fi ijoollee koo qunxurroo, abdiwwan koo **Hiikaa** fi **Latii**-f galanni ani qabu "
         "ibsa jechaa olitti. Isin hundi keessanuu miidhagina fi utubaa jireenya kooti!"
     )
-
 # 2. WAA'EE QORATAA (PROFILE)
 elif menu == "Waa'ee Qorataa (Profile)":
     st.header("👤 Profile Qopheessaa / Qorataa")
