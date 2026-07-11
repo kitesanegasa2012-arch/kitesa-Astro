@@ -94,43 +94,44 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     st.write("")
     st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka **'Filannoo Qabiyyee'** jedhu tuquun boqonnaalee barbaaddan filadhaa!")
 
-# 1. KUTAA GALATAA
-elif menu == "Kutaa Galataa":
-    st.header("🙏 Kutaa Galataa Addaa")
+# 1.  GALATAA
+elif menu == "Galataa(Acknowledgement)":
+    st.header("🙏 Galataa ")
     
     # 1. Waaqayyoon Galateeffachuu
     st.markdown("### 🛐 Uumaa Koo Waaqayyoon")
     st.write(
-        "Jalqabaa fi xumura hojii koo kan ta'e, kajeellaa onnee koo naaf guutee saayinsii hawwaa "
-        "gadi fagoo kana keessa lixee akkan qoradhuuf humna, beekumsaa fi obsan naaf kenne, "
-        "Waaqayyo Uumaa kootiif galanni guddaan, badhaadhaan fi dhuma hin qabne haa ta'u. "
-        "Gargaarsa Isaatiin ala gufuuwwan dhiibbaa qaban cehuun hin danda'amu ture."
+        "Jalqabaa fi xumura hojii koo kan ta'e, Sammuu koo naaf banee  saayinsii hawwaa "
+        "gadi fagoo kana keessa lixee akkan qoradhuuf humna, beekumsaa fi obsa naaf kenne, "
+        "Waaqayyo Uumaa kootiif galanni guddaan,  fi dhuma hin qabne haa ta'u. "
     )
     
     # 2. Gorsaa Keetiif (Dr. Darajjee)
-    st.markdown("### 🔬 Gorsaa Koo Olaanaa")
+    st.markdown("### 🔬 Gorsaa Koo ")
     st.write(
-        "Kallattiidhaan hojii qorannoo koo mataduree *'The study of Evolutionary characteristics of "
-        "rotating neutron star'* jedhu kana xumuruu keessatti, eegala irraa kaasee hanga dhumaatti "
-        "ogummaa saayinsawaa, gorsa dadhabbiin ala ta'eefi deeggarsa walirraa hin cinne naaf kennaa kan turan "
-        "**Dr. Darajjee Wakgaarii** (Barsiisaa Astroonoomii Yuunivarsiitii Wallaggaa) galanni koo guutuu fi "
-        "guddaadha. Kallattiin isaan naaf agarsiisan onnee fi bu'uura qorannoo kooti."
+        Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
+        "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turan ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an"
+        "**Dr. Darajjee Wakgaarii Amantee**  guddaan galateeffadha. "
+        )
+    
+   # 3. Maatii Keetiif (Warra Koo, Araaree, Hiikaa fi Latii)
+    st.markdown("### 🏡 Maatii Koo")
+    
+    # Warra Keetiif (Haadha fi Abbaa)
+    st.write(
+        "Duraan dursee, Maatiikoo, dhalachuu koo irraa eegalanii nama ta'uu kootiif na guddisuun,na barsiisuun "
+        "bu'uura cimaa kan naaf kuusan, **Haadha koo** deessuu koo fi dandeessuu koo kan taatee "Aadde Mulee Baqqalaa**fi **Abbaa koo**  Lafa kana irratti utubaa "
+        "jireenya kootii kan ta'aani Waan hundaan na bira dhaabbachaa jiran Barsiisaa **Nagaasaa Fayisaa** tiif obbolaankoo **Qixxaattuu Nagaasaa,Darajjee Nagaasa,Lalisaa Nagaasa,Eebbisaa Nagaasaa Fi EEbbisee Nagaasaa ** kallattii hundaan deggersa obbolummaa naaf taasisaa hundaaf galannikoo haa ta'uuf "
+        "har'a kanaan na geessan; lafee dugdaa fi ifa jireenya kooti!"
     )
     
-    # 3. Maatii Keetiif (Araaree, Hiikaa fi Latii)
-    st.markdown("### 🏡 Maatii Koo Fi Onnee Koo")
+    # Haadha Manaa fi Ijoolleedhaaf
     st.write(
         "Halkanii fi guyyaa osoo hin jedhiin, yeroo ani qo'annoo fi qorannoon rarra'ee jiru kanneen obsaan "
         "na eegaa turan, jaalala, onnee fi humna itti fufiinsaa kan naaf ta'an jaalatamtuu haadha manaa koo "
         "**Araaree** fi ijoollee koo qunxurroo, abdiwwan koo **Hiikaa** fi **Latii**-f galanni ani qabu "
-        "ibsa jechaa olitti. Isin utubaa jireenya kooti!"
+        "ibsa jechaa olitti. Isin hundi keessanuu miidhagina fi utubaa jireenya kooti!"
     )
-    
-    st.write("---")
-    st.markdown("#### 📊 Axereera Qorannoo (Thesis Focus):")
-    st.info("🌌 *Analyzing angular momentum evolution, braking index, and radiative energy loss ($f^6$) of rotating neutron stars.*")
-    st.markdown("#### 🔬 Mataduree Qorannoo MSc:")
-    st.info("📊 *'The study of Evolutionary characteristics of rotating neutron star'*")
 
 # 2. WAA'EE QORATAA (PROFILE)
 elif menu == "Waa'ee Qorataa (Profile)":
