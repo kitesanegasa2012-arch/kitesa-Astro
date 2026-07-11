@@ -182,17 +182,6 @@ elif menu == "Kaayyoo fi Mul'ata":
     )
 
 import streamlit as st
-
-# --- 1. SARARA FILANNOO (SIDEBAR NAVIGATION) ---
-# Hubachiisa: Maqaan as keessatti filatamu fi 'elif' keessa jiru wal fakkaachuu qaba!
-menu = st.sidebar.radio(
-    "Baafata Kitaabaa:",
-    [
-        "Boqonnaa 1: Seensa Astiroonoomii fi Astroofiiziksii",
-        "Boqonnaa 2: Sirna Pilaaneetotaa" # Kan biraa yoo jiraate asiin dabalama
-    ]
-)
-
 # --- 2. QABIYYEE KITAABAA ---
 if menu == "Boqonnaa 2: Sirna Pilaaneetotaa":
     st.header("🪐 Boqonnaa 2: Sirna Pilaaneetotaa")
@@ -354,18 +343,6 @@ elif menu == "Boqonnaa 1: Seensa Astiroonoomii fi Astroofiiziksii":
 
 import streamlit as st
 
-# --- 1. SARARA FILANNOO (SIDEBAR) ---
-# Hubachiisa: Maqaan as keessatti qophaa'e fi elif keessa jiru guutummaatti wal fakkaachuu qaba!
-menu = st.sidebar.radio(
-    "Baafata Kitaabaa:",
-    [
-        "Boqonnaa 1: Seensa Astiroonoomii fi Astroofiiziksii",
-        "Boqonnaa 2: Fiiziksii Urjiilee"
-    ]
-)
-
-# --- 2. QABIYYEE KITAABAA ---
-
 # --- BOQONNAA 1 ---
 if menu == "Boqonnaa 1: Seensa Astiroonoomii fi Astroofiiziksii":
     st.header("✨ Boqonnaa 1: Seensa Astiroonoomii fi Astroofiiziksii")
@@ -481,36 +458,6 @@ elif menu == "P-Pdot Diagram (Neutron Stars)":
     )
     import streamlit as st
 
-# --- QINDEESSAA PEEJII (PAGE CONFIG) ---
-st.title("🌌 ASTROPHYSICS NOTES")
-st.caption("Barreeffama Qorannoo Astroofiiziksii — Kitesa Negasa (January 2026)")
-st.divider()
-
-# --- SEENSA (INTRODUCTION) ---
-st.header("✨ Boqonnaa 1: Seensa Astroofiiziksii (Introduction to Astrophysics)")
-
-col_intro1, col_intro2 = st.columns(2)
-
-with col_intro1:
-    st.markdown("### 🇪🇹 Afaan Oromoo")
-    st.write(
-        "Astrofiiziksiin damee saayinsii qabiyyee fi uumama (physics) wantoota hawaa keessaa kan qo’atudha. "
-        "Inni kun waa’ee urjiilee, pilaaneetotaa, galaksiiwwanii fi dhaloota yuunivarsii (universe) hunda "
-        "seerota fiiziksii fi herregaatiin ibsa."
-    )
-    st.info("**Fakkeenya:** Urjiin tokko akkamitti ifa kenna? Boolli gurraachi (Black hole) maali?")
-
-with col_intro2:
-    st.markdown("### 🇬🇧 English")
-    st.write(
-        "*Astrophysics is a branch of astronomy that deals with the physical nature of stars and other celestial bodies. "
-        "It applies the laws of physics and chemistry to explain how stars, planets, and galaxies are born, live, and die.*"
-    )
-    st.info("**Example:** How do stars produce light? What is the nature of Black holes?")
-
-st.divider()
-
-# --- SECTION 1: SEEROTA ASTROFIIZIKSII ---
 st.header("📜 1. Seerota Astroofiziksii (Laws of Astrophysics)")
 
 # 1.1 Big Bang Theory
