@@ -109,7 +109,7 @@ elif menu == "Galataa(Acknowledgement)":
     # 2. Gorsaa Keetiif (Dr. Darajjee)
     st.markdown("### 🔬 Gorsaa Koo ")
     st.write(
-        Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
+       " Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
         "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turan ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an"
         "**Dr. Darajjee Wakgaarii Amantee**  guddaan galateeffadha. "
         )
