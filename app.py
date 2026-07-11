@@ -6,7 +6,6 @@ st.set_page_config(page_title="Kitesa Astro", page_icon="🌌", layout="centered
 # ==========================================
 # 🔍 KUTAA BARBAACHAA (SEARCH BAR FUNCTION)
 # ==========================================
-# Qabiyyee kee hunda kan search-ichi keessaa barbaadu as jalatti kuusna
 database = {
     "galata": "Galataa Acknowledgement Uumaa Koo Waaqayyoon Dr. Darajjee Wakgaarii Amantee Aadde Mulee Baqqalaa Nagaasaa Fayisaa Qixxaattuu Darajjee Lalisaa Eebbisaa Eebbisee Araaree Hiikaa Latii",
     "qorataa": "Waa'ee Qorataa Profile Barsiisaa Qixxeessaa Nagaasaa Fayisaa MSc Astrophysics Wallaga University rotating neutron star",
@@ -22,7 +21,6 @@ database = {
 st.sidebar.markdown("### 🔍 Barbaacha (Search)")
 search_query = st.sidebar.text_input("Jecha barbaaddan asitti barreessaa:", "")
 
-# Tartiiba menu sidebar
 menu_options = [
     "Fuula Jalqabaa (Cover Page)", 
     "Galataa (Acknowledgement)", 
@@ -36,7 +34,6 @@ menu_options = [
     "P-Pdot Diagram (Neutron Stars)"
 ]
 
-# Yoo search bar fayyadaman, menu ofumaan jijjiirama
 current_menu = "Fuula Jalqabaa (Cover Page)"
 
 if search_query:
@@ -62,7 +59,6 @@ if search_query:
     
     st.sidebar.success(f"🔍 '{search_query}' kanaan argameera!")
 
-# Selectbox menu ittiin filatan
 menu = st.sidebar.selectbox("Filannoo Qabiyyee:", menu_options, index=menu_options.index(current_menu))
 
 
@@ -72,11 +68,41 @@ menu = st.sidebar.selectbox("Filannoo Qabiyyee:", menu_options, index=menu_optio
 
 # 0. FUULA JALQABAA (COVER PAGE)
 if menu == "Fuula Jalqabaa (Cover Page)":
+    # Fakkii duubaa (Background telescope)
     telescope_url = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
     st.image(telescope_url, use_column_width=True)
-    st.markdown("<h1 style='text-align: center;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
+    
+    # Mataduree Guutuu
+    st.markdown("<h1 style='text-align: center; color: #1E3A8A; font-weight: 900; margin-bottom: 0;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #6B7280; font-size: 1.2em; font-style: italic; margin-top: 5px;'>Icciitii Uumama Hawwaa, Sochii Urjiilee fi Bal'ina Daangaa Hin Qabne</p>", unsafe_allow_html=True)
     st.write("---")
-    st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka 'Filannoo Qabiyyee' jedhu tuquun boqonnaalee barbaaddan filadhaa!")
+    
+    # Boorderoo Bareedaa (Card Layout) Maqaa kee fi Wallaga University hammate
+    st.markdown("""
+    <div style='background-color: #F8FAFC; padding: 25px; border-radius: 16px; border: 3px double #3B82F6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); text-align: center;'>
+        <h2 style='color: #D97706; font-size: 2em; font-weight: 800; margin-bottom: 5px;'>BARSIISAA QIXXEESSAA NAGAASAA FAYISAA</h2>
+        <p style='font-size: 1.2em; color: #059669; font-weight: bold; margin-bottom: 15px;'>🚀 MSc Graduate / Researcher in Astrophysics</p>
+        <div style='background-color: #EFF6FF; padding: 12px; border-radius: 8px; border-left: 5px solid #3B82F6;'>
+            <p style='color: #1E40AF; font-size: 1.1em; margin: 0; font-weight: 600;'>🏫 WALLAGA UNIVERSITY</p>
+            <p style='font-style: italic; color: #1E293B; font-size: 1em; margin-top: 5px;'><strong>Thesis:</strong> \"The study of Evolutionary characteristics of rotating neutron star\"</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.write("")
+    
+    # Suuraa kee (Size 2x2) gidduutti fi boorderoo waliin
+    st.markdown("<p style='text-align: center; font-weight: bold; color: #4B5563; margin-bottom: 5px;'>👤 QORATAA KANNAA</p>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col2: # Gidduutti akka bahuuf col2 fayyadamna
+        suuraa_url = "https://raw.githubusercontent.com/kitesanegasa2012-arch/kitesa-Astro/main/qixxeessaa.jpg"
+        try:
+            # Kaameeraa size 2x2 gochuuf width=200 madaalawaa dha
+            st.image(suuraa_url, use_column_width=True, caption="Barsiisaa Qixxeessaa")
+        except:
+            st.warning("⚠️ Suuraan 'qixxeessaa.jpg' URL kee irratti argamuu hin dandeenye.")
+
+    st.write("---")
+    st.info("👉 Appilikeeshinii kana gadi fageenyaan dubbisuuf, gara bitaa skriinii keessanii irratti bakka **'Filannoo Qabiyyee'** jedhu tuquun boqonnaalee barbaaddan filadhaa!")
 
 # 1. GALATAA
 elif menu == "Galataa (Acknowledgement)":
@@ -94,7 +120,7 @@ elif menu == "Galataa (Acknowledgement)":
     st.markdown("### 🔬 Gorsaa Koo ")
     st.write(
         " Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
-        "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turan ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an "
+        "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turn ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an "
         "**Dr. Darajjee Wakgaarii Amantee**  guddaan galateeffadha. "
     )
      
@@ -113,7 +139,7 @@ elif menu == "Galataa (Acknowledgement)":
     st.write(
         "Halkanii fi guyyaa osoo hin jedhiin, yeroo ani qo'annoo fi qorannoon rarra'ee jiru kanneen obsaan "
         "na eegaa turan, jaalala, onnee fi humna itti fufiinsaa kan naaf ta'an jaalatamtuu haadha manaa koo "
-        "**Barsiistuu Araaree Taaddasaa** fi ijoollee koo , abdiwwan koo egeree kan ta'an**Hiikaa** fi **Latii**-f galanni ani qabu "
+        "**Araaree** fi ijoollee koo qunxurroo, abdiwwan koo **Hiikaa** fi **Latii**-f galanni ani qabu "
         "ibsa jechaa olitti. Isin hundi keessanuu miidhagina fi utubaa jireenya kooti!"
     )
 # 2. WAA'EE QORATAA (PROFILE)
