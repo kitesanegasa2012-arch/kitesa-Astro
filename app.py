@@ -139,6 +139,6 @@ elif menu == "Galataa (Acknowledgement)":
     st.write(
         "Halkanii fi guyyaa osoo hin jedhiin, yeroo ani qo'annoo fi qorannoon rarra'ee jiru kanneen obsaan "
         "na eegaa turan, jaalala, onnee fi humna itti fufiinsaa kan naaf ta'an jaalatamtuu haadha manaa koo "
-        "**Araaree** fi ijoollee koo qunxurroo, abdiwwan koo **Hiikaa** fi **Latii**-f galanni ani qabu "
+        "**Barsiistuu Araaree Taaddasaa ** fi ijoollee koo ,  **Hiikaa** fi **Latii**-f galanni ani qabu "
         "ibsa jechaa olitti. Isin hundi keessanuu miidhagina fi utubaa jireenya kooti!"
     )
