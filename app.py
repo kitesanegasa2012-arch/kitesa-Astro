@@ -237,40 +237,6 @@ elif menu == "P-Pdot Diagram (Neutron Stars)":
         "jedhu kallattiidhaan kan ibsu dha. Frequency urjii sanaa ($f$) yoo dabalu, "
         "anniisaan raadiyaashiniidhaan dhabamu seera $f^6$ kanaan ariitiidhaan dabalataa deema."
     )
-    
-    st.write("---")
-    
-    # --- INPUTS (SLIDERS) ---
-    col1, col2 = st.columns(2)
-    with col1:
-        f = st.slider("Rotation Frequency (f in Hz):", min_value=10, max_value=1000, value=300, step=10)
-    with col2:
-        I_inertia = st.slider("Moment of Inertia ($I$ in $10^{45}\text{ g}\cdot\text{cm}^2$):", min_value=0.5, max_value=3.0, value=1.0, step=0.1)
-    
-    # --- MATH & CALCULATION ($E_{dot} \propto f^6$) ---
-    # Equation simple simulation model
-    f_range = np.linspace(10, 1000, 100)
-    # E_dot proportional to I * f^6
-    E_dot_range = (I_inertia * 1e45) * (f_range ** 6) * 1e-15  # Scaled for visual graph
-    E_dot_current = (I_inertia * 1e45) * (f ** 6) * 1e-15
-    
-    # --- PLOTLY CHART ---
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=f_range, y=E_dot_range, mode='lines', name='f^6 Scaling', line=dict(color='#3B82F6', width=3)))
-    fig.add_trace(go.Scatter(x=[f], y=[E_dot_current], mode='markers+text', name='Urjii Filatame', 
-                             marker=dict(color='#D97706', size=14, symbol='star'),
-                             text=[f"{f} Hz"], textposition="top left"))
-    
-    fig.update_layout(
-        title="Frequency vs Radiative Energy Loss",
-        xaxis_title="Rotation Frequency (f in Hz)",
-        yaxis_title="Energy Loss Rate (Arbitrary Scale)",
-        template="plotly_white"
-    )
-    st.plotly_chart(fig, use_column_width=True)
-    
-    # --- INTERACTIVE NOTE ---
-    st.success(f"💡 Kiilomeetira ariitii {f} Hz kanaan, urjiin neutron star sun anniisaa hammana guraaraa jirti!")
 # 9. P-PDOT DIAGRAM
 elif menu == "P-Pdot Diagram (Neutron Stars)":
     st.header("⏱️ P-Pdot Diagram & Rotating Neutron Stars")
