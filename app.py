@@ -97,12 +97,38 @@ if menu == "Fuula Jalqabaa (Cover Page)":
 # 1. KUTAA GALATAA
 elif menu == "Kutaa Galataa":
     st.header("🙏 Kutaa Galataa Addaa")
+    
+    # 1. Waaqayyoon Galateeffachuu
+    st.markdown("### 🛐 Uumaa Koo Waaqayyoon")
     st.write(
-        "Kallattiidhaan kitaaba kanaafi hojii qorannoo koo dhimma saayinsii hawwaa xumuruu keessatti, "
-        "gorsa, ogummaa saayinsawaa, fi deeggarsa walirraa hin cinne qajeelfama naaf kennaa kan turan "
-        "**Dr. Darajjee Wakgaarii** Yuunivarsiitii Wallaggaatti Barsiisaa Astroonoomii fi gorsaa koo kan ta'an, "
-        "galanni koo guutuu fi guddaadha. Gorsi keessan onnee qorannoo koo ti."
+        "Jalqabaa fi xumura hojii koo kan ta'e, kajeellaa onnee koo naaf guutee saayinsii hawwaa "
+        "gadi fagoo kana keessa lixee akkan qoradhuuf humna, beekumsaa fi obsan naaf kenne, "
+        "Waaqayyo Uumaa kootiif galanni guddaan, badhaadhaan fi dhuma hin qabne haa ta'u. "
+        "Gargaarsa Isaatiin ala gufuuwwan dhiibbaa qaban cehuun hin danda'amu ture."
     )
+    
+    # 2. Gorsaa Keetiif (Dr. Darajjee)
+    st.markdown("### 🔬 Gorsaa Koo Olaanaa")
+    st.write(
+        "Kallattiidhaan hojii qorannoo koo mataduree *'The study of Evolutionary characteristics of "
+        "rotating neutron star'* jedhu kana xumuruu keessatti, eegala irraa kaasee hanga dhumaatti "
+        "ogummaa saayinsawaa, gorsa dadhabbiin ala ta'eefi deeggarsa walirraa hin cinne naaf kennaa kan turan "
+        "**Dr. Darajjee Wakgaarii** (Barsiisaa Astroonoomii Yuunivarsiitii Wallaggaa) galanni koo guutuu fi "
+        "guddaadha. Kallattiin isaan naaf agarsiisan onnee fi bu'uura qorannoo kooti."
+    )
+    
+    # 3. Maatii Keetiif (Araaree, Hiikaa fi Latii)
+    st.markdown("### 🏡 Maatii Koo Fi Onnee Koo")
+    st.write(
+        "Halkanii fi guyyaa osoo hin jedhiin, yeroo ani qo'annoo fi qorannoon rarra'ee jiru kanneen obsaan "
+        "na eegaa turan, jaalala, onnee fi humna itti fufiinsaa kan naaf ta'an jaalatamtuu haadha manaa koo "
+        "**Araaree** fi ijoollee koo qunxurroo, abdiwwan koo **Hiikaa** fi **Latii**-f galanni ani qabu "
+        "ibsa jechaa olitti. Isin utubaa jireenya kooti!"
+    )
+    
+    st.write("---")
+    st.markdown("#### 📊 Axereera Qorannoo (Thesis Focus):")
+    st.info("🌌 *Analyzing angular momentum evolution, braking index, and radiative energy loss ($f^6$) of rotating neutron stars.*")
     st.markdown("#### 🔬 Mataduree Qorannoo MSc:")
     st.info("📊 *'The study of Evolutionary characteristics of rotating neutron star'*")
 
