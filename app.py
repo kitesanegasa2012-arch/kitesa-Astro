@@ -834,3 +834,271 @@ st.markdown("""
 2. **Density (Tuuta'iinsa):** Wantoonni kun \"Compact\" (walitti dhuunfatani) kan jedhamaniif, hamma baay'ee guddaa ta'e iddoo baay'ee xiqqoo keessatti waan qabaniif.
 3. **End of Evolution:** Wantoonni kun mallattoo \"du'a\" urjiileeti; annisaa haaraa hin maddisiisan, garuu haftee isaanii keessatti fiiziksii ajaa'ibsiisaa qabu.
 """)
+import streamlit as st
+import numpy as np
+import plotly.graph_objects as go
+import time
+
+
+# Headings fi Ibsa
+st.title("🌌 Rotating Neutron Star: 3D Animation & Energy Loss")
+st.write("Malli kun sochii 3D urji Niiwutiroonii fi chaartii anniisaa gadi bu'uu walfaana agarsiisa.")
+
+# --- SIDEBAR CONTROLS ---
+st.sidebar.header("⚙️ Parametara Urjichaa")
+speed = st.sidebar.slider("Saffisa Naannoo (Rotation Speed)", 1, 10, 5)
+inertia = st.sidebar.slider("Moment of Inertia (I)", 1.0, 3.0, 1.5, step=0.1)
+
+# Walqixxaattoo Anniisaa
+st.latex(r"\frac{dE}{dt} = - \frac{32}{5} \frac{G I^2 \Omega^6}{c^5}")
+
+# --- INITIAL DATA ---
+E_initial = 100.0
+current_energy = E_initial
+time_steps = []
+energy_values = []
+
+# --- 3D SPHERE DATA ---
+u, v = np.linspace(0, 2*np.pi, 15), np.linspace(0, np.pi, 15)
+x_sp = 1.0 * np.outer(np.cos(u), np.sin(v))
+y_sp = 1.0 * np.outer(np.sin(u), np.sin(v))
+z_sp = 1.0 * np.outer(np.ones(np.size(u)), np.cos(v))
+
+# Placeholders
+st.subheader("🔄 1. 3D Pulsar Rotation")
+plot_3d_placeholder = st.empty()
+
+st.subheader("📉 2. Real-time Energy Loss Graph")
+plot_graph_placeholder = st.empty()
+
+st.subheader("📋 3. Live Data Table")
+table_placeholder = st.empty()
+
+# --- ANIMATION LOOP ---
+t = 0
+while True:
+    # --- 1. GENERATE 3D PLOT ---
+    angle = (t * speed * 0.1) % (2 * np.pi)
+    fig_3d = go.Figure()
+    
+    # Core
+    fig_3d.add_trace(go.Surface(x=x_sp, y=y_sp, z=z_sp, colorscale="Blues", showscale=False))
+    
+    # Beams
+    bx = [0, 4.0 * np.sin(0.2) * np.cos(angle)]
+    by = [0, 4.0 * np.sin(0.2) * np.sin(angle)]
+    bz = [0, 4.0 * np.cos(0.2)]
+    fig_3d.add_trace(go.Scatter3d(x=bx, y=by, z=bz, mode='lines', line=dict(color='cyan', width=6), showlegend=False))
+    fig_3d.add_trace(go.Scatter3d(x=[-i for i in bx], y=[-i for i in by], z=[-i for i in bz], mode='lines', line=dict(color='cyan', width=6), showlegend=False))
+    
+    fig_3d.update_layout(
+        scene=dict(
+            xaxis=dict(range=[-4,4], backgroundcolor="black"),
+            yaxis=dict(range=[-4,4], backgroundcolor="black"),
+            zaxis=dict(range=[-4,4], backgroundcolor="black"),
+            aspectmode='cube'
+        ),
+        paper_bgcolor="black", height=400, margin=dict(r=0, l=0, b=0, t=0)
+    )
+    
+    # --- 2. CALCULATE ENERGY LOSS & GENERATE 2D GRAPH ---
+    loss_rate = 0.008 * (speed ** 2) * inertia
+    current_energy = max(0.0, current_energy - loss_rate)
+    
+    # Reset yoo anniisaan guutummaatti dhume
+    if current_energy <= 0:
+        current_energy = E_initial
+        time_steps = []
+        energy_values = []
+        
+    time_steps.append(t * 0.1)
+    energy_values.append(current_energy)
+    
+    if len(time_steps) > 40:
+        time_steps.pop(0)
+        energy_values.pop(0)
+        
+    fig_graph = go.Figure()
+    fig_graph.add_trace(go.Scatter(x=time_steps, y=energy_values, mode='lines+markers', line=dict(color='red', width=3)))
+    fig_graph.update_layout(
+        xaxis=dict(title="Yeroo (Time)"),
+        yaxis=dict(title="Anniisaa Hafee (%)", range=[0, 105]),
+        height=250, margin=dict(r=0, l=0, b=0, t=0)
+    )
+    
+    # --- 3. RE-RENDER PLACEHOLDERS ---
+    plot_3d_placeholder.plotly_chart(fig_3d, use_container_width=True)
+    plot_graph_placeholder.plotly_chart(fig_graph, use_container_width=True)
+    
+    data_table = f"""
+    | Maqaa Parametaraa | Gatiikkaa Ammaa |
+    | :--- | :--- |
+    | **Yeroo (Step)** | {t} |
+    | **Moment of Inertia ($I$)** | {inertia} |
+    | **Angular Velocity ($\Omega$)** | {speed} rad/s |
+    | **Anniisaa Hafee (Current Energy)** | **{current_energy:.2f} %** |
+    """
+    table_placeholder.markdown(data_table)
+    
+    time.sleep(0.06)
+    t += 1
+import streamlit as st
+import numpy as np
+import plotly.graph_objects as go
+import time
+
+# --- PEJII FI LAYOUT QOPHEESSUU ---
+st.set_page_config(page_title="Neutron Star Simulation Lab", layout="wide")
+
+# Mataduree fi sarara diimaa jala muree jiru
+st.header("🪐 Neutron Star Radiative Energy Loss Lab", divider="red")
+st.write(
+    "Simulaasila kanaan Urjii Niiwutiroonii (Neutron Star) ariitiin naanna'u fi raadiyaashinii "
+    "annisaa gadi lakkisu bifa 2D fi 3D tiin walfaana qorachuun ni danda'ama."
+)
+
+# --- SIDEBAR CONTROLS (INPUTS) ---
+st.sidebar.header("⚙️ Parametara Urjichaa")
+B_field = st.sidebar.slider("Magnetic Field (B in 10^12 Gauss)", 1.0, 10.0, 5.0)
+speed = st.sidebar.slider("Saffisa Naannoo (Rotation Speed)", 1, 10, 5)
+inertia = st.sidebar.slider("Moment of Inertia (I)", 1.0, 3.0, 1.5, step=0.1)
+alpha = st.sidebar.slider("Magnetic Inclination Angle (α in degrees)", 0, 90, 45)
+
+# Animation dhaabuu fi eegaluuf button sidebar irratti
+run_sim = st.sidebar.checkbox("Start / Resume Animation", value=True)
+
+# Calculate Energy Loss rate
+alpha_rad = np.radians(alpha)
+omega_2d = speed * 10  
+E_loss_rate = (B_field**2) * (omega_2d**4) * (np.sin(alpha_rad)**2)
+
+# Display Metrics
+col_m1, col_m2 = st.columns(2)
+with col_m1:
+    st.metric(label="Relative Energy Loss Rate (Ė)", value=f"{E_loss_rate:,.2f}")
+with col_m2:
+    st.latex(r"\frac{dE}{dt} = - \frac{32}{5} \frac{G I^2 \Omega^6}{c^5}")
+
+# --- INITIAL DATA FOR ENERGY GRAPH ---
+E_initial = 100.0
+current_energy = E_initial
+time_steps = []
+energy_values = []
+
+# --- 3D SPHERE DATA ---
+u, v = np.linspace(0, 2*np.pi, 20), np.linspace(0, np.pi, 20)
+x_sp = 1.0 * np.outer(np.cos(u), np.sin(v))
+y_sp = 1.0 * np.outer(np.sin(u), np.sin(v))
+z_sp = 1.0 * np.outer(np.ones(np.size(u)), np.cos(v))
+
+# --- PLACEHOLDERS FOR VIEWPORTS ---
+col_views_1, col_views_2 = st.columns(2)
+with col_views_1:
+    st.subheader("🖼️ 2D Pulsar View")
+    plot_2d_spot = st.empty()
+
+with col_views_2:
+    st.subheader("🔄 3D Dynamic View")
+    plot_3d_spot = st.empty()
+
+st.subheader("📉 Real-time Energy Decay & Parameters")
+plot_graph_spot = st.empty()
+table_spot = st.empty()
+
+# --- ANIMATION LOOP ---
+t = 0
+while run_sim:
+    # ==========================================
+    # 1. UPDATE 2D PLOTLY ANIMATION
+    # ==========================================
+    theta_2d = np.radians(t * speed * 3)
+    mag_angle = theta_2d + alpha_rad
+    x_mag = 8 * np.cos(mag_angle)
+    y_mag = 8 * np.sin(mag_angle)
+    
+    fig_2d = go.Figure()
+    # Draw Core Star
+    fig_2d.add_trace(go.Scatter(x=[0], y=[0], mode='markers', marker=dict(size=50, color='#00d2ff'), showlegend=False))
+    # Draw Beams
+    fig_2d.add_trace(go.Scatter(x=[0, x_mag], y=[0, y_mag], mode='lines', line=dict(color='#ff007f', width=4, dash='dash'), showlegend=False))
+    fig_2d.add_trace(go.Scatter(x=[0, -x_mag], y=[0, -y_mag], mode='lines', line=dict(color='#ff007f', width=4, dash='dash'), showlegend=False))
+    
+    # Radiation Waves
+    for r in range(3, 9, 2):
+        fig_2d.add_trace(go.Scatter(x=[x_mag*r/8], y=[y_mag*r/8], mode='markers', marker=dict(size=20, symbol='circle-open', color='#ff007f'), showlegend=False))
+        fig_2d.add_trace(go.Scatter(x=[-x_mag*r/8], y=[-y_mag*r/8], mode='markers', marker=dict(size=20, symbol='circle-open', color='#ff007f'), showlegend=False))
+        
+    fig_2d.update_layout(
+        xaxis=dict(range=[-10, 10], showgrid=False, zeroline=False, visible=False),
+        yaxis=dict(range=[-10, 10], showgrid=False, zeroline=False, visible=False),
+        paper_bgcolor="black", plot_bgcolor="black", height=380, margin=dict(r=0, l=0, b=0, t=0)
+    )
+    plot_2d_spot.plotly_chart(fig_2d, use_container_width=True)
+
+    # ==========================================
+    # 2. UPDATE 3D PLOTLY ANIMATION
+    # ==========================================
+    angle_3d = (t * speed * 0.1) % (2 * np.pi)
+    fig_3d = go.Figure()
+    fig_3d.add_trace(go.Surface(x=x_sp, y=y_sp, z=z_sp, colorscale="Blues", showscale=False))
+    
+    bx = [0, 4.0 * np.sin(alpha_rad + 0.2) * np.cos(angle_3d)]
+    by = [0, 4.0 * np.sin(alpha_rad + 0.2) * np.sin(angle_3d)]
+    bz = [0, 4.0 * np.cos(alpha_rad + 0.2)]
+    fig_3d.add_trace(go.Scatter3d(x=bx, y=by, z=bz, mode='lines', line=dict(color='cyan', width=6), showlegend=False))
+    fig_3d.add_trace(go.Scatter3d(x=[-i for i in bx], y=[-i for i in by], z=[-i for i in bz], mode='lines', line=dict(color='cyan', width=6), showlegend=False))
+    
+    fig_3d.update_layout(
+        scene=dict(
+            xaxis=dict(range=[-4,4], backgroundcolor="black", showgrid=False),
+            yaxis=dict(range=[-4,4], backgroundcolor="black", showgrid=False),
+            zaxis=dict(range=[-4,4], backgroundcolor="black", showgrid=False),
+            aspectmode='cube'
+        ),
+        paper_bgcolor="black", height=380, margin=dict(r=0, l=0, b=0, t=0)
+    )
+    plot_3d_spot.plotly_chart(fig_3d, use_container_width=True)
+
+    # ==========================================
+    # 3. CALCULATE ENERGY LOSS & DECAY GRAPH
+    # ==========================================
+    loss_rate = 0.0002 * E_loss_rate * inertia
+    current_energy = max(0.0, current_energy - loss_rate)
+    
+    if current_energy <= 0:
+        current_energy = E_initial
+        time_steps = []
+        energy_values = []
+        
+    time_steps.append(t * 0.1)
+    energy_values.append(current_energy)
+    
+    if len(time_steps) > 40:
+        time_steps.pop(0)
+        energy_values.pop(0)
+        
+    fig_graph = go.Figure()
+    fig_graph.add_trace(go.Scatter(x=time_steps, y=energy_values, mode='lines+markers', line=dict(color='red', width=3)))
+    fig_graph.update_layout(
+        xaxis=dict(title="Time Step"),
+        yaxis=dict(title="Remaining Energy (%)", range=[0, 105]),
+        height=230, margin=dict(r=0, l=0, b=0, t=0)
+    )
+    plot_graph_spot.plotly_chart(fig_graph, use_container_width=True)
+    
+    # ==========================================
+    # 4. UPDATE LIVE DATA TABLE
+    # ==========================================
+    data_table = f"""
+    | Parametara | Gatiikkaa Ammaa |
+    | :--- | :--- |
+    | **Time (t)** | {t} |
+    | **Magnetic Field ($B$)** | {B_field} $\\times 10^{{12}}$ Gauss |
+    | **Inclination Angle ($\\alpha$)** | {alpha}^\\circ |
+    | **Energy Loss Rate ($\\dot{{E}}$)** | {E_loss_rate:,.2f} |
+    | **Remaining Kinetic Energy** | **{current_energy:.2f} %** |
+    """
+    table_spot.markdown(data_table)
+    
+    time.sleep(0.03) 
+    t += 1
