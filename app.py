@@ -160,20 +160,28 @@ elif menu == "Waa'ee Qorataa (Profile)":
 
 # 3. SEENSA KITAABAA & HIIKA
 elif menu == "Seensa Kitaabaa & Hiika":
-    st.header("📖 Seensa Kitaaba Saayinsii Hawwaa")
+    st.header("📖 Seensa Appilikeeshinii fi Hiika")
     st.write(
-        "Duniyaan ykn hawwaan (Universe) amala guutummaatti adda ta'e, ballina dhuma hin qabne, "
-        "fi icciitiiwwan heedduu qorannoodhaan bira hin gahamne of keessaa qaba. Ilmi namaa tanuma uumamaa "
-        "jalqabeefi lafa kana irra guudunfamee kaasee, ija isaa gara gubbaatti ol deebisee waa'ee urjiilee, "
-        "addeessaa, aduufi wantoota fageenya hamiitiin ala jiran xiinxaluun halkaniifi guyyaa sammuu isaa rarraasaa "
-        "tureera. Saayinsiin hawwaafi fiiziksiin hawwaa (Astronomy and Astrophysics) icciitiiwwan fageenya fagoo "
-        "sanatti uumamanii dhoohan, kanneen akka dhalachuufi du'uu urjiilee, guunguma dhabama duudaa (black holes), "
-        "fi sochii galaaksiiwwanii seera fiiziksiifi herregaa fayyadamanii saayinsii kallattiidhaan ibsa itti kennani dha."
+        "Baga gara Appilikeeshinii Saayinsii Hawwaa fi Astroofiiziksii (Astrophysics & Cosmology) "
+        "kan barsiisaa fi qorataa Qixxeessaa Nagaasaatiin qophaa'etti nagaan dhuftan! "
+        "Appilikeeshiniin kun icciitiiwwan hawwaa gadi fagoo, ballina uumamaa dhuma hin qabne, fi "
+        "sochiiwwan urjiilee seera fiiziksii fi herregaatiin gadi fageenyaan kan xiinxalu dha. "
+        "Keessattuu, qorannoo saayinsawaa mataduree *'The study of Evolutionary characteristics of rotating neutron star'* "
+        "jedhu irratti xiyyeeffachuun, jijjiirama 'angular momentum', dhiibbaa 'braking index', fi dhabama anniisaa "
+        "raadiyaashinii ($f^6$) urjiilee neutron star irratti uumamu hubachuuf riqicha guddaa dha."
+    )
+    st.write(
+        "Kun uummata keenyaaf, keessattuu barattootaa fi qorattoota afaan kootiin saayinsii hawwaa argachuu "
+        "barbaadaniif ifa guddaa kan guraaruu fi hubannoo gadi fagoo kan kennu dha."
     )
     st.write("---")
-    st.subheader("🔭 Hiika Saayinsii Hawwaa fi Astroonoomii")
-    st.write("**Astroonoomiin** saayinsii uumamaa wantoota qilleensa lafaatiin alatti (hawaa keessatti) argaman hunda qoratudha. Argama, geeddaramiinsa, amaloota fizikaalaa fi amala wantoota hawaa—kanneen akka pilaaneetotaa, urjiilee, gaalaaksotaa fi neebulaawwanii qorachuuf herrega, fiziksii fi keemistrii fayyadama.")
-
+    st.subheader("🔭 Hiika Saayinsii Hawwaa fi Astroofiiziksii")
+    st.write(
+        "**Astroofiiziksiin (Astrophysics):** Damee saayinsii astroonoomii ta'ee, seera fiiziksii fi keemistrii "
+        "fayyadamuudhaan geeddaramiinsa, amaloota fizikaalaa, dhalachuu fi du'uu wantoota hawaa keessatti argamanii—kanneen akka "
+        "urjiilee, pilaaneetotaa, neebulaawwanii, fi gaalaaksotaa kan qoratu dha. Appilikeeshiniin kunis hiika saayinsawaa "
+        "kanneen gama koodiifi diagramootaan gadi fageenyaan isiniif ibsa."
+    )
 # 4. KAAYYOO FI MUL'ATA
 elif menu == "Kaayyoo fi Mul'ata":
     st.header("🎯 Kaayyoo fi Mul'ata Appilikeeshinichaa")
