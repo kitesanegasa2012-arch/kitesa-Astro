@@ -1,4 +1,4 @@
- import streamlit as st
+import streamlit as st
 
 # Maqaa Appii fi Waamicha Jalqabaa
 st.set_page_config(page_title="Kitesa Astro", page_icon="🌌", layout="centered")
@@ -56,7 +56,7 @@ if search_query:
         current_menu = "H-R Diagram"
     elif any(word in database["ppdot_diagram"].lower() for word in q.split()):
         current_menu = "P-Pdot Diagram (Neutron Stars)"
-        
+    
     st.sidebar.success(f"🔍 '{search_query}' kanaan argameera!")
 
 menu = st.sidebar.selectbox("Filannoo Qabiyyee:", menu_options, index=menu_options.index(current_menu))
@@ -77,7 +77,7 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     st.markdown("<p style='text-align: center; color: #6B7280; font-size: 1.2em; font-style: italic; margin-top: 5px;'>Icciitii Uumama Hawwaa, Sochii Urjiilee fi Bal'ina Daangaa Hin Qabne</p>", unsafe_allow_html=True)
     st.write("---")
     
-    # Card Layout Maqaa kee fi Wallaga University hammate
+    # Boorderoo Bareedaa (Card Layout) Maqaa kee fi Wallaga University hammate
     st.markdown("""
     <div style='background-color: #F8FAFC; padding: 25px; border-radius: 16px; border: 3px double #3B82F6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); text-align: center;'>
         <h2 style='color: #D97706; font-size: 2em; font-weight: 800; margin-bottom: 5px;'>BARSIISAA QIXXEESSAA NAGAASAA FAYISAA</h2>
@@ -90,12 +90,13 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     """, unsafe_allow_html=True)
     st.write("")
     
-    # Suuraa kee
-    st.markdown("<p style='text-align: center; font-weight: bold; color: #4B5563; margin-bottom: 5px;'>👤 SUURA QOPHEESSAA</p>", unsafe_allow_html=True)
+    # Suuraa kee (Size 2x2) gidduutti fi boorderoo waliin
+    st.markdown("<p style='text-align: center; font-weight: bold; color: #4B5563; margin-bottom: 5px;'>👤 QORATAA KANNAA</p>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 1, 1])
-    with col2:
+    with col2: # Gidduutti akka bahuuf col2 fayyadamna
         suuraa_url = "https://raw.githubusercontent.com/kitesanegasa2012-arch/kitesa-Astro/main/qixxeessaa.jpg"
         try:
+            # Kaameeraa size 2x2 gochuuf width=200 madaalawaa dha
             st.image(suuraa_url, use_column_width=True, caption="Barsiisaa Qixxeessaa")
         except:
             st.warning("⚠️ Suuraan 'qixxeessaa.jpg' URL kee irratti argamuu hin dandeenye.")
@@ -106,128 +107,38 @@ if menu == "Fuula Jalqabaa (Cover Page)":
 # 1. GALATAA
 elif menu == "Galataa (Acknowledgement)":
     st.header("🙏 Galataa ")
-    
+     
+    # 1. Waaqayyoon Galateeffachuu
     st.markdown("### 🛐 Uumaa Koo Waaqayyoon")
     st.write(
         "Jalqabaa fi xumura hojii koo kan ta'e, Sammuu koo naaf banee  saayinsii hawwaa "
         "gadi fagoo kana keessa lixee akkan qoradhuuf humna, beekumsaa fi obsa naaf kenne, "
         "Waaqayyo Uumaa kootiif galanni guddaan,  fi dhuma hin qabne haa ta'u. "
     )
-    
+     
+    # 2. Gorsaa Keetiif (Dr. Darajjee)
     st.markdown("### 🔬 Gorsaa Koo ")
     st.write(
         " Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
         "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turn ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an "
         "**Dr. Darajjee Wakgaarii Amantee**  guddaan galateeffadha. "
     )
-    
+     
+    # 3. Maatii Keetiif (Warra Koo, Araaree, Hiikaa fi Latii)
     st.markdown("### 🏡 Maatii Koo")
+     
+    # Warra Keetiif (Haadha fi Abbaa)
     st.write(
         "Duraan dursee, Maatiikoo, dhalachuu koo irraa eegalanii nama ta'uu kootiif na guddisuun,na barsiisuun "
         "bu'uura cimaa kan naaf kuusan, **Haadha koo** deessuu koo fi dandeessuu koo kan taatee **Aadde Mulee Baqqalaa** fi **Abbaa koo**  Lafa kana irratti utubaa "
         "jireenya kootiii kan ta'aani Waan hundaan na bira dhaabbachaa jiran Barsiisaa **Nagaasaa Fayisaa** tiif obbolaankoo **Qixxaattuu Nagaasaa,Darajjee Nagaasa,Lalisaa Nagaasa,Eebbisaa Nagaasaa Fi EEbbisee Nagaasaa** kallattii hundaan deggersa obbolummaa naaf taasisaa hundaaf galannikoo haa ta'uuf "
         "har'a kanaan na geessan; lafee dugdaa fi ifa jireenya kooti!"
     )
-    
+     
+    # Haadha Manaa fi Ijoolleedhaaf
     st.write(
         "Halkanii fi guyyaa osoo hin jedhiin, yeroo ani qo'annoo fi qorannoon rarra'ee jiru kanneen obsaan "
         "na eegaa turan, jaalala, onnee fi humna itti fufiinsaa kan naaf ta'an jaalatamtuu haadha manaa koo "
-        "**Barsiistuu Araaree Taaddasaa ** fi ijoollee koo , abdiwwan koo kan ta'an **Hiikaa** fi **Latii**-f galanni ani qabu "
+        "**Araaree** fi ijoollee koo qunxurroo, abdiwwan koo **Hiikaa** fi **Latii**-f galanni ani qabu "
         "ibsa jechaa olitti. Isin hundi keessanuu miidhagina fi utubaa jireenya kooti!"
     )
-
-# 2. WAA'EE QORATAA (PROFILE)
-elif menu == "Waa'ee Qorataa (Profile)":
-    st.header("👤 Profile Qopheessaa / Qorataa")
-    suuraa_url = "https://raw.githubusercontent.com/kitesanegasa2012-arch/kitesa-Astro/main/qixxeessaa.jpg"
-    try:
-        st.image(suuraa_url, caption="Barsiisaa Qixxeessaa Nagaasaa", width=250)
-    except:
-        st.warning("⚠️ Suuraan kee onlaayinii irratti argamuu hin dandeenye. Maqaan faayilii keetii 'qixxeessaa.jpg' ta'uu isaa mirkaneessi.")
-        
-    st.subheader("Maqaan Koo Barsiisaa Qixxeessaa Nagaasaa Fayisaa ti!")
-    st.write(
-        "Ani Yuunivarsiitii Wallaggaatti barataa digrii lammaffaa (**MSc Astrophysics**) ti. Barataa fi qorataa saayinsii hawwaa "
-        "yoon ta'u, waraqaan qorannoo koo (*MSc Thesis*) mataduree **'The study of Evolutionary characteristics of rotating neutron star'** "
-        "irratti xiyyeeffata."
-    )
-
-# 3. SEENSA KITAABAA & HIIKA
-elif menu == "Seensa Kitaabaa & Hiika":
-    st.header("📖 Seensa Appilikeeshinii fi Hiika")
-    st.write(
-        "Baga gara Appilikeeshinii Saayinsii Hawwaa fi Astroofiiziksii (Astrophysics & Cosmology) "
-        "kan barsiisaa fi qorataa Qixxeessaa Nagaasaatiin qophaa'etti nagaan dhuftan! "
-        "Appilikeeshiniin kun icciitiiwwan hawwaa gadi fagoo, ballina uumamaa dhuma hin qabne, fi "
-        "sochiiwwan urjiilee seera fiiziksii fi herregaatiin gadi fageenyaan kan xiinxalu dha. "
-        "Keessattuu, qorannoo saayinsawaa mataduree *'The study of Evolutionary characteristics of rotating neutron star'* "
-        "jedhu irratti xiyyeeffachuun, jijjiirama 'angular momentum', dhiibbaa 'braking index', fi dhabama anniisaa "
-        "raadiyaashinii ($f^6$) urjiilee neutron star irratti uumamu hubachuuf riqicha guddaa dha."
-    )
-    st.write(
-        "Kun uummata keenyaaf, keessattuu barattootaa fi qorattoota afaan kootiin saayinsii hawwaa argachuu "
-        "barbaadaniif ifa guddaa kan guraaruu fi hubannoo gadi fagoo kan kennu dha."
-    )
-    st.write("---")
-    st.subheader("🔭 Hiika Saayinsii Hawwaa fi Astroofiiziksii")
-    st.write(
-        "**Astroofiiziksiin (Astrophysics):** Damee saayinsii astroonoomii ta'ee, seera fiiziksii fi keemistrii "
-        "fayyadamuudhaan geeddaramiinsa, amaloota fizikaalaa, dhalachuu fi du'uu wantoota hawaa keessatti argamanii—kanneen akka "
-        "urjiilee, pilaaneetotaa, neebulaawwanii, fi gaalaaksotaa kan qoratu dha. Appilikeeshiniin kunis hiika saayinsawaa "
-        "kanneen gama koodiifi diagramootaan gadi fageenyaan isiniif ibsa."
-    )
-
-# 4. KAAYYOO FI MUL'ATA
-elif menu == "Kaayyoo fi Mul'ata":
-    st.header("🎯 Kaayyoo fi Mul'ata Appilikeeshinichaa")
-    st.subheader("📌 Kaayyoo (Objectives)")
-    st.write(
-        "1. Barattoota, barsiistota fi jaallattoota saayinsii hawwaatiif odeeffannoo fi qorannoowwan "
-        "Astrofiiziksii ammayyaa bifa salphaa ta'een Afaan Oromootiin dhiyeessuu.\n"
-        "2. Icciitii urjiilee fi qorannoo olaanaa (kan akka Rotating Neutron Stars) gara hawaasaatti gadi buusuu.\n"
-        "3. Dhaloota haaraa dhimma kanaan qorannoo gochuuf fedhii qabaniif bu'uura guutuu ta'uu."
-    )
-    st.subheader("👁️ Mul'ata (Vision)")
-    st.write(
-        "Saayinsii hawwaafi fiiziksii ammayyaa afaan keenyaan bal'isanii sadarkaa qorannoo addunyaatti "
-        "cesisuu fi ogeessota afaan kanaan damee koflee hawaa keessatti sakatta'an horachuu."
-    )
-
-# 5. BOQONNAA 1
-elif menu == "Boqonnaa 1: Sirna Pilaaneetotaa":
-    st.header("📘 Boqonnaa 1: Sirna Pilaaneetotaa (Planetary Systems)")
-    st.write("---")
-    st.markdown("### **1.1 Uumama Sirna Aduu**")
-    st.write("Nebular Hypothesis fi akkamitti aduun dhalattee naannoo isiitti pilaaneetonni uumaman dhiyeessa.")
-    st.markdown("### **1.2 Pilaaneetota Dhagaa**")
-    st.write("Amaloota gadi fageenyaa kanneen akka Mercury, Venus, Earth, fi Mars.")
-
-# 6. BOQONNAA 2
-elif menu == "Boqonnaa 2: Fiiziksii Urjiilee":
-    st.header("📘 Boqonnaa 2: Fiiziksii Urjiilee (Stellar Physics & Evolution)")
-    st.write("---")
-    st.markdown("### **2.1 Protostars**")
-    st.write("Urjiileen haaraa dhalachaa jiran fi Nuclear Fusion keessatti amala agarsiifamu.")
-    st.markdown("### **2.2 Hertzsprung-Russell (H-R) Diagram**")
-    st.write("Wal-itti dhufeenya Luminosity fi Temperature urjiilee gidduu jiru ibsa.")
-
-# 7. BOQONNAA 3
-elif menu == "Boqonnaa 3: Compact Objects Sadan":
-    st.header("📘 Boqonnaa 3: Compact Objects Sadan (The Three Compact Objects)")
-    st.write("---")
-    st.write("**3.1 White Dwarfs:** Electron Degeneracy Pressure.\n\n"
-             "**3.2 Neutron Stars:** Supernova, Neutron Degeneracy Pressure.\n\n"
-             "**3.3 Black Holes:** Event Horizon fi Singularity.")
-
-# 8. H-R DIAGRAM
-elif menu == "H-R Diagram":
-    st.header("📊 Hertzsprung-Russell (H-R) Diagram")
-    st.write("**H-R Diagram**-iin wal-itti dhufeenya ho'a urjiilee (Effective Temperature) fi ifa isaanii (Luminosity) agarsiisa.")
-    st.latex(r"L = 4\pi R^2 \sigma T^4")
-
-# 9. P-PDOT DIAGRAM
-elif menu == "P-Pdot Diagram (Neutron Stars)":
-    st.header("⏱️ P-Pdot Diagram & Rotating Neutron Stars")
-    st.write("**P-Pdot Diagram**-iin marsaa naanna'uu urjii Neutron Star ($P$) fi ariitii ittiin naanna'uu gadi bu'u ($\dot{P}$) walitti hidhuun gosa Pulsar-oota addaan baasa.")
-    st.info("💡 Anniisaan dhangala'u (Radiative energy loss relation) formulaa kanaan ibsama:")
-    st.latex(r"\dot{E} \propto f^6")
