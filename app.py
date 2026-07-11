@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import plotly.graph_objects as go
+
 # Maqaa Appii fi Waamicha Jalqabaa
 st.set_page_config(page_title="Kitesa Astro", page_icon="🌌", layout="centered")
 
@@ -57,7 +58,7 @@ if search_query:
         current_menu = "H-R Diagram"
     elif any(word in database["ppdot_diagram"].lower() for word in q.split()):
         current_menu = "P-Pdot Diagram (Neutron Stars)"
-    
+        
     st.sidebar.success(f"🔍 '{search_query}' kanaan argameera!")
 
 menu = st.sidebar.selectbox("Filannoo Qabiyyee:", menu_options, index=menu_options.index(current_menu))
@@ -69,16 +70,13 @@ menu = st.sidebar.selectbox("Filannoo Qabiyyee:", menu_options, index=menu_optio
 
 # 0. FUULA JALQABAA (COVER PAGE)
 if menu == "Fuula Jalqabaa (Cover Page)":
-    # Fakkii duubaa (Background telescope)
     telescope_url = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
     st.image(telescope_url, use_column_width=True)
     
-    # Mataduree Guutuu
     st.markdown("<h1 style='text-align: center; color: #1E3A8A; font-weight: 900; margin-bottom: 0;'>🌌 ASTROPHYSICS & COSMOLOGY</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: #6B7280; font-size: 1.2em; font-style: italic; margin-top: 5px;'>Icciitii Uumama Hawwaa, Sochii Urjiilee fi Bal'ina Daangaa Hin Qabne</p>", unsafe_allow_html=True)
     st.write("---")
     
-    # Boorderoo Bareedaa (Card Layout) Maqaa kee fi Wallaga University hammate
     st.markdown("""
     <div style='background-color: #F8FAFC; padding: 25px; border-radius: 16px; border: 3px double #3B82F6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); text-align: center;'>
         <h2 style='color: #D97706; font-size: 2em; font-weight: 800; margin-bottom: 5px;'>BARSIISAA QIXXEESSAA NAGAASAA FAYISAA</h2>
@@ -91,13 +89,11 @@ if menu == "Fuula Jalqabaa (Cover Page)":
     """, unsafe_allow_html=True)
     st.write("")
     
-    # Suuraa kee (Size 2x2) gidduutti fi boorderoo waliin
     st.markdown("<p style='text-align: center; font-weight: bold; color: #4B5563; margin-bottom: 5px;'>👤 SUURA QOPHEESSAA</p>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 1, 1])
-    with col2: # Gidduutti akka bahuuf col2 fayyadamna
+    with col2:
         suuraa_url = "https://raw.githubusercontent.com/kitesanegasa2012-arch/kitesa-Astro/main/qixxeessaa.jpg"
         try:
-            # Kaameeraa size 2x2 gochuuf width=200 madaalawaa dha
             st.image(suuraa_url, use_column_width=True, caption="Barsiisaa Qixxeessaa")
         except:
             st.warning("⚠️ Suuraan 'qixxeessaa.jpg' URL kee irratti argamuu hin dandeenye.")
@@ -108,41 +104,36 @@ if menu == "Fuula Jalqabaa (Cover Page)":
 # 1. GALATAA
 elif menu == "Galataa (Acknowledgement)":
     st.header("🙏 Galataa ")
-     
-    # 1. Waaqayyoon Galateeffachuu
+    
     st.markdown("### 🛐 Uumaa Koo Waaqayyoon")
     st.write(
-        "Jalqabaa fi xumura hojii koo kan ta'e, Sammuu koo naaf banee  saayinsii hawwaa "
+        "Jalqabaa fi xumura hojii koo kan ta'e, Sammuu koo naaf banee saayinsii hawwaa "
         "gadi fagoo kana keessa lixee akkan qoradhuuf humna, beekumsaa fi obsa naaf kenne, "
-        "Waaqayyo Uumaa kootiif galanni guddaan,  fi dhuma hin qabne haa ta'u. "
+        "Waaqayyo Uumaa kootiif galanni guddaan, fi dhuma hin qabne haa ta'u. "
     )
-     
-    # 2. Gorsaa Keetiif (Dr. Darajjee)
+    
     st.markdown("### 🔬 Gorsaa Koo ")
     st.write(
-        " Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
-        "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turn ammas na waliin kan jiran Barsiisaa koo,Gorsaakoo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an "
-        "**Dr. Darajjee Wakgaarii Amantee**  guddaan galateeffadha. "
+        "Appilikeeshinii Kana kalaquuf jalqabaa irraa eegale hanga dhumaatti "
+        "ogummaa saayinsawaa, gorsa ,qajeelcha fi deeggarsa walirraa hin cinne naaf kennaa kan turan ammas na waliin kan jiran Barsiisaa koo, Gorsaa koo fi Yuunvarsiitii Wallagaatti Barsiisaa astroonoomii fi gargaara piroosofeeraa kan ta'an "
+        "**Dr. Darajjee Wakgaarii Amantee** guddaan galateeffadha. "
     )
-     
-    # 3. Maatii Keetiif (Warra Koo, Araaree, Hiikaa fi Latii)
+    
     st.markdown("### 🏡 Maatii Koo")
-     
-    # Warra Keetiif (Haadha fi Abbaa)
     st.write(
-        "Duraan dursee, Maatiikoo, dhalachuu koo irraa eegalanii nama ta'uu kootiif na guddisuun,na barsiisuun "
-        "bu'uura cimaa kan naaf kuusan, **Haadha koo** deessuu koo fi dandeessuu koo kan taatee **Aadde Mulee Baqqalaa** fi **Abbaa koo**  Lafa kana irratti utubaa "
-        "jireenya kootiii kan ta'aani Waan hundaan na bira dhaabbachaa jiran Barsiisaa **Nagaasaa Fayisaa** tiif obbolaankoo **Qixxaattuu Nagaasaa,Darajjee Nagaasa,Lalisaa Nagaasa,Eebbisaa Nagaasaa Fi EEbbisee Nagaasaa** kallattii hundaan deggersa obbolummaa naaf taasisaa hundaaf galannikoo haa ta'uuf "
+        "Duraan dursee, Maatiikoo, dhalachuu koo irraa eegalanii nama ta'uu kootiif na guddisuun, na barsiisuun "
+        "bu'uura cimaa kan naaf kuusan, **Haadha koo** deessuu koo fi dandeessuu koo kan taatee **Aadde Mulee Baqqalaa** fi **Abbaa koo** Lafa kana irratti utubaa "
+        "jireenya kootiii kan ta'aani Waan hundaan na bira dhabbaachaa jiran Barsiisaa **Nagaasaa Fayisaa** tiif obbolaankoo **Qixxaattuu Nagaasaa, Darajjee Nagaasa, Lalisaa Nagaasa, Eebbisaa Nagaasaa Fi Eebbisee Nagaasaa** kallattii hundaan deggersa obbolummaa naaf taasisaa hundaaf galannikoo haa ta'uuf "
         "har'a kanaan na geessan; lafee dugdaa fi ifa jireenya kooti!"
     )
-     
-    # Haadha Manaa fi Ijoolleedhaaf
+    
     st.write(
         "Halkanii fi guyyaa osoo hin jedhiin, yeroo ani qo'annoo fi qorannoon rarra'ee jiru kanneen obsaan "
         "na eegaa turan, jaalala, onnee fi humna itti fufiinsaa kan naaf ta'an jaalatamtuu haadha manaa koo "
-        "**Barsiistuu Araaree Taaddasaa ** fi ijoollee koo , abdiwwan koo kan ta'an **Hiikaa** fi **Latii**-f galanni ani qabu "
+        "**Barsiistuu Araaree Taaddasaa** fi ijoollee koo, abdiwwan koo kan ta'an **Hiikaa** fi **Latii**-f galanni ani qabu "
         "ibsa jechaa olitti. Isin hundi keessanuu miidhagina fi utubaa jireenya kooti!"
     )
+
 # 2. WAA'EE QORATAA (PROFILE)
 elif menu == "Waa'ee Qorataa (Profile)":
     st.header("👤 Profile Qopheessaa / Qorataa")
@@ -183,6 +174,7 @@ elif menu == "Seensa Kitaabaa & Hiika":
         "urjiilee, pilaaneetotaa, neebulaawwanii, fi gaalaaksotaa kan qoratu dha. Appilikeeshiniin kunis hiika saayinsawaa "
         "kanneen gama koodiifi diagramootaan gadi fageenyaan isiniif ibsa."
     )
+
 # 4. KAAYYOO FI MUL'ATA
 elif menu == "Kaayyoo fi Mul'ata":
     st.header("🎯 Kaayyoo fi Mul'ata Appilikeeshinichaa")
@@ -230,6 +222,8 @@ elif menu == "H-R Diagram":
     st.header("📊 Hertzsprung-Russell (H-R) Diagram")
     st.write("**H-R Diagram**-iin wal-itti dhufeenya ho'a urjiilee (Effective Temperature) fi ifa isaanii (Luminosity) agarsiisa.")
     st.latex(r"L = 4\pi R^2 \sigma T^4")
+
+# 9. P-PDOT DIAGRAM & SIMULATION (Merged & Fixed)
 elif menu == "P-Pdot Diagram (Neutron Stars)":
     st.header("🌌 Rotating Neutron Star & Radiative Energy Loss")
     st.write(
@@ -237,9 +231,34 @@ elif menu == "P-Pdot Diagram (Neutron Stars)":
         "jedhu kallattiidhaan kan ibsu dha. Frequency urjii sanaa ($f$) yoo dabalu, "
         "anniisaan raadiyaashiniidhaan dhabamu seera $f^6$ kanaan ariitiidhaan dabalataa deema."
     )
-# 9. P-PDOT DIAGRAM
-elif menu == "P-Pdot Diagram (Neutron Stars)":
-    st.header("⏱️ P-Pdot Diagram & Rotating Neutron Stars")
-    st.write("**P-Pdot Diagram**-iin marsaa naanna'uu urjii Neutron Star ($P$) fi ariitii ittiin naanna'uu gadi bu'u ($\dot{P}$) walitti hidhuun gosa Pulsar-oota addaan baasa.")
-    st.info("💡 Anniisaan dhangala'u (Radiative energy loss relation) formulaa kanaan ibsama:")
     st.latex(r"\dot{E} \propto f^6")
+    st.write("---")
+    
+    # --- INTERACTIVE SIMULATION INPUTS ---
+    col1, col2 = st.columns(2)
+    with col1:
+        f = st.slider("Rotation Frequency (f in Hz):", min_value=10, max_value=1000, value=300, step=10)
+    with col2:
+        I_inertia = st.slider("Moment of Inertia ($I$ in $10^{45}\text{ g}\cdot\text{cm}^2$):", min_value=0.5, max_value=3.0, value=1.0, step=0.1)
+    
+    # --- PHYSICS DATA GENERATION ($E_{dot} \propto I * f^6$) ---
+    f_range = np.linspace(10, 1000, 100)
+    E_dot_range = (I_inertia * 1e45) * (f_range ** 6) * 1e-15  # Scaled for visualization
+    E_dot_current = (I_inertia * 1e45) * (f ** 6) * 1e-15
+    
+    # --- PLOTLY CHART ---
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=f_range, y=E_dot_range, mode='lines', name='f^6 Scaling Curve', line=dict(color='#3B82F6', width=3)))
+    fig.add_trace(go.Scatter(x=[f], y=[E_dot_current], mode='markers+text', name='Urjii Kee', 
+                             marker=dict(color='#D97706', size=14, symbol='star'),
+                             text=[f"{f} Hz"], textposition="top left"))
+    
+    fig.update_layout(
+        title="Frequency vs Radiative Energy Loss Simulation",
+        xaxis_title="Rotation Frequency (f in Hz)",
+        yaxis_title="Energy Loss Rate (Scaled)",
+        template="plotly_white"
+    )
+    st.plotly_chart(fig, use_column_width=True)
+    
+    st.success(f"💡 Ariitii frequency {f} Hz kanaan, anniisaan dhabamu ($f^6$) baay'ee ol-ka'aa dha!")
