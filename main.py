@@ -52,7 +52,7 @@ if page == "🏠 Fuula Jalqabaa":
     )
     st.markdown(
         "<h3 style='text-align: center; color: #FFFFFF; font-family: sans-serif;'>"
-        "Qopheessaan: KITESA NEGASA FEYISA</h3>", 
+        "KITESA NEGASA FEYISA</h3>", 
         unsafe_allow_html=True
     )
     st.write("---")
