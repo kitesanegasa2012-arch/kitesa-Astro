@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astiroonoomii fi Astiroofiiziksii</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<style>
+:root{
+  --void:#0a0e1a;
+  --deep:#0f1526;
+  --panel:#131a2e;
+  --panel-2:#161d33;
+  --hairline:#26304a;
+  --star:#e9e6dc;
+  --star-dim:#a6adc4;
+  --gold:#d4af6a;
+  --gold-soft:#8a744a;
+  --teal:#4fa8a0;
+  --rust:#c9773f;
+  --shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--star);
+  font-family:'Literata',serif;
+  font-size:17px;
+  line-height:1.68;
+  position:relative;
+}
+
+/* starfield */
+#stars{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    radial-gradient(1.2px 1.2px at 20% 30%, rgba(233,230,220,.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 65% 15%, rgba(233,230,220,.4) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 82% 62%, rgba(212,175,106,.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 8% 75%, rgba(233,230,220,.35) 50%, transparent 51%),
+    radial-gradient(1.6px 1.6px at 45% 88%, rgba(79,168,160,.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 30% 55%, rgba(233,230,220,.3) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 92% 22%, rgba(233,230,220,.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 55% 40%, rgba(233,230,220,.3) 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 12% 12%, rgba(212,175,106,.4) 50%, transparent 51%),
+    radial-gradient(1px 1px at 75% 80%, rgba(233,230,220,.35) 50%, transparent 51%);
+  background-repeat:repeat;
+  background-size:600px 600px;
+  opacity:.9;
+  animation:drift 240s linear infinite;
+}
+@keyframes drift{ from{background-position:0 0;} to{background-position:-1200px 800px;} }
+
+.wrap{position:relative; z-index:1; display:flex; max-width:1400px; margin:0 auto;}
+
+/* ---------- Cover ---------- */
+.cover{
+  min-height:92vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:80px 24px; position:relative; z-index:1;
+  border-bottom:1px solid var(--hairline);
+}
+.cover .eyebrow{
+  font-family:'JetBrains Mono',monospace; letter-spacing:.32em; text-transform:uppercase;
+  font-size:11.5px; color:var(--teal); margin-bottom:26px;
+}
+.cover h1{
+  font-family:'Fraunces',serif; font-weight:700; font-size:clamp(2.6rem,6vw,5rem);
+  color:var(--star); margin:0; line-height:1.04; letter-spacing:-0.01em;
+  background:linear-gradient(180deg, var(--star) 30%, var(--gold) 120%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.cover .sub{
+  margin-top:26px; max-width:680px; font-family:'Literata',serif; font-style:italic;
+  font-size:1.15rem; color:var(--star-dim); line-height:1.6;
+}
+.orbit-rule{ width:220px; height:1px; margin:34px 0; position:relative;
+  background:linear-gradient(90deg, transparent, var(--gold-soft), transparent); }
+.orbit-rule::before{
+  content:''; position:absolute; left:50%; top:50%; width:7px; height:7px; border-radius:50%;
+  background:var(--gold); transform:translate(-50%,-50%); box-shadow:0 0 12px 2px rgba(212,175,106,.6);
+}
+.cover .meta{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--star-dim); letter-spacing:.05em;}
+
+/* ---------- Layout: sidebar + content ---------- */
+.layout{ display:flex; width:100%; align-items:flex-start; }
+nav.toc{
+  position:sticky; top:0; align-self:flex-start; width:300px; flex:0 0 300px;
+  height:100vh; overflow-y:auto; padding:40px 26px 60px 40px;
+  border-inline-end:1px solid var(--hairline);
+  scrollbar-width:thin; scrollbar-color:var(--hairline) transparent;
+}
+nav.toc::-webkit-scrollbar{width:6px;}
+nav.toc::-webkit-scrollbar-thumb{background:var(--hairline); border-radius:3px;}
+nav.toc .toc-title{
+  font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:18px;
+}
+nav.toc a{
+  display:block; color:var(--star-dim); text-decoration:none; font-size:13.5px;
+  padding:6px 0 6px 14px; border-inline-start:1px solid var(--hairline);
+  transition:.15s color, .15s border-color;
+  font-family:'Literata',serif;
+}
+nav.toc a:hover{ color:var(--gold); border-inline-start-color:var(--gold);}
+nav.toc a.lvl1{ font-weight:600; color:var(--star); margin-top:14px;}
+nav.toc a.lvl1:first-child{margin-top:0;}
+
+main{ flex:1 1 auto; min-width:0; padding:60px 64px 140px; }
+
+section.chapter{ margin-bottom:88px; scroll-margin-top:24px;}
+h2.section-title{
+  font-family:'Fraunces',serif; font-weight:600; font-size:2.15rem; color:var(--star);
+  display:flex; align-items:baseline; gap:16px; margin:0 0 8px;
+  scroll-margin-top:24px;
+}
+h2.section-title .num{ font-family:'JetBrains Mono',monospace; font-size:.95rem; color:var(--gold); font-weight:500;}
+.section-rule{ height:1px; background:linear-gradient(90deg, var(--gold-soft), transparent 70%); margin:0 0 34px;}
+
+h3.subsection-title{
+  font-family:'Fraunces',serif; font-weight:600; font-style:italic; font-size:1.42rem;
+  color:var(--teal); margin:40px 0 14px; scroll-margin-top:24px;
+}
+h4.subsub-title{
+  font-family:'Literata',serif; font-weight:600; font-style:italic; font-size:1.08rem;
+  color:var(--rust); margin:26px 0 10px;
+}
+
+p{ margin:0 0 16px; color:var(--star); }
+em.term, b.term, .term{ color:var(--gold); font-weight:600; font-style:normal; }
+
+ul, ol{ padding-inline-start:1.3em; margin:0 0 18px;}
+ul.lvl1 > li{ margin-bottom:7px; padding-inline-start:2px;}
+ul.lvl1{ list-style:none; padding-inline-start:0;}
+ul.lvl1 > li{ position:relative; padding-inline-start:22px;}
+ul.lvl1 > li::before{
+  content:'✦'; position:absolute; left:0; top:1px; color:var(--gold); font-size:.72em;
+}
+ul.lvl2{ list-style:none; padding-inline-start:6px; margin-top:6px;}
+ul.lvl2 > li{ position:relative; padding-inline-start:18px; margin-bottom:5px; color:var(--star-dim);}
+ul.lvl2 > li::before{ content:'—'; position:absolute; left:0; color:var(--teal); }
+ol.numbered{ counter-reset:item; list-style:none; padding-inline-start:0;}
+ol.numbered > li{
+  counter-increment:item; position:relative; padding-inline-start:44px; margin-bottom:14px;
+}
+ol.numbered > li::before{
+  content: counter(item); position:absolute; left:0; top:-1px;
+  font-family:'JetBrains Mono',monospace; font-size:.82rem; color:var(--void);
+  background:var(--gold); width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-weight:600;
+}
+
+blockquote{
+  margin:24px 0; padding:18px 24px; border-inline-start:3px solid var(--gold);
+  background:var(--panel); border-radius:2px; font-style:italic; color:var(--star-dim);
+}
+
+/* tables */
+.table-wrap{ overflow-x:auto; margin:20px 0 30px; border-radius:6px; border:1px solid var(--hairline); }
+table{ border-collapse:collapse; width:100%; min-width:520px; font-size:.92rem; background:var(--panel);}
+caption{ caption-side:top; text-align:left; padding:12px 16px; font-family:'JetBrains Mono',monospace;
+  font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); background:var(--panel-2);}
+thead th{
+  background:var(--panel-2); color:var(--gold); text-align:left; font-family:'Literata',serif;
+  font-weight:600; padding:11px 16px; border-bottom:1px solid var(--hairline); white-space:nowrap;
+}
+tbody td{ padding:10px 16px; border-bottom:1px solid var(--hairline); color:var(--star); vertical-align:top;}
+tbody tr:last-child td{ border-bottom:none; }
+tbody tr:hover td{ background:rgba(212,175,106,.05); }
+td:first-child, th:first-child{ color:var(--teal); font-weight:600; white-space:normal;}
+
+.formula-block{ text-align:center; margin:8px 0;}
+
+hr.divider{
+  border:none; height:1px; margin:64px 0;
+  background:repeating-linear-gradient(90deg, var(--hairline) 0 8px, transparent 8px 16px);
+}
+
+a{ color:var(--teal); }
+
+footer{
+  text-align:center; padding:60px 24px 90px; color:var(--star-dim);
+  font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em;
+  border-top:1px solid var(--hairline); margin-top:40px;
+}
+
+@media (max-width: 980px){
+  nav.toc{ display:none; }
+  main{ padding:40px 22px 100px; }
+  h2.section-title{ font-size:1.6rem; }
+}
+::selection{ background:var(--gold-soft); color:var(--void); }
+</style>
+</head>
+<body>
+<div id="stars"></div>
+
+<div class="cover">
+  <div class="eyebrow"> SAMIIN QE'EE SAAYINSII</div>
+  <h1>Astiroonoomii<br>fi Astiroofiiziksii</h1>
+  <p class="sub"> Qorannoo hawaa — seenaa, yaad-rimeewwan bu'uuraa, sirna aduu, urjiilee, gaalaksoota, koosmooloojii, seerota fi meeshaalee Astiroonoomii</p>
+  <div class="orbit-rule"></div>
+  <div class="meta">By Kitesa Negasa Feyisa</div>
+</div>
+
+<div class="wrap">
+<div class="layout">
+
+<nav class="toc">
+  <div class="toc-title">Qabiyyee</div>
+  <a class="lvl1" href="#s1">1 · Astiroonoomiin Maali?</a>
+  <a href="#s1-1">Uumama Astiroonoomii</a>
+  <a href="#s1-2">Dameewwan Astiroonoomii</a>
+  <a class="lvl1" href="#s2">2 · Seenaa Astiroonoomii</a>
+  <a href="#s2-1">Handhuura Uumamaa</a>
+  <a href="#s2-2">Durii fi Dhaha Hawaasaa</a>
+  <a href="#s2-3">Teleskooppiin Duraa</a>
+  <a href="#s2-4">Bara Gidduu-galeessaa</a>
+  <a href="#s2-5">Bara Haaromsaa</a>
+  <a class="lvl1" href="#s3">3 · Astiroonoomota Beekamoo</a>
+  <a class="lvl1" href="#s4">4 · Yaad-rimeewwan Bu'uuraa</a>
+  <a class="lvl1" href="#s5">5 · Koosmooloojii</a>
+  <a href="#s5-1">Abbaa Koosmooloojii</a>
+  <a href="#s5-2">Yaad-rimeewwan Ammayyaa</a>
+  <a class="lvl1" href="#s6">6 · Sirna Aduu</a>
+  <a href="#s6-1">Yaad-rimeewwan Waliigalaa</a>
+  <a href="#s6-2">Aduu</a>
+  <a href="#s6-3">Pilaaneetota</a>
+  <a href="#s6-4">Pilaaneetota Dotee</a>
+  <a href="#s6-5">Qaamolee Xixiqqoo</a>
+  <a class="lvl1" href="#s7">7 · Pilaaneetota Alaa</a>
+  <a class="lvl1" href="#s8">8 · Urjiilee</a>
+  <a href="#s8-1">Naannoo Uumama Urjiilee</a>
+  <a href="#s8-2">Ramaddii Ispeektiraa</a>
+  <a href="#s8-3">Ramaddii Hamma fi Ifa</a>
+  <a href="#s8-4">Caasaa fi Amaloota</a>
+  <a href="#s8-5">Urjiilee Geeddaramoo</a>
+  <a href="#s8-6">Sirna Urjiilee</a>
+  <a href="#s8-7">Tuuta Urjii</a>
+  <a href="#s8-8">Ilaallata Lafarraa</a>
+  <a class="lvl1" href="#s9">9 · Haftee Urjiilee</a>
+  <a class="lvl1" href="#s10">10 · Dhohiinsa Suupparnovaa</a>
+  <a class="lvl1" href="#s11">11 · Boolla Gurraacha</a>
+  <a class="lvl1" href="#s12">12 · Duumessa Hawaa</a>
+  <a class="lvl1" href="#s13">13 · Galaktikoota</a>
+  <a class="lvl1" href="#s14">14 · Seerota fi Foormulaawwan</a>
+  <a class="lvl1" href="#s15">15 · Meeshaalee Astiroonoomii</a>
+  <a class="lvl1" href="#s16">16 · Meeshaalee Hawaa Dabalataa</a>
+</nav>
+
+<main>
+
+<!-- SECTION 1 -->
+<section class="chapter" id="s1">
+  <h2 class="section-title"><span class="num">01</span> Astiroonoomii Maali?</h2>
+  <div class="section-rule"></div>
+
+  <p><span class="term">Astiroonoomiin (Astronomy)</span> saayinsii uumamaa qaamolee samii fi taateewwan (zeenota) dhaan-samii (cosmos) keessatti uumaman qoratu dha. Madda isaaniifi waliigala guddina isaanii ibsuuf herrega, fiiziksiifi keemistrii fayyadama. Wanti inni xiyyeeffannoo itti kennee qoratu: pilaaneetota, ji'oota (baatota), urjiilee, neebiyuulaa (duumessa duudaa samiifi dustii), gaalaaksota, meetiyooroyidoota, asteroyidoota fi koomeetota fa'a. Taateewwan qorannoo kana keessatti dhimma ibsan keessaa: dhohiinsa supparnoovaa, dhohiinsa raajii gaamaa (gamma-ray bursts), kuwaazaarii, bileezaarii, pulsaarii fi calaqqee duubbee maayikiroofaayee dhaan-samii (CMB) fa'adha. Akka waliigalaatti, astiroonoomiin waan atmosfeera Lafaa ala maddan hundaa qorata. <span class="term">Koosmooloojiin (Cosmology)</span> damee astiroonoomii ta'ee guutummaa uumama samiifi lafaa akka tokkootti waliigala qoratu dha (bal'inaan Kutaa 5 ilaali).</p>
+
+  <p><span class="term">Astiroofiziiksiin (Astrophysics)</span> damee saayinsii hawaa ta'ee, piirinsiippiloota fiiziksii fi keemistrii fayyadamuun qaamolee samii fi taateewwan (urjiilee, pilaaneetota, gaalaaksiiwwan, qoolloowwan gurraachaa) qorata; teessuma isaanii kaartarratti kaasuu qofa osoo hin taane, uumama isaanii fiiziksii keessoo, madda isaanii fi guddina isaanii gadi fageenyaan hubachuuf carraaqqii taasisa.</p>
+
+  <p><span class="term">Astiroonoomonni (Astronomers)</span> saayintistoota qorannoo uumama samiifi lafaa irratti hojjetan yoo ta'an, qaamolee samii (urjiilee, pilaaneetota, gaalaaksota) fi taateewwan dhaan-samii (kan akka qoolloowwan gurraachaa) qoratu. Hubannoo dhaan-samii argachuuf dataawwan hawaa xiinxaluu fi meeshaalee ammayyaa kanneen akka Teleskooppii Hawaa Jeemsi Weeb hojjechiisu.</p>
+
+  <h3 class="subsection-title" id="s1-1">Uumama Astiroonoomii (Nature of Astronomy)</h3>
+  <p>Astiroonoomiin ibsa armaan gadii hundaan ibsamuu danda'a:</p>
+  <ul class="lvl1">
+    <li><span class="term">Disiipliinii akaadaamii:</span> damee kutaa akaadaamii, sirna barnootaa (curricula) fi digrii qabu; hawaasota biyyaalessaa fi idil-addunyaa, akkasumas barruulee qorannoo (journals) addaa of keessaa qaba.</li>
+    <li><span class="term">Dirree saayinsii:</span> damee ogummaa addaa saayinsii keessatti bal'inaan beekamtii argatee fi akkaataa idileetti saayinsicha of keessatti haammattu dha.</li>
+    <li><span class="term">Saayinsii uumamaa:</span> damee maloota ragaa qorannoo (empirical) fi saayinsaawaa fayyadamuun seerota addunyaa uumamaa gaggeessan addeessuuf carraaqu dha.</li>
+    <li><span class="term">Damee saayinsii hawaa (Space science).</span></li>
+    <li><span class="term">Hojii boqonnaa (Hobby):</span> fedhii beekumsaa dhuunfaa guuttachuuf ykn miidhagina uumamaa dinqisiifachuuf kan hojjetamu, keessattuu suuraa hawaa kaasuu (astrophotography) of keessatti hammata.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s1-2">Dameewwan Astiroonoomii (Branches of Astronomy)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Astiroobaayoloojii (Astrobiology):</span> Ka'umsa fi guddina sirna baayoloojii uumamaa samiifi lafaa keessa jiru qorata.</li>
+    <li><span class="term">Astiroofiziiksii (Astrophysics):</span> Fiiziksii uumamaa samiifi lafaa irratti xiyyeeffatu; qaamolee (gaalaaksota, urjiilee, pilaaneetota, eksopilaaneetota, gidduu-urjiilee, calaqqee CMB) fi amaloota isaanii (ifa, tuuta'insa, tempireechara, qabiyyee keemikaalaa) qorata. Dameewwan xixiqqoo <em>astiroofiziiksii tiyoorii</em> keessaa:
+      <ul class="lvl2">
+        <li><span class="term">Qaamolee dhiphoo (Compact objects):</span> White dwarfs, urjiilee niwutiroonii fi dhiibbaa isaan naannoo isaaniitti fidan.</li>
+        <li><span class="term">Koosmooloojii Fiizikaalaa:</span> Ka'umsa fi guddina guutummaa uumama samiifi lafaa akka waliigalaatti qorata.</li>
+        <li><span class="term">Koosmooloojii Kuwaantamiifi:</span> Taateewwan relatiivitii waliigalaa sababa daangaa isheetiin ibsuu hin dandeenye tiyoorii dirree kuwaantamiifi fayyadamee ibsa.</li>
+        <li><span class="term">Astiroofiziiksii Kompiwuteraawaa:</span> Toftaalee fi meeshaalee kompiwuteraa fayyadamee modeloota herregaa uuma.</li>
+      </ul>
+    </li>
+    <li><span class="term">Astiroonoomii Gaalaaksii:</span> Caasaa fi miseensota gaalaaksii keenyaa (Milky Way) fi gaalaaksota biroo qorata.</li>
+    <li><span class="term">Astiroofiziiksii Anniisaa Ol'aanaa:</span> Handhuura gaalaaksii dammaqoo, supparnoovaa, dhohiinsa raajii gaamaa, kuwaazaarii fi dhiibbaa jajjaboo (shocks) qorata.</li>
+    <li><span class="term">Astiroofiziiksii Gidduu-Urjiilee:</span> Gidduu-urjiilee, gidduu-galaaksotaa fi dustii dhaan-samii qorata.</li>
+    <li><span class="term">Astiroonoomii Gaalaaksiin-Alaa:</span> Qaamolee gaalaaksii keenya ala jiran, uumama fi guddina gaalaaksotaa qorata.</li>
+    <li><span class="term">Astiroonoomii Urjiilee:</span> Uumama urjiilee, amaloota fiiziksii, umrii main sequence, jijjiirama, guddina fi badinsa isaanii qorata.</li>
+    <li><span class="term">Astiroofiziiksii Pilaasmaa:</span> Amaloota pilaasmaa hawaa fageenya keessa jiru qorata.</li>
+    <li><span class="term">Astiroofiziiksii Relatiivistiikii:</span> Dhiibbaa relatiivitii addaa fi waliigalaa (dambalii hursaa, leensii hursaa, qoolloowwan gurraachaa) qorata.</li>
+    <li><span class="term">Fiiziksii Aduu:</span> Aduu fi wal-dhiibbaa ishee hafeen sirna aduu fi hawaa gidduu-urjiilee waliin qabdu qorata.</li>
+    <li><span class="term">Saayinsii Pilaaneetotaa:</span> Pilaaneetota, ji'oota fi sirna pilaaneetotaa qorata; dameewwan isaa: Saayinsii Atmosphere, Eksopilaaneetoolojii, Uumama Pilaaneetotaa, Quubsa Pilaaneetotaa, Maagneetoosfiyerii, Dhaffaa Pilaaneetotaa, Keessoo Pilaaneetotaa, fi Qaamolee Xixiqqoo Sirna Aduu.</li>
+  </ul>
+
+  <h4 class="subsub-title">Toftaa Daawwannaa Irratti Hundaa'uun Qoodamuu Isaa</h4>
+  <ul class="lvl1">
+    <li><span class="term">Astiroomeetirii:</span> Teessuma qaamolee samii fi jijjiirama teessuma isaanii qorata; sirna koordinataarii fi socho'aa (kinematics) qaamolee gaalaaksii keenyaa murteessa.</li>
+    <li><span class="term">Astiroonoomii Daawwannaa:</span> Teleskooppii fi meeshaalee biroo fayyadamuun qaamolee samii daawwachuun dataa galmeessa. Baay'inaan gosa deteektaraa fi dheerina dambalii (wavelength) irratti hundaa'a:
+      <ul class="lvl2">
+        <li>Astiroonoomii Raadiyoo: $300\,\mu\text{m}$ olii.</li>
+        <li>Astiroonoomii Submillimetre: $200\,\mu\text{m}$ hanga $1\,\text{mm}$.</li>
+        <li>Astiroonoomii Infrared: $0.7$–$350\,\mu\text{m}$.</li>
+        <li>Astiroonoomii Optikaalaa: $380$–$750\,\text{nm}$.</li>
+        <li>Astiroonoomii Ultraviolet: $10$–$320\,\text{nm}$.</li>
+        <li>Astiroonoomii X-ray: $0.01$–$10\,\text{nm}$.</li>
+        <li>Astiroonoomii Gamma-ray: $0.01\,\text{nm}$ gadi.</li>
+        <li>Astiroonoomii Carallaa dhaan-samii: carallaa dhaan-samii, pilaasmaa dabalatee qorata.</li>
+        <li>Astiroonoomii Niwutiriinoo: Partikilii Niwutiriinoo qorata.</li>
+        <li>Astiroonoomii Dustii: Dustii ykn dhukkee dhaan-samii qorata.</li>
+        <li>Astiroonoomii Dambalii Hursaa: Giraavitoonota fi dambalii hursaa qorata.</li>
+      </ul>
+    </li>
+    <li><span class="term">Footomeetirii:</span> Qaamolee samii filtarii adda addaa keessa yeroo darban ifni isaanii hammaam akka ta'e qorata.</li>
+    <li><span class="term">Ispektirooskooppii:</span> Ispeektiraa qaamolee astiroonoomii qorata.</li>
+  </ul>
+
+  <h4 class="subsub-title">Dameewwan Biroo</h4>
+  <ul class="lvl1">
+    <li><span class="term">Arkiyoo-astiroonoomii (Archaeoastronomy):</span> Hubannoo fi ilaalcha namoonni durii waa'ee hawaa qaban, kan ragaa amantii fi dizaayinii gamoofaa irratti hundaa'ee qoratu.</li>
+    <li><span class="term">Astirookeemistrii (Astrochemistry):</span> Elementota fi molokiuloota hawaa keessatti argaman akkasumas wal-jijjiirama isaanii qorata.</li>
+  </ul>
+</section>
+
+<!-- SECTION 2 -->
+<section class="chapter" id="s2">
+  <h2 class="section-title"><span class="num">02</span> Seenaa Astiroonoomii</h2>
+  <div class="section-rule"></div>
+
+  <h3 class="subsection-title" id="s2-1">Seenaa Handhuura Uumama Samiifi Lafaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Modelii Jiyooseentiriikii (Geocentric model):</span> Yaad-rimee durii kan Lafi handhuura uumama samiifi lafaa ti jedhu; aduu, ji'a, fi urjiileen hundinuu Lafa naanna'u jedhamee amanama ture.</li>
+    <li><span class="term">Hiliyooseentiriizimii (Heliocentrism):</span> Aduun handhuura sirna pilaaneetotaa ti jedha; Lafi fi pilaaneetonni biroo aduu naanna'u.
+      <ul class="lvl2">
+        <li><span class="term">Hiliyooseentiriizimii Kopergulaas:</span> Modelii herregaa Nikolaas Kopergulaas dhiyeesse boqonnaa haaraa saayinsii kan bane.</li>
+      </ul>
+    </li>
+    <li><span class="term">Sirna Tiikoonikii (Tychonic system):</span> Modelii Tycho Brahe dhiyeesse; dhohiinsa Jiyooseentiriikii fi Hiliyooseentiriikii walitti makuun, pilaaneetonni aduu naanna'u, aduun immoo Lafa naannojti jedha.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s2-2">Astiroonoomii Durii fi Dhaha Hawaasaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Arkiyoo-astiroonoomii:</span> Namoonni durii akkamitti waa'ee qaamolee samii akka hubatanii fi haala kanaan dhaha (calendar) fi gamoofaa isaanii akka ijaarratan qorata.</li>
+    <li><span class="term">Arkiyoo-astiroonoomii fi Dhaha Viidgii:</span> Sirna dhaha seenaa Indiyaama durii kan amantii fi beekumsa hawaa irratti hunda'e qorata.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s2-3">Astiroonoomii Teleskooppiin Duraa (Pretelescopic Astronomy)</h3>
+  <p>Daawwannaa hawaa osoo teleskooppiin hin uumamin dura qorattoota saba adda addaatiin gaggeeffamaa ture:</p>
+  <ul class="lvl1">
+    <li><span class="term">Astiroonoomii Baabiloon:</span> Qorannoo herrega irratti hunda'ee fi socho'aa pilaaneetotaa dizaayinii dhahaaf gargaaru baasuu keessatti adda turan.</li>
+    <li><span class="term">Astiroonoomii Chaayinaa:</span> Seenaa dhohiinsa urjiilee (supernovae) fi qorsa (comets) galmeessuun beekamu.</li>
+    <li><span class="term">Astiroonoomii Gibxii:</span> Ijaarsa Piraamiidii fi dhaha isaanii aduu fi urjii Sirius irratti hunda'uun dizaayinii godhan.</li>
+    <li><span class="term">Astiroonoomii Giriik:</span> Piilosofii fi jiyomeetirii fayyadamuun modeloota hawaa saayinsaawaa uumuu jalqaban.</li>
+    <li><span class="term">Astiroonoomii Ibraaniyoota:</span> Sirna dhaha ji'aa fi aduu walitti makuun yeroo amantii murteessuuf gargaaramaa turan.</li>
+    <li><span class="term">Astiroonoomii Indiyaa:</span> Kitaabota "Siddhantas" keessatti herrega dhaan-samii fi ariitii qaamolee samii safaran.</li>
+    <li><span class="term">Astiroonoomii Islaamaa:</span> Meeshaalee akka Astrolabe guddisuu fi maqaalee urjiilee baay'ee har'a jiran dhiyeessuu isaaniitiin beekamu.</li>
+    <li><span class="term">Astiroonoomii Raashiyaa:</span> Daawwannaa fi qorannoo aadaa dhaan-samii naannoo dhiha kaaba Eeshiyaa keessatti gaggeeffamaa ture.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s2-4">Astiroonoomii Bara Gidduu-galeessaa (Middle Ages)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Saayinsii Awurooppaa Bara Gidduu-galeessaa:</span> Piilosofii qorannoo dhaan-samii hojii Yuunivarsiitiiwwan jalqabaa keessatti itti fufsiisanii turan.</li>
+    <li><span class="term">Astiroonoomii Islaama Bara Gidduu-galeessaa:</span> Bara Saayinsii Islaamaa keessatti manneen daawwannaa hawaa gurguddoo ijaaruun dataa sirrii ta'e walitti qaban.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s2-5">Bara Haaromsaa (Renaissance) fi Uumama Teleskooppii</h3>
+  <ul class="lvl1">
+    <li><span class="term">Varraaqsa Saayinsaawaa:</span> Bara ilaalchi namootaa waa'ee uumamaa madaallii amantii qofa irraa gara ragaa saayinsaawaatti jijjiirame.</li>
+    <li><span class="term">Varraaqsa Kopergulaas:</span> Jijjiirama ilaalcha addunyaa kan Lafa handhuura irraa kaasee aduu handhuura taasise.</li>
+    <li><span class="term">Nikolaas Kopergulaas:</span> Kitaaba isaa <em>On the Revolutions of the Heavenly Spheres</em> jedhamuun varraaqsa kana uume.</li>
+    <li><span class="term">Tycho Brahe:</span> Ragaa daawwannaa baay'ee sirrii ta'e qopheessuun gumaache.</li>
+    <li><span class="term">Galileo Galilei:</span> Kitaaba isaa <em>Dialogue Concerning the Two Chief World Systems</em> jedhamuun yaada Hiliyooseentiriikii deeggaree barreesse; kunis mana amantii keessatti mormii kaasee hidhaa mana keessaa (house arrest) akka itti murtaa'u taasise.</li>
+    <li><span class="term">Astiroonoomii Ifa-Ijaan-Argamuu (Visible-light astronomy):</span> Teleskooppii calaqqee fi siriiba gargaaramuun ifa urjiilee ijaan ilaaluu qoratu.</li>
+    <li><span class="term">Astiroonoomii Raadiyoo, X-ray, Infrared fi Gamma-ray:</span> Seenaa meeshaalee hawaa (satellites) fageenya keessa kaa'uun carallaa anniisaa ol'aanaa fi ijaan hin argamne safaruu danda'an uumuu, akkasumas dambalii raadiyoo hawaa keessaa dhufan qorachuun gaalaaksota fi pulsaarota argachuu.</li>
+    <li><span class="term">Seenaa Daawwannaa Supparnoovaa:</span> Saayintistoonni dhohiinsa urjiilee gurguddoo galmeessaa turan; guddina urjiileef ragaa ta'a.</li>
+  </ul>
+</section>
+
+<!-- SECTION 3 -->
+<section class="chapter" id="s3">
+  <h2 class="section-title"><span class="num">03</span> Astiroonoomota Beekamoo fi Argannoowwan Isaanii</h2>
+  <div class="section-rule"></div>
+  <p>Armaan gadiitti astiroonoomota seenaa qorannoo hawaa keessatti argannoowwan gurguddoo taasisan fi bu'aa isaan gumaachan tarreeffamaniiru:</p>
+
+  <ol class="numbered">
+    <li><span class="term">Nikolaas Kopernukaas (1473–1543):</span> Tiyoorii Hiliyooseentiriikii dhiyeessan; Aduun gidduu sirna pilaaneetotaa akka jirtu fi Lafi malkaa ishee irra akka naanna'tu mirkaneessan.</li>
+    <li><span class="term">Gaaliiliyoo Gaalilii (1564–1642):</span> Teleskooppii fayyadamuun ji'oota Juupitarii gurguddoo afur (Io, Europa, Ganymede, Callisto) argatan; kunis ragaa herrega Kopergulaas gargaare.</li>
+    <li><span class="term">Yohaanis Keppler (1571–1630):</span> Seerota naanna'aa pilaaneetotaa sadan uuman; pilaaneetonni marsaa killee (elliptical orbits) hordofuun aduu akka naanna'an ibsan.</li>
+    <li><span class="term">Sir Isaak Niwuton (1643–1727):</span> Seera hursaa waliigalaa fi teleskooppii calaqqee isa jalqabaa hojjetan.</li>
+    <li><span class="term">Wiiliyam Harshel (1738–1822):</span> Pilaaneetii Yuuraanas argatan; carallaa ijaan hin argamne kan Infrared radiation jedhamu adda baasan.</li>
+    <li><span class="term">Aadwiin Haabil (1889–1953):</span> Uumamni samiifi lafaa bal'achaa akka jiru mirkaneessan (Hubble's Law); gaalaaksiiwwan biroo Milky Way ala jiran argatan.</li>
+    <li><span class="term">Aalbeert Eenshtaayin (1879–1955):</span> Tiyoorii Relatiivitii Waliigalaa dhiyeessan; bu'uura dhohiinsa hursaa, caasaa hawaa-yeroo, fi uumama qoolloowwan gurraachaa.</li>
+    <li><span class="term">Seesiliyaa Paayin-Gapooshkiin (1900–1979):</span> Urjiilee keessatti elementiin baay'inaan argamu Haayidiroojiinii fi Heeliyeem akka ta'e mirkaneessan.</li>
+    <li><span class="term">Suubramaniyaan Chandraseekhar (1910–1995):</span> Daangaa Chandrasekhar argatan; hamma (mass) urjiin white dwarf ta'uuf dandeettii qabu daangesse, boollaa gurraachaatti geessa.</li>
+    <li><span class="term">Joosiliin Beell Barnil (1943–Amma):</span> Urjiilee niwutiroonii ariitiidhaan naanna'anii carallaa raadiyoo maddisiisan (Pulsaarii) argatan.</li>
+    <li><span class="term">Tiikoobiraahee (1546–1601):</span> Osoo teleskooppiin hin fayyadamin, ragaa daawwannaa sirrii ta'e walitti qabuu isaatiin beekamu; Yohaanis Kepplerif bu'uura ta'e.</li>
+    <li><span class="term">Henriyeettaa Swaan Liiviit (1868–1921):</span> Urjiilee Cepheid Variables gargaaramuun fageenya gaalaaksiiwwanii safaruuf mala gumaachan.</li>
+    <li><span class="term">Vera Rubin (1928–2016):</span> Gaalaaksiiwwan keessatti Maatarii Gurraachaa (Dark Matter) akka jiru ragaa gahaa dhiyeessan.</li>
+    <li><span class="term">Isteeven Haawkings (1942–2018):</span> Waa'ee qoolloowwan gurraachaa (Hawking Radiation) mirkaneessan; anniisaa gadi lakkisuu akka danda'an.</li>
+    <li><span class="term">Kaarl Saagaan (1934–1996):</span> Astiroonoomiin akka saayinsii beekamtii qabuufi uummata bira akka ga'u gochuu keessatti qooda guddaa qaban; SETI keessatti gahee qaban.</li>
+    <li><span class="term">Roojar Peenroos (1931–Amma):</span> Qoolloowwan gurraachaa uumamuu isaanii herrega fiiziksii irratti hundaa'uun mirkaneessan.</li>
+    <li><span class="term">Joohees Heeviliyees (1611–1687):</span> "Abbaa Serenoograafii" (Father of Lunar Topography) jedhamanii beekamu; kaartaa ji'aa isa jalqabaa hojjetan.</li>
+  </ol>
+</section>
+
+<!-- SECTION 4 -->
+<section class="chapter" id="s4">
+  <h2 class="section-title"><span class="num">04</span> Yaad-rimeewwan Bu'uuraa Astiroonoomii</h2>
+  <div class="section-rule"></div>
+  <p>Armaan gadiitti hiika yaad-rimeewwan bu'uuraa qorannoo astiroonoomii fi astiroofiziiksii keessatti dhimma itti bahan dhiyaatanii jiru:</p>
+  <ul class="lvl1">
+    <li><span class="term">Atmosphere (Qilleensa Naannoo):</span> Kuusa gaaziwwanii kan qaamolee samii marsanii argamanii fi hursaa (gravity) qaama saniitiin gad-qabamanii hafani dha.</li>
+    <li><span class="term">Celestial pole (Handhuura Samii):</span> Qabxiiwwan yaadaa dhaan-samii keessatti argaman kanneen sararri naanna'aa (axis of rotation) Lafaa kallattiidhaan itti fufee geessu; Handhuura Kaabaa fi Kibbaa jedhamuun qoodamu.</li>
+    <li><span class="term">Eclipse (Gaaddiddeeffama/Eeklipsii):</span> Qaamni samii tokko guutummaatti ykn gartoodhaan gaaddidduu qaama samii biraatiin haguugama.</li>
+    <li><span class="term">Ecliptic (Sarara Marsaa Aduu):</span> Sarara yaadaa kan aduun waggaa keessatti Lafa irraa yeroo ilaalamtu dhaan-samii keessa dabarru malka'an mul'attu.</li>
+    <li><span class="term">Cosmic rays (Carallaa dhaan-samii):</span> Partikiliwwan anniisaa baay'ee ol'aanaa qaban (keessattuu pirootonni) hawaa fageenya keessaa, madda adda addaa irraa gara Lafaatti ariitiidhaan dhufan.</li>
+    <li><span class="term">Kepler's laws (Seerota Keppler):</span> Seerota naanna'aa pilaaneetotaa sadan; pilaaneetonni marsaa killee hordofuun aduu akka naanna'an addeessu (foormulaa fi ibsa gadi fageenyaa Kutaa 14 ilaali).</li>
+    <li><span class="term">Doppler effect (Dhiibbaa Doppler):</span> Jijjiirama dheerina dambalii ykn deddeebi'insa dambalii ifaa/sagalee, kan sababa sochii madda dambalichaa fi daawwataa gidduu jiruun uumamu.</li>
+    <li><span class="term">Nutation (Nuteeshinii):</span> Sochii likkiisaa xuraafaa ta'e kan sarara naanna'aa Lafaa irratti dhiibbaa hursaa Ji'aa fi Aduutiin uumamu.</li>
+    <li><span class="term">Occultation (Haguuggama Samii):</span> Qaamni samii bal'aan tokko (Ji'a) qaama samii fageenya jiru kan biraa ija daawwataa duraa yeroof haguuga.</li>
+    <li><span class="term">Orbit (Marsaa/Daandii):</span> Daandii yaadaa kan qaamni samii tokko hursaa gargaaramuun qaama samii kan biraa naannoo itti naanna'u.</li>
+    <li><span class="term">Perturbation (Jeeqama Marsaa):</span> Diddiirama xiqqaa daandii marsaa pilaaneetii tokkoo irratti dhiibbaa hursaa qaamolee samii biroo irraa uumamu.</li>
+    <li><span class="term">Precession (Preseeshinii):</span> Sochii suuta jedhee fi naanna'aa ta'e kan sarara naanna'aa Lafaa waggaa 26,000 keessatti geengoo guutuu uuma.</li>
+    <li><span class="term">Proper motion (Sochii Sirrii Urjii):</span> Jijjiirama teessuma urjii tokkoo kan waggaa baay'ee keessatti fageenyaan daawwatamu.</li>
+    <li><span class="term">Redshift (Shiftii Diimaa):</span> Dheerinni dambalii ifa qaama samii fageenya jiru irraa dhufu gara ifa dheeraatti dhiphata; uumamni samiifi lafaa bal'achaa akka jiru mirkaneessa.</li>
+    <li><span class="term">Solar eclipse (Gaaddiddeeffama Aduu):</span> Ji'i gidduu Lafaafi Aduu seeruun ifni aduu guutummaatti ykn gartoodhaan Lafa akka hin geenye dhorka.</li>
+    <li><span class="term">Tides (Ol-ka'iinsa fi Gad-deebi'insa Bishaanii):</span> Sababa dhiibbaa hursaa Ji'aa fi Aduutiin uumamu.</li>
+    <li><span class="term">Zodiac (Zoodiyaakii):</span> Naannoo siriiba yaadaa dhaan-samii keessatti aduun, ji'aan fi pilaaneetonni keessa darban, mallattoolee urjii 12tti qoodamu.</li>
+  </ul>
+</section>
+
+<!-- SECTION 5 -->
+<section class="chapter" id="s5">
+  <h2 class="section-title"><span class="num">05</span> Koosmooloojii (Cosmology)</h2>
+  <div class="section-rule"></div>
+
+  <p><span class="term">Koosmooloojiin (Cosmology)</span> qorannoo madda, guddina (evolution), fi caasaa uumama samiifi lafaa (universe) irratti xiyyeeffatu dha; damee astrofiiziksii kan waa'ee uumama, guddina, fi dhumatiinsa dhumaa unipersii qoratu. Hubannoon kooloojii amantiiwwan fi tiyooriiwwan saayinsiirratti hunda'uu danda'a; gaaffilee baay'ee haala jireenya dhala namaa ilaalchisee ka'an (madda keenyaa fi kaayyoo jireenya keenyaa) deebisuuf bu'uura ta'a.</p>
+
+  <h3 class="subsection-title" id="s5-1">Abbaa Koosmooloojii</h3>
+  <p>Maqaan "Abbaa Kooloojii" baay'inaan <span class="term">Anaksiimaandarii (Anaximander, d.h.k.g. 610–546)</span> piilosofii Giriik durii ka'umsa piilosofii Firee-Sokiraatikii ta'eef kennama; hundeessaa kooloojii saayinsaawaa jedhamuun beekama, sababiin isaas madda fi mikaaniksii uumama samiifi lafaa ilaalchisee yaada seenaa afoolaa (mythological) hin taane dhiyeessuu isaa jalqabaa ti.</p>
+
+  <p>Gumaacha ijoo isaa:</p>
+  <ul class="lvl1">
+    <li><span class="term">Teessuma Lafaa:</span> Lafi utubaa tokko malee qilleensa keessa gidduu uumama samiifi lafaa irratti saphaphuun dhaabbattu yaada dhiyeesse isa jalqabaa.</li>
+    <li><span class="term">Uumama Mikaanikaawaa:</span> Qaamolee samii (aduu, ji'a, urjiilee) akkuma miilla dhakaa ibiddaa keessi isaanii duwwaa ta'ee Lafarratti naanna'anitti fudhate.</li>
+    <li><span class="term">Madda Uumama Samiifi Lafaa:</span> Wanti dhaan-samii keessa jiru hunduu uumama bu'uuraa daangaa hin qabne kan "apeiron" jedhamu irraa akka dhufe yaada dhiyeesse.</li>
+  </ul>
+
+  <p>Abbootii kooloojii ammayyaa jedhamanii baay'inaan qorattoota saayinsii jaarraa 20ffaa gidduutti qoodamu:</p>
+  <ul class="lvl1">
+    <li><span class="term">Eedwiin Haabil:</span> Uumamni samiifi lafaa bal'achaa akka jiru fi gaalaaksiiwwan biroo Milky Way ala akka jiran mirkaneessuun beekama.</li>
+    <li><span class="term">Albeert Eenshtaayin:</span> Tiyoorii Relatiivitii Waliigalaa isaa hubannoo ammayyaa waa'ee hursaa, hawaa fi yeroo guutuu ta'e kenneera.</li>
+    <li><span class="term">Joorji Lemmaatiri:</span> Luba fi astiroonoomii biyya Beeljiyeem; jalqaba tiyoorii uumamni samiifi lafaa qabxii tokko qofa irraa akka ka'e (Tiyoorii Big Bang) yaada dhiyeesse.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s5-2">Yaad-rimeewwan Bu'uuraa Koosmooloojii Ammayyaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Universe (Hawaa/Unipersii):</span> Waliigala wanta argamu hundaa — maatarii, anniisaa, yeroo, fi hixaa hawaa urjiileenii fi galaktikoonni keessatti argaman.</li>
+    <li><span class="term">Cosmos (Koosmos):</span> Unipersii akka sirna qulqulluu, gurmaa'aa fi seeratti dhufe tokkotti ibsuuf itti tamsa'a (faallaa "Chaos" burjaajii ti).</li>
+    <li><span class="term">Big Bang (Dhohiinsa Guddaa):</span> Unipersiin waggaa biliyoona 13.8 dura qabxii garmalee ho'aa fi rukkutu tokko irraa kaatee saffisaan dhohuun akka uumamte ibsa.</li>
+    <li><span class="term">Cosmic Microwave Background (CMB):</span> Haftee carallaa fi ho'a dhohiinsa Big Bang irraa hafe; ragaa gurguddoo tiyoorii Big Bang mirkaneessan keessaa isa duraa ti.</li>
+    <li><span class="term">Dark Matter (Maatarii Dhokataa):</span> Ijaan hin mul'anne, ifa hin calaqqisiisne fi hin xuuxne; sochii galaktikoota keessatti urjiilee jiran irraa ni barama, unipersii keessaa dhibbantaa 27 ta'a jedhamee tilmaamama.</li>
+  </ul>
+  <blockquote>Hubachiisa: unipersiin dhibbantaa 68 Dark Energy, dhibbantaa 27 Dark Matter, fi dhibbantaa 5 qofa maatarii ijaan mul'atu irraa ijaarame.</blockquote>
+  <ul class="lvl1">
+    <li><span class="term">Hubble constant ($H_0$):</span> Ariitii unipersiin ammas bal'achaa jirtu agarsiisa; $v = H_0 d$.</li>
+    <li><span class="term">Cosmic distance ladder:</span> Toftaalee fiiziksii adda addaa walitti hidhamanii fageenya wantoota hawaa fagootti argamanii safaruuf itti fayyadaman (parallax, Cepheid variables, Supernova Type Ia).</li>
+    <li><span class="term">Olbers's paradox:</span> "Yoo unipersiin daangaa fi dhuma hin qabne taate, akkasumas urjiilee biliyoonotaan lakka'aman qabaatte, maaliif samiin halkan dhiphaatti dukkanaa'a?" Deebiin: unipersiin daangaa yeroo (umurii) qabdi, akkasumas bal'achaa waan jirtuuf ifni urjiilee fagoof nu bira hin gessu.</li>
+  </ul>
+</section>
+
+<!-- SECTION 6 -->
+<section class="chapter" id="s6">
+  <h2 class="section-title"><span class="num">06</span> Sirna Aduu (The Solar System)</h2>
+  <div class="section-rule"></div>
+
+  <p><span class="term">Sirna Aduu (The Solar System)</span> Aduu fi qaamolee hursaa (gravity) isheetiin hidhamanii daandii ishee irra naanna'an hunda of keessatti hammata. Yuniyeenii Astiroonoomii Idil-addunyaa (IAU) sirna aduu yeroo ibsu: qaamolee hursaa Aduutiin hidhaman hunda, Aduu mataa ishee, pilaaneetota ishee saddeettan, fi qaamolee samii biroo daandii ishee irra naanna'an jedhee addeessa. NASA'n immoo sirna aduu Aduu fi sirna pilaaneetota ishee of keessatti akka haammatu taasisee dhiyeessa.</p>
+
+  <h3 class="subsection-title" id="s6-1">Yaad-rimeewwan Waliigalaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Geology of solar terrestrial planets:</span> Qorannoo caasaa dhagaa, dhaffaa, fi madaallii jireenya keessoo pilaaneetota keessoo (Meerkurii, Veenas, Lafa, Maarsii).</li>
+    <li><span class="term">List of Solar System objects by size:</span> Tarreeffama qaamolee Sirna Aduu kan hamma dizaayinii fi masaa isaaniitiin gurguddaa irraa gara xixiqqootti addaan baafaman.</li>
+    <li><span class="term">Galilean satellites:</span> Ji'oota Juupitarii gurguddoo afur (Io, Europa, Ganymede, Callisto) kanneen bara 1610tti Gaaliiliyoodhaan argaman.</li>
+    <li><span class="term">Halley's Comet:</span> Koomeetii beekamaa umrii gabaabaa qabu, gara gubbaa Lafaatti waggaa 75–76 keessatti al-tokko mul'ata.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s6-2">Aduu (The Sun)</h3>
+  <p><span class="term">Aduun</span> urjii handhuura Sirna Aduu keessatti argamtu fi madda anniisaa, ifaa fi ho'a uumama hundaati. Teessumaan ishee gaalaaksii keenya (Milky Way) keessaa malka'a Orion Spur keessatti argamti. Ramaddii ishee Class G (urjii dotee keelloo — yellow dwarf).</p>
+
+  <h4 class="subsub-title">Maqaalee fi Ragaalee Daawwannaa</h4>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Amala Qoratamu</th><th>Ragaa fi Hiika Isaa</th></tr></thead>
+    <tbody>
+      <tr><td>Maqaalee</td><td>Sun, Sol, Sól, Helios</td></tr>
+      <tr><td>Adjective (Maqibsilee)</td><td>Solar</td></tr>
+      <tr><td>Fageenya Giddu-galeessaa</td><td>$1\,\text{au} = 149{,}600{,}000\,\text{km}$ (ifni daqiiqaa 8 saniikaa 19 fudhata)</td></tr>
+      <tr><td>Ifa Mul'atu (Visual brightness)</td><td>$-26.74$</td></tr>
+      <tr><td>Hamma Absoluttii (Absolute mag.)</td><td>$4.83$</td></tr>
+      <tr><td>Ramaddii Ispeektiraa</td><td>G2V</td></tr>
+      <tr><td>Metallicity ($Z$)</td><td>$0.0165 \pm 0.0010$</td></tr>
+      <tr><td>Hamma Kofaa (Angular size)</td><td>$0.527^\circ$–$0.545^\circ$</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4 class="subsub-title">Amaloota Marsaa Gaalaaksii</h4>
+  <ul class="lvl1">
+    <li>Fageenya handhuura Milky Way irraa: waggaa ifaa 24,000 hanga 28,000.</li>
+    <li>Marsaa gaalaaksichaa: waggaa miliyoona 225 hanga 250.</li>
+    <li>Ariitii sochii: gara handhuura gaalaaksiitti $251\,\text{km/s}$; naannoo urjiilee ollaatti $20\,\text{km/s}$; CMB irratti $370\,\text{km/s}$.</li>
+    <li>Siriiba ciinsaa (Obliquity): $7.25^\circ$ (ecliptic), $67.23^\circ$ (galactic plane).</li>
+    <li>Marsaa naanna'aa sidereal: mudhii irratti guyyaa 25.05, handhuura irratti guyyaa 34.4.</li>
+    <li>Ariitii naanna'aa mudhii: $1.997\,\text{km/s}$.</li>
+  </ul>
+
+  <h4 class="subsub-title">Amaloota Fiiziksii</h4>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Amala Fiiziksii</th><th>Ragaa Herregaa fi Fiiziksii</th></tr></thead>
+    <tbody>
+      <tr><td>Raadiyaasii mudhii</td><td>$695{,}700\,\text{km}$ (dachaa 109 Lafaa)</td></tr>
+      <tr><td>Bal'ina dhaffaa</td><td>$6.09 \times 10^{12}\,\text{km}^2$</td></tr>
+      <tr><td>Volume</td><td>$1.412 \times 10^{18}\,\text{km}^3$</td></tr>
+      <tr><td>Masa (Mass)</td><td>$1.988475 \times 10^{30}\,\text{kg}$ (dachaa 332,950 Lafaa)</td></tr>
+      <tr><td>Tuuta'insa giddu-galeessaa</td><td>$1.408\,\text{g/cm}^3$</td></tr>
+      <tr><td>Umrii</td><td>waggaa biliyoona 4.6</td></tr>
+      <tr><td>Hursaa dhaffaa</td><td>$274\,\text{m/s}^2$</td></tr>
+      <tr><td>Ariitii ba'insaa</td><td>$617.7\,\text{km/s}$</td></tr>
+      <tr><td>Ho'a keessoo</td><td>$15{,}700{,}000\,\text{K}$</td></tr>
+      <tr><td>Ho'a footosfiyerii</td><td>$5{,}772\,\text{K}$</td></tr>
+      <tr><td>Ho'a koronaa</td><td>$5{,}000{,}000\,\text{K}$</td></tr>
+      <tr><td>Luminosity</td><td>$3.828 \times 10^{26}\,\text{W}$</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4 class="subsub-title">Qabiyyee Keemikaalaa Dhaffaa (by mass)</h4>
+  <p>Haayidiroojiinii 73.46%, Heeliyeem 24.85%, Oksijiinii 0.77%, Kaarboonii 0.29%, Ayiraanii 0.16%, Niyoonii 0.12%, Naayitidroojiinii 0.09%, Siilikiinii 0.07%, Maagneesiyamii 0.05%, Salfiirii 0.04%.</p>
+
+  <h4 class="subsub-title">Caasaa Keessoo</h4>
+  <ul class="lvl1">
+    <li><span class="term">Standard Solar Model:</span> Modelii herregaa fi fiiziksii guddina, ho'a, tuuta'insa fi bilchina Aduu dhaloota ishee irraa kaasee ibsu.</li>
+    <li><span class="term">Solar core (Handhuura Aduu):</span> Giddu-galeessa Aduu kan wal-fusiinsi niwukilaaraa ($H \rightarrow He$) itti gaggeeffamu; madda anniisaa Aduu hundaati.</li>
+    <li><span class="term">Radiation zone (Naannoo Carallaa):</span> Anniisaan bifa fotoniitiin (ifaani) suuta jedhee keessa dabarru.</li>
+    <li><span class="term">Convection zone (Naannoo Konveekshinii):</span> Anniisaan dhangala'oo ho'aa (plasma) ol fi gad socho'uun gara dhaffaatti daddarba.</li>
+  </ul>
+
+  <h4 class="subsub-title">Qilleensa Naannoo Aduu (Solar Atmosphere)</h4>
+  <ul class="lvl1">
+    <li><span class="term">Photosphere (Footosfiyerii):</span> Dhaffaa ifaa aduu isa ijaan arguu dandeenyu fi ho'a isaa gadi lakkisu. <span class="term">Supergranulation/Granule:</span> caasaa koonveekshinii irraa mul'atu; <span class="term">Facula:</span> qabxiiwwan baay'ee calaqqisan. <span class="term">Sunspot (Xuraafaa Aduu):</span> qabxiiwwan gurraacha sababa dirree maagneetii jabaatiin uumaman.</li>
+    <li><span class="term">Chromosphere (Kiroomosfiyerii):</span> Kuusa gaazii haphii bifa diimaa calaqqisu qabu. <span class="term">Spicule:</span> tamsa'a gaazii ho'aa bifa lilmootiin kiroomosfiyerii irraa ol dhiibamu. <span class="term">Moreton wave:</span> shock wave dhohiinsa solar flare irraa uumamee kiroomosfiyerii keessa deema.</li>
+    <li><span class="term">Solar transition region:</span> Daangaa kiroomosfiyerii fi koronaa gidduutti argamu; ho'i isaa baay'ee dabala.</li>
+    <li><span class="term">Solar corona (Koronaa Aduu):</span> Qilleensa naannoo aduu isa alatti argamu; ho'i isaa miliyoonaan lakka'ama. <span class="term">Coronal hole:</span> dirree maagneetii banamaa qabu, bubbiin aduu ariitii jabaan keessaa baha. <span class="term">Coronal loop:</span> maree maagneetii plasma ho'aa qabate. <span class="term">Coronal mass ejection (CME):</span> dhohiinsa jabaa gaazii chaarjii qabuu fi dirree maagneetii koronaa irraa gara hawaatti tamsa'u. <span class="term">Solar prominence:</span> caasaa gaazii ho'aa gurguddaa dhaffaa irraa ol ba'ee fannifamee mul'atu.</li>
+  </ul>
+
+  <h4 class="subsub-title">Jijjiirama fi Marsaa Aduu</h4>
+  <ul class="lvl1">
+    <li><span class="term">Solar cycle:</span> Jijjiirama sochii maagneetii Aduu kan waggaa 11 keessatti deddeebi'u (<em>Solar maximum</em> vs <em>Solar minimum</em>).</li>
+    <li><span class="term">Wolf number:</span> Lakkoofsa xuraafaa aduu (sunspots) fi tuuta isaanii ittiin shallagan.</li>
+    <li><span class="term">Solar flare:</span> Anniisaa maagneetii jabaa faatana footosfiyerii irraa gara hawaatti ifaa fi radieeshiniin dhohu.</li>
+    <li><span class="term">Helioseismology:</span> Caasaa keessoo aduu dambalii sagalee dhaffaa irratti uumamu xiinxaluun qorata.</li>
+    <li><span class="term">Solar dynamo:</span> Adeemsa fiiziksii dirree maagneetii aduu naanna'aa plasma fi koonveekshiniitiin uumu.</li>
+  </ul>
+
+  <h4 class="subsub-title">Hafeellaa Aduu (Heliosphere)</h4>
+  <ul class="lvl1">
+    <li><span class="term">Solar wind (Bubbee Aduu):</span> Yaatiinsa partikiliwwan chaarjii qabanii aduu irraa gara hawaa alaatti yeroo mara tamsa'an.</li>
+    <li><span class="term">Termination shock:</span> Daangaa bubbiin aduu ariitii sagalee olii (supersonic) irraa gara gaditti itti gadi bu'u.</li>
+    <li><span class="term">Heliosheath:</span> Naannoo termination shock fi heliopause gidduutti argamu.</li>
+    <li><span class="term">Heliopause:</span> Daangaa dhumaa bubbiin aduu meediyee gidduu-urjiileetiin itti dhaabbatu. <span class="term">Bow shock:</span> riphama meediyee gidduu-urjiilee aduun yeroo dhiibdu uumamu.</li>
+  </ul>
+
+  <h4 class="subsub-title">Meeshaa Qorannoo Aduu</h4>
+  <p><span class="term">Solar telescope:</span> Teleskooppii addaa ifa fi ho'a aduu jabaa damdamatee fakkii dhaffaa aduu qulqullinaan waraabuuf gargaaru.</p>
+
+  <h3 class="subsection-title" id="s6-3">Pilaaneetota (Planets)</h3>
+  <p><span class="term">Planet (Pilaaneetii):</span> Qaama samii aduu naanna'u, hamma geengoo ta'uuf gahu qabu, fi daandii marsaa isaa qaamolee biroo irraa qulqulleesse dha. <span class="term">Planetary rings (Quubsa Pilaaneetotaa):</span> Qubeellaa dustii fi dhagaa irraa ijaarame kan pilaaneetota gurguddoo marsee argamu.</p>
+  <ul class="lvl1">
+    <li><span class="term">Mercury (Meerkurii):</span> Pilaaneetii aduutti baay'ee dhiyoo jirtu fi ishee xiqqoo dha; ji'a ykn quubsa hin qabdu.</li>
+    <li><span class="term">Venus (Veenas):</span> Pilaaneetii lammaffaa fi ishee baay'ee ho'itu dha (sababa greenhouse effect jabaatiin).</li>
+    <li><span class="term">Earth &amp; Moon (Lafa fi Ji'a):</span> Pilaaneetii jireenya qabdu ishee sadaffaa fi satellite uumamaa ishee (Ji'a).</li>
+    <li><span class="term">Mars (Maarsii):</span> Pilaaneetii diimtuu jedhamtu; ji'oota xixiqqoo lama (<em>Phobos</em> fi <em>Deimos</em>) qabdi.</li>
+    <li><span class="term">Jupiter (Juupitarii):</span> Pilaaneetii gazii gurguddoo ishee jalqabaa fi ishee hundaa caaltu; quubsa haphii fi ji'oota baay'ee qabdi.</li>
+    <li><span class="term">Saturn (Saatoornii):</span> Pilaaneetii quubsa (rings) miidhagaa, bal'aa fi ijaan mul'atu qabduun beekamtu.</li>
+    <li><span class="term">Uranus (Yuuraanas):</span> Pilaaneetii bishaani-gurguddoo (ice giant) bifa cuquliisa-bilaan qabdu fi ciiftee naanna'tu.</li>
+    <li><span class="term">Neptune (Neeptuuni):</span> Pilaaneetii aduurraa baay'ee fagaattee argamtu, bifa cuquliisa gadi fagoo fi bubbee jabaa qabdu.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s6-4">Pilaaneetota Dotee (Dwarf Planets)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Ceres (Seeres):</span> Pilaaneetii dotee quubsa asteroyidii keessatti argamtu fi ishee xiqqoo dha.</li>
+    <li><span class="term">Pluto (Filuutooni):</span> Pilaaneetii dotee beekamtu kan bara 2006 dura pilaaneetii 9ffaa turte; ji'oota shan (kan akka Charon) qabdi.</li>
+    <li><span class="term">Haumea, Makemake fi Eris:</span> Pilaaneetota dotee naannoo quubsa Kuiper (fageenya Neeptuuniin alatti argamani); Dysnomia'n ji'a Eeris ti.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s6-5">Qaamolee Xixiqqoo Sirna Aduu</h3>
+  <ul class="lvl1">
+    <li><span class="term">Asteroids (Asteroyidoota):</span> Qaamolee dhagaa fi sibiloo irraa ijaaraman kanneen aduu naanna'an garuu hamma pilaaneetotaa hin geenye.</li>
+    <li><span class="term">Asteroid belt (Quubsa Asteroyidii):</span> Naannoo gidduu marsaa Maarsii fi Juupitariitti argamu; <em>2 Pallas, 3 Juno, 4 Vesta, fi 10 Hygiea</em> asteroyidoota gurguddoo isaanii dha.</li>
+    <li><span class="term">Trojan asteroids:</span> Marsaa pilaaneetii jabaa (keessattuu Juupitarii) waliin daandii tokko irra uumamaan deeman.</li>
+    <li><span class="term">Centaur (Seentoori):</span> Qaamolee xixiqqoo amala koomeetii fi asteroyidii walitti makuun gidduu Yuuraanas fi Neeptuunitti naanna'an.</li>
+    <li><span class="term">Meteoroids:</span> Caccabaa asteroyidii ykn koomeetii irraa hafan; yoo qilleensa Lafaatti seenan <em>Meteor</em> (Urjii furii) uumu.</li>
+    <li><span class="term">Kuiper belt (Quubsa Kaayisper):</span> Naannoo bal'aa marsaa Neeptuuniin alatti argamu, qaamolee cabbii fi dotee hedduu of keessaa qaba (Plutinos, Cubewanos, Orcus, Quaoar).</li>
+    <li><span class="term">Scattered disc:</span> Naannoo quubsa Kaayisperiin alatti fagaatee argamu; Gonggong fi Sedna qaamolee naannoo kanaati.</li>
+    <li><span class="term">Comets (Koomeetota):</span> Qaamolee cabbii, dustii fi gaazii walitti qabatan; yeroo aduutti dhihaatan eegee ifu uumu.</li>
+    <li><span class="term">Oort cloud (Duumessa Oort):</span> Kuusa duumessaa cabbii fi koomeetota biliyoonaan lakka'aman kan Sirna Aduu keenya alaabaan marsee argamu jedhamee amanamu.</li>
+  </ul>
+</section>
+
+<!-- SECTION 7 -->
+<section class="chapter" id="s7">
+  <h2 class="section-title"><span class="num">07</span> Pilaaneetota Alaa (Exoplanets)</h2>
+  <div class="section-rule"></div>
+  <p>Pilaaneetonni alaa (Exoplanets ykn Extrasolar planets) pilaaneetota Sirna Aduu keenyan alatti urjiilee biroo naanna'an ykn hawaa keessa deemani dha; qorannoo astrofiiziksii yeroo ammaatiin pilaaneetonni akkasii kuma heddumaan lakka'aman argamaniiru.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Gosa Pilaaneetii Alaa</th><th>Ibsa fi Amaloota Fiiziksii Ishee</th></tr></thead>
+    <tbody>
+      <tr><td>Exoplanet (Pilaaneetii Alaa)</td><td>Planet Sirna Aduutiin alatti urjii biraa naanna'u.</td></tr>
+      <tr><td>Super-Earth (Super-Lafa)</td><td>Masa (mass) Lafaa ol qabdi garuu kan Yuuraanasii fi Neeptuunii gadi; amala urjii cabbii gurguddoo siriiba gadii qabdi, baay'een isaanii caccabaa dhagaa irraa uumamuu danda'u.</td></tr>
+      <tr><td>Mini-Neptune (Neeptuun-Xiqqoo)</td><td>Masa Lafaa hamma $10\,M_\oplus$ gahu garuu masa Neeptuunii ($17\,M_\oplus$) gadi; qilleensa naannoo haayidiroojiinii fi heeliyeemiin dushifame qabdi.</td></tr>
+      <tr><td>Super-Jupiter (Super-Juupitarii)</td><td>Pilaaneetii guddoo masa isheetiin Juupitariin ol taatedha.</td></tr>
+      <tr><td>Sub-Earth (Sub-Lafa)</td><td>Pilaaneetii masa isheetiin Lafa fi Veenasiin gadi taate dha.</td></tr>
+      <tr><td>Circumbinary planet</td><td>Pilaaneetii marsaa tokko keessatti urjiilee lama wal bira jiran naanna'tu.</td></tr>
+      <tr><td>Hot Jupiter (Juupitarii Ho'itu)</td><td>Amala Juupitarii qabdi garuu urjii isheetti dhiyoo waan taateef baay'ee ho'iti; Juupitariin aduurraa fageenya $5.2\,\text{au}$ irratti argamtee jirti, kanaaf pilaaneetonni kun urjii isaaniitti dhiyoo waan ta'aniif ho'i dhaffaa isaanii ol'aanaa dha.</td></tr>
+      <tr><td>Hot Neptune (Neeptuun Ho'itu)</td><td>Masa Neeptuunii qabdi garuu urjii isheetti dhiyoo (fageenya $1\,\text{au}$ gadi) jirti.</td></tr>
+      <tr><td>Pulsar planet</td><td>Pilaaneetii urjii niiwutroonii baay'ee saffisaan naanna'u (pulsar) marsee deemtu; pilaaneetonni alaa jalqaba argaman gosa kanaan uumamuu isaaniitiin beekamu.</td></tr>
+      <tr><td>Rogue planet (Interstellar Planet)</td><td>Pilaaneetii urjii kamittuu hin hidhamne, gaalaaksii qofaa naanna'tu; sababa dhiibbaa hursaa pilaaneetota gurguddootiin sirna ishee keessaa darbatamtee bahuun, handhuura gaalaaksii kallattiin naanna'ti.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- SECTION 8 -->
+<section class="chapter" id="s8">
+  <h2 class="section-title"><span class="num">08</span> Urjiilee (Stars): Uumama, Guddina fi Ramaddii</h2>
+  <div class="section-rule"></div>
+
+  <h3 class="subsection-title" id="s8-1">Naannoo Uumama Urjiilee (Star-Forming Environments)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Molecular cloud:</span> Duumessa hawaa keessaa baay'ee tuuta'aa fi diilallaa'aa ta'e, molikyuuloota haayidiroojiinii ($H_2$) of keessaa qabu; madda uumama urjiilee ti.</li>
+    <li><span class="term">H II region:</span> Kuusaa gaazii haayidiroojiinii ayoonayizii ta'e (ionized) kan carallaa urjiilee ho'oo haaraa dhalataniin ibsamu.</li>
+    <li><span class="term">Bok globule:</span> Duumessa molikyuulaa gurraacha, dhiphaa fi tuuta'aa ta'e kan urjiileen gurguddoo itti uumamaa jiran.</li>
+    <li><span class="term">Young stellar object (YSO):</span> Urjii sadarkaa uumama ishee jalqabaa (Protostar fi Pre-main sequence hammata).</li>
+    <li><span class="term">Herbig–Haro object:</span> Yaatiinsa gaazii ariitii jabaan urjii haaraa dhalachaa jirtu irraa dhiibamee bahu, meediyee hawaa waliin bu'uun ifu.</li>
+  </ul>
+
+  <h4 class="subsub-title">Daandiiwwan fi Marsaalee Guddina Urjii</h4>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Daandii/Daangaa</th><th>Ibsa fi Fiiziksii Isaa (H-R Diagram irratti)</th></tr></thead>
+    <tbody>
+      <tr><td>Hayashi track</td><td>Daandii herregaa urjiin Pre-main sequence taate konveekshiniin hamma ifa ishee itti gadibuustu.</td></tr>
+      <tr><td>Hayashi limit</td><td>Daangaa raadiyaasii ol-aanaa urjiin uumama wal-madaala hursaa (hydrostatic) qabdu qabaachuu dandeessu.</td></tr>
+      <tr><td>Henyey track</td><td>Daandii urjiileen masa jabaa qaban radieeshiniin ho'a dhaffaa isaanii itti dabalan.</td></tr>
+    </tbody>
+  </table></div>
+
+  <ul class="lvl1">
+    <li><span class="term">Pre–main sequence:</span> Sadarkaa urjiin tokko footosfiyerii uumtee garuu handhuura ishee keessatti fusiinsii haayidiroojiinii idilee itti hin jalqabamini dha.</li>
+    <li><span class="term">T Tauri star:</span> Urjii haaraa (YSO) masa aduu gadi qabdu, fusiinsii handhuuraa hin jalqabne garuu ifa hidhata hin qabne gadi lakkistu.</li>
+    <li><span class="term">FU Orionis star:</span> Urjii T Tauri taate kan tasa humna ifa ishee dachaa dhibbaan ol dabaltu.</li>
+    <li><span class="term">Herbig Ae/Be stars:</span> Urjiilee Pre-main sequence kan masa jabaa ($2$–$8\,M_\odot$) qabanii fi ispeektira addaa argisiisani dha.</li>
+    <li><span class="term">Horizontal branch:</span> Urjiilee masa gadaanaa qabanii kanneen handhuura isaanii keessatti heeliyeem gubanii naannoo alaa isaaniitti haayidiroojiinii gubani dha.</li>
+    <li><span class="term">Asymptotic giant branch (AGB):</span> Urjiin handhuura carbon-oxygen duudaa qabattee, naannoo alaa isheetti tarree heeliyeemiin fi haayidiroojiinii gubdi.</li>
+    <li><span class="term">Dredge-up:</span> Adeemsa konveekshiniitiin elementoonni liqimsa niwukilaaraa keessoo urjii irraa gara dhaffaatti ol dhiibamu.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s8-2">Ramaddii Ispeektiraa Urjiilee</h3>
+  <p>Urjiileen tempireechara dhaffaa (surface temperature) fi sarara ispeektira isaanii irratti hundaa'uun ramadamu. Urjiileen Main sequence tartiiba ho'a isaaniitiin ($O$ irraa hanga $M$'tti) fi bifa isaaniitiin akkanatti ramadamu:</p>
+  <ul class="lvl1">
+    <li><span class="term">O-type:</span> Urjiilee baay'ee ho'oo fi cuquliisa ta'an; tempireecharri isaanii $30{,}000\,\text{K}$ ol.</li>
+    <li><span class="term">B-type:</span> Urjiilee ho'oo bifa cuquliisa-addi qaban ($10{,}000$–$30{,}000\,\text{K}$).</li>
+    <li><span class="term">A-type:</span> Urjiilee bifa addi qaban; sararri haayidiroojiinii isaanii jabaa dha ($7{,}500$–$10{,}000\,\text{K}$).</li>
+    <li><span class="term">F-type:</span> Urjiilee addi-keelloo ($6{,}000$–$7{,}500\,\text{K}$).</li>
+    <li><span class="term">G-type:</span> Urjiilee keelloo; aduun keenya ramaddii kana keessatti ramadamti ($5{,}200$–$6{,}000\,\text{K}$).</li>
+    <li><span class="term">K-type:</span> Urjiilee madaalawaa ifan bifa mofookka/oranjii qaban ($3{,}700$–$5{,}200\,\text{K}$).</li>
+    <li><span class="term">M-type:</span> Urjiilee diilallooftuu fi diimoo ($2{,}400$–$3{,}700\,\text{K}$); baay'inaan kuusaa hawaa keessatti argamu.</li>
+  </ul>
+
+  <h4 class="subsub-title">Urjiilee Gaazii fi Ispeektira Addaa</h4>
+  <ul class="lvl1">
+    <li><span class="term">OB star:</span> Kuusaa urjiilee baay'ee gurguddoo fi ho'oo ta'an (O fi B) kan umriin isaanii gabaabaa.</li>
+    <li><span class="term">Be star:</span> Urjii gosa B taatee daandii marsaa ishee irratti gaazii tamsaasuun sarara emission qabdi; <span class="term">Shell star</span> marsaa gaazii baay'ee tuuta'aa qabdi.</li>
+    <li><span class="term">Subdwarf B star:</span> Urjiilee dhumarratti dhalatan kan handhuura isaaniitti heeliyeem gubanii naannoo alaa haayidiroojiinii haphii qaban.</li>
+    <li><span class="term">Late-type star:</span> Urjiilee ramaddii K fi M keessa jiran kan tempireecharri isaanii gadaanaa.</li>
+  </ul>
+
+  <h4 class="subsub-title">Urjiilee Amala Addaa (Chemically Peculiar Stars)</h4>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Gosa Urjii Addaa</th><th>Amala Ishee fi Fiiziksii Ishee</th></tr></thead>
+    <tbody>
+      <tr><td>Am star</td><td>Urjii gosa A taatee sibiloota zinc, strontium, fi barium baay'inaan qabdu.</td></tr>
+      <tr><td>Ap and Bp stars</td><td>Dirree maagneetii jabaa fi elementota rare-earth qaban.</td></tr>
+      <tr><td>roAp star</td><td>Urjii Ap taatee sababa dambalii ho'aatiin saffisaan daddifattu (oscillating).</td></tr>
+      <tr><td>Barium star</td><td>Dhiibbaa s-process argattee sibiloo baariyeemii ol-aanaa qabdi.</td></tr>
+      <tr><td>Carbon star</td><td>Atmosferii ishee keessatti kaarboonni oksijiiniin ol ta'e (bifa diimaa).</td></tr>
+      <tr><td>Extreme helium star</td><td>Haayidiroojiinii xiqqoo qabdi ykn hin qabne, handhuurri ishee heeliyeemi.</td></tr>
+      <tr><td>Lambda Boötis star</td><td>Gosa A/F taatee sibiloonni ulfaatoon footosfiyerii isheerratti xiqqaatan.</td></tr>
+      <tr><td>Lead star</td><td>Elementii liidii (Pb) s-process irraa argame baay'inaan qabdi.</td></tr>
+      <tr><td>Mercury-manganese</td><td>Sibiloota meerkurii fi maangaaniizii gargaaramuun ispeektira addaa argisiisti.</td></tr>
+      <tr><td>S-type star</td><td>Gidduu gosa M fi Carbon star, zirkoniyeem oksaayidii qabdi.</td></tr>
+      <tr><td>Technetium star</td><td>Elementii raadiyo-aaktiivii Technetium qabdi (mirkaneessituu s-process).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title" id="s8-3">Ramaddii Hamma fi Ifa Urjiilee (Luminosity Classes)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Subdwarf star:</span> Ifni isaanii urjiilee Main sequence idilee gadi ta'e.</li>
+    <li><span class="term">Dwarf star:</span> Urjiilee Main sequence idilee (Blue dwarf fi Red dwarf).</li>
+    <li><span class="term">Subgiant:</span> Fusiinsii haayidiroojiinii handhuuraa xumurtee gara urjii guddattuutti ce'aa jirti.</li>
+    <li><span class="term">Giant star:</span> Raadiyaasiin ishee baay'ee bal'ate (Blue giant fi Red giant).</li>
+    <li><span class="term">Supergiant:</span> Baay'ee gurguddoo fi dhohiinsaaf dhiyoo (Blue, Red, Yellow supergiant).</li>
+    <li><span class="term">Hypergiant:</span> Hamma hundaa caalan, dhiibbaa carallaa (radiation pressure) ol-aanaatiin masa isaanii alatti tamsaasaa jiran.</li>
+    <li><span class="term">Blue straggler:</span> Kuusaa urjiilee (cluster) keessatti argamtu, umrii isheetiin caalaatti dargaggeettii fi cuquliisa taatee mul'atti (sababa urjii biraa liqimsiteef).</li>
+    <li><span class="term">Wolf–Rayet star:</span> Masa guddaa qabdi, bubbee aduu jabaatiin haayidiroojiinii alaa xumurtee dha.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s8-4">Caasaa fi Amaloota Fiiziksii Urjiilee</h3>
+  <p>Urjiin tokko (fakkeenyaaf aduun keenya) keessaa gara alatti kofla ykn zooniiwwan gurguddoo kanaan ijaarama: <span class="term">Solar core</span>, <span class="term">Radiation zone</span>, <span class="term">Convection zone</span>, <span class="term">Photosphere</span> (Starspot/Sunspot dabalatee), <span class="term">Chromosphere</span>, <span class="term">Stellar corona</span>, fi <span class="term">Stellar wind</span> (Stellar-wind bubble uumu); bal'inaan ragaan Aduu Kutaa 6.2 irratti dhiyaateera. <span class="term">Microturbulence:</span> sossohiinsa dhangala'oo xixiqqoo atmosferii urjii keessatti uumamu.</p>
+
+  <h4 class="subsub-title">Tiyeorii fi Meeshaalee Qorannoo</h4>
+  <ul class="lvl1">
+    <li><span class="term">Asteroseismology/Solar-like oscillations:</span> Dambaliiwwan dhiibbaa (sound waves) urjiilee keessatti uumaman hordofuun caasaa keessoo isaanii beekan.</li>
+    <li><span class="term">Eddington luminosity:</span> Daangaa ifa ol-aanaa urjiin osoo dhiibbaa carallaa isaatiin gargar hin uuttamin qabaachuu dandeessu.</li>
+    <li><span class="term">Kelvin–Helmholtz mechanism:</span> Urjiin yeroo hursaan walitti dhuftu, anniisaa gravitational potential gara anniisaa ho'aatti jijjiirti.</li>
+  </ul>
+
+  <h4 class="subsub-title">Amaloota Fiiziksii Urjiilee (Gabatee)</h4>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Amala Fiiziksii</th><th>Hiika fi Ibsa Isaa</th></tr></thead>
+    <tbody>
+      <tr><td>Star designation</td><td>Sirna maqaa fi lakkoofsa ittiin urjiilee hawaa keessaa addaan baasan.</td></tr>
+      <tr><td>Stellar dynamics &amp; kinematics</td><td>Qorannoo faffaca'iinsa, hursaa, fi ariitii sochiinsa urjiilee.</td></tr>
+      <tr><td>Effective temperature</td><td>Ho'a dhaffaa urjii tokkoo akka <em>black body</em> iftuutti lakkawamu.</td></tr>
+      <tr><td>Stellar magnetic field</td><td>Dirree maagneetii plasma urjii keessatti sababa sossohiinsa tiyaalotaatiin uumamu.</td></tr>
+      <tr><td>Absolute magnitude ($M$)</td><td>Hamma ifa urjii tokkoo fageenya standard ($10\,\text{parsecs}$) irratti.</td></tr>
+      <tr><td>Solar mass ($M_\odot$)</td><td>Hamma masa aduu keenyaa ($1.989 \times 10^{30}\,\text{kg}$); safartuu masa urjiileeti.</td></tr>
+      <tr><td>Metallicity ($[Fe/H]$)</td><td>Hamma elementota haayidiroojiinii fi heeliyeemiin ol jiran urjii keessatti.</td></tr>
+      <tr><td>UBV photometric system</td><td>Sirna safartuu ifa urjii Ultraviolet (U), Blue (B), fi Visual (V).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title" id="s8-5">Urjiilee Geeddaramoo (Variable Stars)</h3>
+  <p>Urjiileen hamma ifa (magnitude) isaanii yeroo gara yerootti jijjiiran <em>Variable Stars</em> jedhamu; jijjiiramni kun sababa keessoo (Intrinsic) ykn sababa alaa (Extrinsic, fkn wal-haguuggutii) uumamuu danda'a.</p>
+
+  <h4 class="subsub-title">Urjiilee Dambaliin Geeddaraman (Pulsating Variables)</h4>
+  <ul class="lvl1">
+    <li><span class="term">Cepheids &amp; Cepheid-like:</span> Baay'ee gurguddoo fi iftuu; yeroo (period) fi luminosity gidduu hidhata jabaan jiru, fageenya hawaa safaruuf tajaajilu. <span class="term">Type I Cepheid:</span> dargaggeeyyii (Population I). <span class="term">Type II Cepheid:</span> dulmoota (Population II).</li>
+    <li><span class="term">RR Lyrae variable:</span> Urjiilee guddattuu dulmoota kuusaa urjiilee (globular clusters) keessatti argaman.</li>
+    <li><span class="term">Delta Scuti &amp; SX Phoenicis:</span> Urjiilee Main sequence saffisaan dambalii gabaabaa uumani.</li>
+    <li><span class="term">Beta Cephei &amp; PV Telescopii:</span> Urjiilee cuquliisota ho'oo, ispeektira jalqabaa irratti dambalii uumani.</li>
+    <li><span class="term">Long Period (Mira &amp; Semiregular):</span> Urjiilee diimoo gurguddoo dambalii ifa isaanii gara guyyoota dhibbaatti dheeressani; <span class="term">Slow irregular variable</span> tartiiba malee geeddarama.</li>
+    <li><span class="term">RV Tauri &amp; Alpha Cygni:</span> Supergiant, dambalii addaa fi jireenya dhumarra jirani.</li>
+  </ul>
+
+  <h4 class="subsub-title">Urjiilee Dhohiinsaan Geeddaraman (Eruptive &amp; Cataclysmic Variables)</h4>
+  <ul class="lvl1">
+    <li><span class="term">Flare star (Main Sequence):</span> Dhohiinsa maagneetii jabaatiin tasa daqiiqaa muraasaaf baay'ee ifu.</li>
+    <li><span class="term">Luminous blue variable (LBV):</span> Baay'ee gurguddoo, hamma masa isaanii tamsaasaa jiran (fkn Eta Carinae).</li>
+    <li><span class="term">R Coronae Borealis:</span> Kaarboonii baay'ee qaban kanneen tasa duumessa koflaatiin ifni isaanii dhiphatu.</li>
+    <li><span class="term">Cataclysmic/Explosive (Nova, Supernova, Dwarf Nova):</span> Dhohiinsa niwukilaaraa garmalee jabaa urjii guutummaatti balleessu (Supernova) ykn dhaffaa dotee addaattee qofa irratti uumamu (Nova). <span class="term">Z Andromedae:</span> gosa Symbiotic star dhohiinsa wal-irraa hin citne uumtu.</li>
+  </ul>
+
+  <h4 class="subsub-title">Urjiilee Naanna'iinsaan Geeddaraman (Rotating Variables)</h4>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Gosa Urjii Geeddaramtuu</th><th>Sababa Fiiziksii fi Amala Ishee</th></tr></thead>
+    <tbody>
+      <tr><td>Ellipsoidal</td><td>Urjiilee lamee walitti dhiyoo bifa killee qaban; naanna'iinsaan ifni ni jijjiirama.</td></tr>
+      <tr><td>FK Comae/BY Draconis</td><td>Dhaffaa isaanii irratti mallattoon mallaa (starspots) gurguddaan uumame.</td></tr>
+      <tr><td>Alpha² CVn/SX Arietis</td><td>Dirree maagneetii jabaa fi elementota hawaa gargar hiru qaban.</td></tr>
+      <tr><td>Pulsar</td><td>Urjii niiwutroonii carallaa xiyya elektromaagneetii qofaan gadi lakkistu.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4 class="subsub-title">Urjiilee Lamee Wal-haguugan (Eclipsing Binaries)</h4>
+  <ul class="lvl1">
+    <li><span class="term">Algol variable:</span> Yeroo haguuggaan uumamu ifni isaanii tasa gadi bu'ee daferee deebi'a.</li>
+    <li><span class="term">Beta Lyrae variable:</span> Baay'ee walitti dhihaatanii bifa killee qaban.</li>
+    <li><span class="term">W Ursae Majoris:</span> Contact binary, atmosferiin isaanii walitti makame fi ho'a qixxee qaban.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s8-6">Sirna Urjiilee (Star Systems)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Binary star (Urjii Lamee):</span> Sirna urjiilee lama handhuura masa isaanii waloo (barycenter) marsee wal naanna'ani.
+      <ul class="lvl2">
+        <li><span class="term">Contact binary:</span> Urjiilee lamee baay'ee walitti dhiyoo, hanga atmosferiin isaanii walitti makamuutti gahani.</li>
+        <li><span class="term">Common envelope:</span> Sadarkaa guddina urjii lamee keessatti gaaziin alaa urjiilee lamaan iyyuu guutummaatti haguuga.</li>
+      </ul>
+    </li>
+    <li><span class="term">Multiple star:</span> Sirna urjiilee sadii ykn isaa ol hursaan walitti hidhamanii wal naanna'ani.</li>
+    <li><span class="term">Accretion disc:</span> Diskii gaazii fi duumessaa kan hursaa jabaatiin handhuura urjii ykn boolla gurraachaa marsee ariitiin naanna'u.</li>
+    <li><span class="term">Planetary system:</span> Pilaaneetonni, addeessonni, fi asteroyidoonni urjii handhuuraa (fkn Sirna Aduu keenyaa) marsee deeman.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s8-7">Tuuta Urjii fi Caasaalee Hursaan Walitti Hidhaman</h3>
+  <ul class="lvl1">
+    <li><span class="term">Star cluster (Tuuta Urjii):</span> Kuusaa urjiilee yeroo tokkotti duumessa gaazii tokko irraa uumaman.
+      <ul class="lvl2">
+        <li><span class="term">Globular cluster:</span> Bifa sfeeraa, garmalee dhiphaatti walitti kuusame, baay'inaan urjiilee maanguddoo. <span class="term">Dark globular cluster</span> rukkuta dark matter ol-aanaa qaba jedhamee tilmaamama.</li>
+        <li><span class="term">Open cluster:</span> Banamaa, urjiilee dargaggeeyyii fi wal-fageenya qaban (fakkeenya: <span class="term">Pleiades/M45</span> — Urjii Torban naannoo Taurus keessatti argamu, haguuggii duumessa dhukkee ifa calaqqisiisu keessatti argama).</li>
+        <li><span class="term">Hypercompact stellar system (HCSS):</span> Garmalee dhiphaa fi masi ishee boolla gurraachaan hidhamee naanna'u.</li>
+      </ul>
+    </li>
+    <li><span class="term">Dwarf galaxy:</span> Galaktika dhiphaa (urjiilee biliyoona muraasa qofa qabdu) kan baay'inaan galaktikoota gurguddootti naanna'u.</li>
+  </ul>
+
+  <h3 class="subsection-title" id="s8-8">Wanta Hidhata-Malee Tamsa'an fi Gurmuu Ijaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Stellar stream (Lolaa Urjii):</span> Sarara dheeraa urjiilee dhiibbaa galaktika guddaatiin caccabanii lolaa gaazii fakkaatanii hawaa keessa deeman.</li>
+    <li><span class="term">Stellar association/Moving group:</span> Urjiilee ka'umsa tokko qaban garuu humna hursaa kanaan wal-hin hidhini, kallattii fi ariitii walfakkaataan tamsa'an.</li>
+    <li><span class="term">Runaway star:</span> Ariitii guddaadhaan sirna ishee durii irraa (fkn dhohiinsa suupparnovaatiin) gatamtee fiixaan baatee deemtu.</li>
+    <li><span class="term">Hypervelocity star:</span> Ariitii garmalee jabaa (ariitii ba'iinsaa galaktikaa caalu) qabdi, baay'inaan boolla gurraacha galaktika gidduu jiruun gatamti.</li>
+    <li><span class="term">Double star:</span> Urjiilee lama ijaan walitti dhihoo fakkaatan garuu <em>optical double</em> ta'uu danda'an (osoo physical binary hin taane).</li>
+    <li><span class="term">Constellation (Urjii Tuuta):</span> Gurmuu urjiilee samiirratti fakkii adda addaa uumanii beekaman (fkn Orion, Taurus); seera astroonoomiitiin daangaan isaanii murtaa'e.</li>
+    <li><span class="term">Asterism:</span> Gurmuu urjiilee fakkii addaa qaban garuu kan constellation guutuutti hin fudhatamne (fkn Big Dipper).</li>
+    <li><span class="term">Star cloud (Duumessa Urjii):</span> Kutaa ifaa galaktikaa kan urjiilee miliyoonotaan lakka'aman walitti dhihaatanii ijaan akka duumessa ifaatti mul'atan.</li>
+  </ul>
+
+  <h3 class="subsection-title">Ilaallata Lafarraa, Sochii fi Fageenya Urjiilee</h3>
+  <ul class="lvl1">
+    <li><span class="term">Pole star:</span> Urjii handhuura naanna'iinsa lafaa (celestial pole) waliin sarara sirrii irra jirtu (fkn Polaris).</li>
+    <li><span class="term">Circumpolar star:</span> Ilaallata iddoo tokkotti hawaa keessaa tasuma dhiitee hin dhabamne, waggaa guutuu samiirra naanna'aa bulti.</li>
+    <li><span class="term">Apparent magnitude ($m$):</span> Hamma ifa urjii tokkoo kan ijaan Lafarraa mul'atu (fageenya urjichaa irratti hundaa'a).</li>
+    <li><span class="term">Photographic magnitude:</span> Hamma ifa urjii fiilmii footogiraafii irratti ol-ka'iinsa ifa cuquliisaatiin safaramu.</li>
+    <li><span class="term">Photometric-standard star:</span> Ifni ishee mirkanaa'aa fi beekamaa, urjiilee biroo madaaluuf akka ragaatti gargaaramu.</li>
+  </ul>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Yaad-rimee Fiiziksii</th><th>Hiika fi Ibsa Isaa</th></tr></thead>
+    <tbody>
+      <tr><td>Radial velocity ($v_r$)</td><td>Ariitii urjiin tokko kallattii ilaallata keenyaatiin gara keenyatti dhihaattu ykn nurraa fagaattu.</td></tr>
+      <tr><td>Proper motion ($\mu$)</td><td>Sossohiinsa urjii tokkoo kan waggaa keessatti sfeerii hawaa irratti mul'atu.</td></tr>
+      <tr><td>Stellar parallax ($p$)</td><td>Jijjiirama teessuma urjii tokkoo kan lafti aduu marsee yeroo naanna'u fageenya ittiin safaran.</td></tr>
+      <tr><td>Color-color diagram</td><td>Giraafii ifa urjiilee wavelength adda addaatiin gargar baasuun madaalanii qoratan.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4 class="subsub-title">Maqaa Tradishinaalaa fi Tarreeffama Beekamoo</h4>
+  <ul class="lvl1">
+    <li><span class="term">List of proper names of stars:</span> Tarreeffama maqaa idilee urjiilee kan hawaasni astroonoomii addunyaa mirkaneesse.</li>
+    <li><span class="term">List of Arabic star names:</span> Maqaa urjiilee madda jecha Afaan Arabaa qaban (fkn Aldebaran, Betelgeuse).</li>
+    <li><span class="term">Traditional Chinese star names:</span> Sirna maqaa fi kuusaa urjiilee (constellations) astroonoomii madaallii Chaayinaa durii.</li>
+    <li><span class="term">Most/Least massive stars:</span> Masa baay'ee jabaa ($M > 100\,M_\odot$) fi masa baay'ee gadaanaa ($M \sim 0.08\,M_\odot$).</li>
+    <li><span class="term">Largest known stars:</span> Raadiyaasii bal'aa qaban (fkn UY Scuti, Stephenson 2-18).</li>
+    <li><span class="term">Brightest/Most luminous stars:</span> Ifa dachaa jabaa gadi lakkisanii fi Lafarraa baay'ee ifanii mul'atan.</li>
+    <li><span class="term">Nearest stars:</span> Sirna aduu keenyatti baay'ee dhiyoo (fkn Proxima Centauri).</li>
+    <li><span class="term">Exoplanetary host stars:</span> Urjiilee pilaaneetota alaa of jalaa qabanii fi naanna'an.</li>
+    <li><span class="term">Supernova candidates:</span> Urjiilee umrii isaanii xumuraarra jiran kan dhiyoo suupparnovaa uumuu danda'an (fkn Betelgeuse).</li>
+    <li><span class="term">Timeline of stellar astronomy:</span> Tartiiba seenaa jalqaba madaallii urjiilee irraa kaasee hanga astrofiiziksii ammayyaatti argannoowwan gurguddoo galmeeffaman.</li>
+  </ul>
+</section>
+
+<!-- SECTION 9 -->
+<section class="chapter" id="s9">
+  <h2 class="section-title"><span class="num">09</span> Haftee Urjiilee, Urjiilee Yaaddoo fi Fusiinsii Niwukilaaraa</h2>
+  <div class="section-rule"></div>
+  <p>Urjiin tokko erga anniisaa fusiinsii xumurtee booda hursaa (gravity) ofii isheetiin dhiibamtee qaama ashaaraa fi baay'ee tuuta'aa ta'etti jijjiiramti:</p>
+
+  <h3 class="subsection-title">Haftee fi Caccaba Urjiilee (Stellar Remnants)</h3>
+  <ul class="lvl1">
+    <li><span class="term">White dwarf (Urjii Dotee Addaatte):</span> Haftee urjii masa giddu-galeessa qabduu (fkn aduu); masaan ishee daangaa Chandrasekhar ($1.4\,M_\odot$) gadi.</li>
+    <li><span class="term">Black dwarf:</span> Urjii dotee addaatte erga ho'a fi ifa ishee guutummaatti dhabdee booda diilallaa'aa fi gurraachatti jijjiiramtu (umriin hawaa yeroo ammaa gahaa miti).</li>
+    <li><span class="term">Helium planet:</span> Pilaaneetii dotee addaatte masa gadaanaa qabdu irraa haftee heeliyeemi qofa irraa ijaarame.</li>
+    <li><span class="term">Neutron star:</span> Caccaba urjii masa jabaa qabduu kan suupparnovaa irraa hafe, baay'ee tuuta'aa fi niiwutroonii qofa irraa ijaarame.
+      <ul class="lvl2">
+        <li><span class="term">Pulsar:</span> Urjii niiwutroonii saffisaan naanna'aa carallaa elektromaagneetii uumtu.</li>
+        <li><span class="term">Magnetar:</span> Urjii niiwutroonii dirree maagneetii baay'ee jabaa fi humna qabu.</li>
+      </ul>
+    </li>
+    <li><span class="term">Stellar black hole:</span> Caccaba urjii baay'ee masa jabaa qabduu (bal'inaan Kutaa 11 ilaali).</li>
+    <li><span class="term">Quark star/Exotic star:</span> Tiyoorii keessatti hammataman, tuuta'iinsa isaaniitiin niiwutroonii ol ta'anii dhiibbaa kuarkootaa irratti hundaa'an.</li>
+  </ul>
+
+  <h3 class="subsection-title">Urjiilee Kufanii fi Yaaddoo</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Gosa Urjii</th><th>Ibsa fi Amala Ishee Astrofiiziksii</th></tr></thead>
+    <tbody>
+      <tr><td>Substellar object</td><td>Fusiinsii haayidiroojiinii eegaluuf masa gahaa hin qabne.</td></tr>
+      <tr><td>Brown dwarf</td><td>Liqimsa deeyitiriyeemii (deuterium) qofa gaggeessiti.</td></tr>
+      <tr><td>Sub-brown dwarf</td><td>Masa isaatiin Jupiter ol garuu brown dwarf gadi (planetary mass).</td></tr>
+      <tr><td>Planetar</td><td>Gidduu pilaaneetii fi brown dwarf, urjiitti kan hin hidhamne.</td></tr>
+      <tr><td>Boson star</td><td>Yaad-rimee dark matter <em>bosons</em> irraa uumamte jedhamti.</td></tr>
+      <tr><td>Dark star</td><td>Jalqaba hawaa keessatti anniisaa dark matter annihilation irraa argatti.</td></tr>
+      <tr><td>Quasistar</td><td>Ummata jalqabaa kan handhuura ishee keessa boolli gurraachi jiru.</td></tr>
+      <tr><td>Thorne–Żytkow object</td><td>Red supergiant taatee keessoo isheetti urjii niiwutroonii liqimsite.</td></tr>
+      <tr><td>Iron star</td><td>Tiyoorii waggoota tiriliyoona booda fusiinsii kuarkootaatiin sibiila qofa taatu.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Kuusaa Keemikaalaa Urjiilee (Stellar Nucleosynthesis)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Proton–proton chain reaction:</span> Fusiinsii pirootoonii irraa heeliyeemiin aduu keessatti itti uumamu.</li>
+    <li><span class="term">CNO cycle:</span> Fusiinsii urjiilee ho'oo keessatti kaarboonii, naayitidroojiinii fi oksijiiniin akka kaataaliistiitti gargaaramuun gaggeeffamu.</li>
+    <li><span class="term">Helium flash:</span> Dhohiinsa fusiinsii heeliyeemi kan tasa handhuura red giants keessatti uumamu.</li>
+    <li><span class="term">Triple-alpha process:</span> Nucleus heeliyeem sadii walitti makamanii kaarboonii uumu.</li>
+    <li><span class="term">Lithium burning:</span> Urjiilee gadi-gandhoo keessatti litiyeemiin itti gubatu.</li>
+    <li><span class="term">Carbon/Neon/Oxygen/Silicon burning:</span> Sadarkaalee gubama elementota ulfaatoo urjiin masa jabaa qabdu dhuma jireenya isheerratti keessa dabartu (dhuma irratti sibiila/Iron uumti).</li>
+    <li><span class="term">S-process (Slow neutron capture):</span> Suuta niiwutroonii fudhachuun elementota sibiilaa ol jiran urjiilee gurguddoo keessatti uumu.</li>
+    <li><span class="term">R-process (Rapid neutron capture):</span> Saffisaan niiwutroonii fudhachuun elementota baay'ee ulfaatoo (zafee, yuraniyemii) dhohiinsa suupparnovaa keessatti uumu.</li>
+    <li><span class="term">P-process (Proton capture):</span> Pirootoonii fudhachuu ykn fotoniin niiwutroonii baasuu kan iisotoopota sibilotaa uumu.</li>
+  </ul>
+
+  <h3 class="subsection-title">Noovaa fi Harca'iinsa Ishee</h3>
+  <ul class="lvl1">
+    <li><span class="term">Nova (Noovaa):</span> Dhohiinsa niwukilaaraa tasa urjii dotee addaattee irratti uumamu; sababa haayidiroojiinii urjii ollaa ishee irraa harkistee kuufattuuf uumama.</li>
+    <li><span class="term">Nova remnant:</span> Kuusaa gaazii fi plasma dhohiinsa noovaa irraa hafanii hawaa keessatti tamsaa'an.</li>
+  </ul>
+</section>
+
+<!-- SECTION 10 -->
+<section class="chapter" id="s10">
+  <h2 class="section-title"><span class="num">10</span> Dhohiinsa Suupparnovaa (Supernovae)</h2>
+  <div class="section-rule"></div>
+  <p>Suupparnovaan dhohiinsa garmalee jabaa fi humna qabu kan dhuma jireenya urjiilee gurguddoo irratti ykn sirna urjii lamee keessatti uumamu dha; elementota ulfaatoo hawaa keessatti tamsaasuuf iddoo guddaa qaba.</p>
+
+  <h3 class="subsection-title">Ramaddii Suupparnovaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Type Ia:</span> Dhohiinsa urjii dotee addaattee (white dwarf) sirna lamee keessatti masa dacha urjii ollaa ishee irraa fudhachuun daangaa Chandrasekhar ($1.4\,M_\odot$) yeroo dabartu uumamu.</li>
+    <li><span class="term">Type Ib fi Ic:</span> Dhohiinsa urjiilee gurguddoo handhuura isaanii diigamu (core-collapse) kan baqana alaa haayidiroojiinii dhaban (Ib heeliyeem qaba, Ic heeliyeem iyyuu hin qabu).</li>
+    <li><span class="term">Type II (IIP fi IIL):</span> Dhohiinsa urjiilee masa jabaa qaban kan ispeektira isaanii keessatti haayidiroojiinii baay'ee argisiisan. IIP ifa ishee yeroo dheeraaf madaaltee dhiisti (Plateau); IIL ifni ishee sararri gadi bu'aa deema (Linear).</li>
+  </ul>
+
+  <h3 class="subsection-title">Dhahannaawwan fi Dhohiinsa Hamma Addaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Hypernova/Quark-nova:</span> Dhohiinsa suupparnovaa caalaa dachaa 10 hanga 100 humna qabu, urjiilee masa garmalee jabaa qaban irraa uumama; Gamma-ray burst (GRB) uumuu danda'a.</li>
+    <li><span class="term">Pair-instability supernova:</span> Urjii masa garmalee jabaa ($130$–$250\,M_\odot$) kan fotonni humna ol-aanaa qaban electron-positron pairs tti jijjiiramuun dhiibbaa carallaa gadi buusanii urjicha guutummaatti dhoosani.</li>
+    <li><span class="term">Supernova impostor:</span> Tasa ifni ishee garmalee dabaluun akka suupparnovaatti mul'atti garuu osoo hin diigamin hafti (fkn Luminous Blue Variable akka Eta Carinae).</li>
+    <li><span class="term">Near-Earth supernova:</span> Lafatti dhiyoo (fageenya dhibba parsecs gadi) uumamuun baqana ozone lafaa miidhuu danda'a.</li>
+    <li><span class="term">Pulsar kicks:</span> Saffisa ariitii jabaa urjiin niiwutroonii dhohiinsa suupparnovaa as-faallaa (asymmetric) irraa argatti.</li>
+  </ul>
+
+  <h3 class="subsection-title">Urjiilee Madda Dhohiinsaa (Progenitors)</h3>
+  <p><span class="term">Wolf–Rayet star/Luminous blue variable:</span> baay'ee ho'oo, bubbee urjii jabaatiin baqana alaa isaanii tamsaasaa jiran. <span class="term">Supergiants (Red, Blue, Yellow):</span> raadiyaasiin isaanii bal'ate; Red supergiant madda gashaa Type II, Yellow hypergiant baay'ee rarra'oo dha.</p>
+
+  <h3 class="subsection-title">Haftee fi Caccaba Suupparnovaa</h3>
+  <p><span class="term">Supernova remnant (SNR):</span> Duumessa plasmaa fi gaazii dhohiinsa sana irraa ariitiin bahaa jiru (fkn Crab Nebula). Giddu-galeessa dhohiinsichaa irratti Neutron star (Pulsar/Magnetar) ykn Stellar black hole uumama.</p>
+
+  <h3 class="subsection-title">Suupparnovaawwan Beekamoo Seenaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">SN 185:</span> Suupparnovaa jalqaba seenaa dhala namaa keessatti astroonoomonni Chaayinaa bara 185 ALH galmeessan.</li>
+    <li><span class="term">SN 1006:</span> Dhohiinsa hawaa seenaa keessatti baay'ee ifee mul'ate.</li>
+    <li><span class="term">SN 1054 (Crab Nebula Progenitor):</span> Astroonoomonni Chaayinaa fi Arabaa guyyaa ifaan ijaan argan; harca'iinsa ishee Crab Nebula dha.</li>
+    <li><span class="term">Tycho's Supernova (SN 1572):</span> Tycho Brahe qoratee urjiileen samiirra jiran hundi jijjiiramuu akka danda'an mirkaneesse (Type Ia).</li>
+    <li><span class="term">Kepler's Supernova (SN 1604):</span> Suupparnovaa dhumaa Milky Way keessatti ijaan argamte; Johannes Kepler bal'inaan qorateera.</li>
+    <li><span class="term">SN 1987A:</span> Large Magellanic Cloud keessatti dhooftee, carallaa niiwutiriinoo jalqaba maddisiisun qorannoo astrofiiziksii niwukilaaraa mijeessite.</li>
+    <li><span class="term">SN 2003fg/SN 2007bi:</span> Humna addaa qaban; SN 2003fg daangaa Chandrasekhar ol dhoofte, SN 2007bi gosa Pair-instability jedhamee amanama.</li>
+  </ul>
+
+  <h3 class="subsection-title">Harca'iinsa Suupparnovaa Beekamoo (SNR)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Maqaa Harca'iinsichaa</th><th>Ibsa Astrofiiziksii fi Amala Ishee</th></tr></thead>
+    <tbody>
+      <tr><td>Crab Nebula (M1)</td><td>Harca'iinsa SN 1054 irraa hafe; giddu-galeessatti pulsar qabdi.</td></tr>
+      <tr><td>Vela SNR</td><td>Baay'ee bal'aa fi dhiyoo, carallaa X-ray fi gaazii tamsa'aa jiru qaba.</td></tr>
+      <tr><td>G1.9+0.3</td><td>Galaktika keenya keessatti umriin ishee baay'ee dargaggeettii (waggaa ~140 dura).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Gareewwan fi Projeektota Qorannoo</h3>
+  <ul class="lvl1">
+    <li><span class="term">Supernova Cosmology Project &amp; High-z Supernova Search Team:</span> Gareewwan dorgomtoota dhohiinsa Type Ia qorachuun hawaan keenya Dark Energy kanaan saffisaan babal'achaa jiru argatanii badhaasa Nobel Prize (2011) injifatan.</li>
+    <li><span class="term">Texas Supernova Search/Nearby Supernova Factory:</span> Sassaabbii ragaa suupparnovaa haaraa fi dhiyoo argachuuf tajaajilu.</li>
+    <li><span class="term">Supernova Legacy Survey (SNLS):</span> Dhohiinsa fageenya dheeraa argachuun amala dark energy madaala.</li>
+    <li><span class="term">Sloan Supernova Survey (SDSS):</span> Suupparnovaawwan dhibba hedduun addaan baasee galmeesse. <span class="term">SNAP:</span> pirojekti satalaayitiiti.</li>
+    <li><span class="term">Supernova Early Warning System (SNEWS):</span> Hidhata idil-addunyaa kuusaa qorannoo niiwutiriinoo walitti hidhu; dambalii ifaa dura akeekkachiisa daqiiqaa muraasaa kenna.</li>
+  </ul>
+</section>
+
+<!-- SECTION 11 -->
+<section class="chapter" id="s11">
+  <h2 class="section-title"><span class="num">11</span> Boolla Gurraacha (Black Holes)</h2>
+  <div class="section-rule"></div>
+  <p>Boolli gurraachi (black hole) naannoo hawaa (space-time) hursaan (gravity) isaa garmalee jabaa ta'ee fi ifni iyyuu keessaa bahuu hin dandeenye dha; kunis kan uumamu masi jabaan yeroo walitti dhiphatu.</p>
+
+  <h3 class="subsection-title">Uunka Herregaa fi Akaakuu</h3>
+  <p>Boolli gurraachi amaloota sadii qofaan ibsama: Masa ($M$), Tiyaala eelektirikii ($Q$), fi roraa naanna'iinsaa ($J$).</p>
+  <ul class="lvl1">
+    <li><span class="term">Schwarzschild metric:</span> Roraa fi tiyaala hin qabne ($J=0, Q=0$); uunka herregaa isa salphaa.</li>
+    <li><span class="term">Rotating black hole (Kerr metric):</span> Axis isaa irratti naanna'u ($J \neq 0$); addunyaa keessatti baay'inaan kan argamu.</li>
+    <li><span class="term">Charged black hole (Reissner–Nordström/Kerr-Newman):</span> Tiyaala eelektirikii qabu ($Q \neq 0$).</li>
+    <li><span class="term">Virtual black hole:</span> Fiiziksii kuwaantumii keessatti, boolla gurraacha dhiphaa hawaa keessatti uumamee dhabamu.</li>
+  </ul>
+
+  <h3 class="subsection-title">Ramaddii Hamma (Size Classifications)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Micro black hole:</span> Baay'ee dhiphaa, ka'umsi isaa kuwaantumii.</li>
+    <li><span class="term">Stellar black hole:</span> Dhohiinsa urjiilee gurguddoo irraa uumama; masi isaa $5$ hanga dhibba hedduu $M_\odot$.</li>
+    <li><span class="term">Intermediate-mass black hole (IMBH):</span> $M \sim 10^2$–$10^5\,M_\odot$.</li>
+    <li><span class="term">Supermassive black hole (SMBH):</span> Giddu-galeessa galaktikootaa keessatti argamu ($M \sim 10^6$–$10^{10}\,M_\odot$).
+      <ul class="lvl2">
+        <li><span class="term">Quasar/Blazar/Active Galactic Nucleus (AGN):</span> Naannoo SMBH kan dhangala'oo fi gaaziin ariitii jabaan sassaabamuun ifa humna ol-aanaa fi carallaa (relativistic jets) gadi lakkisu.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3 class="subsection-title">Adeemsa Uumamaa</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Adeemsa/Daangaa</th><th>Ibsa Astrofiiziksii fi Fiiziksii Isaa</th></tr></thead>
+    <tbody>
+      <tr><td>Gravitational collapse</td><td>Diigama hursaa urjii kan dhiibbaa ho'a keessaa gadi bu'uun masi walitti sassaabamu.</td></tr>
+      <tr><td>TOV Limit</td><td>Daangaa masa ol-aanaa urjii niiwutroonii ($2$–$3\,M_\odot$); yoo darbe boolla gurraacha ta'a.</td></tr>
+      <tr><td>Supernova/Hypernova</td><td>Dhohiinsa garmalee jabaa urjii masa jabaa kan handhuura ishee boolla gurraachatti dhiisu.</td></tr>
+      <tr><td>Gamma-ray burst (GRB)</td><td>Dhohiinsa kanaan wal-qabatee carallaa gamaa dacha jabaa hawaa keessatti tamsa'u.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Daangaawwan fi Teessuma Naannoo</h3>
+  <ul class="lvl1">
+    <li><span class="term">Event horizon:</span> Daangaa dhumaa boolla gurraachaa kan erga itti seenamee booda ifni iyyuu keessaa bahee deebi'uu hin dandeenye.</li>
+    <li><span class="term">Schwarzschild radius ($R_s$):</span> $$R_s = \dfrac{2GM}{c^2}$$ ($G$ dhaaba hursaa, $M$ masa, $c$ saffisa ifaati).</li>
+    <li><span class="term">Ergosphere:</span> Naannoo boolla gurraacha naanna'u (Kerr black hole) kan daangaa event horizon olitti argamu; hawaan (space-time) saffisa jabaan urjichaan harkifamee naanna'a.</li>
+    <li><span class="term">Photon sphere:</span> Sarara raadiyaasii fotonni hursaa jabaa koflaatiin dirqamanii boolla gurraacha marsanii naanna'ani.</li>
+  </ul>
+
+  <h3 class="subsection-title">Ho'a Koflaa fi Adeemsa Humnaa (Thermodynamics)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Yaad-rimee Saayinsii</th><th>Ibsa Astrofiiziksii fi Herrega Isaa</th></tr></thead>
+    <tbody>
+      <tr><td>Black hole thermodynamics</td><td>Seera bu'uuraa ho'a koflaa entropy fi temperature boolla gurraachaa ibsu.</td></tr>
+      <tr><td>Hawking radiation</td><td>Carallaa kuwaantumii dhiibbaa fe'ama dotee irraa madaalamee boolla gurraacharraa bahu.</td></tr>
+      <tr><td>Penrose process</td><td>Anniisaa ergosphere keessaa wanta gadi lakkisaniin maseeffatanii baafatan.</td></tr>
+      <tr><td>Bondi accretion</td><td>Sassaabbii gaazii naannoo jiru kan hursaa koflaatiin sfeera bifa qabun harkifamu: $\dot{M} \approx 4\pi \lambda \dfrac{G^2 M^2 \rho}{c_s^3}$</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Dhiibbaa Hursaa Jabaa fi Ilaallata</h3>
+  <ul class="lvl1">
+    <li><span class="term">Spaghettification:</span> Dhiibbaa humna hursaa gidduu jiru (tidal forces) kan wanti tokko gara boolla gurraachatti dhihaatu gama miilaa fi mataa isaatiin garmalee harkifamee sarara dhiphaa ta'u godhu.</li>
+    <li><span class="term">Gravitational lens:</span> Dadacha'iinsa hawaa dhiibbaa hursaa jabaatiin uumamu; ifni urjiilee fagoorraa bahu yeroo boolla gurraacha bira darbu jal'atee akka lensiitti mul'ata.</li>
+    <li><span class="term">M–sigma relation ($M$-$\sigma$):</span> Hidhata madaallii masa boolla gurraacha ($M$) fi saffisa tamsa'iinsa urjiilee ($\sigma$) galaktika sfeera giddu-galeessaa gidduu jiru.</li>
+    <li><span class="term">Quasi-periodic oscillation (QPO):</span> Dadaddifannoo carallaa X-ray gaazii ho'aa naannoo boolla gurraachaa irraa maddisiifamu.</li>
+  </ul>
+
+  <h3 class="subsection-title">Yaad-rimee Singulaariitii</h3>
+  <ul class="lvl1">
+    <li><span class="term">Gravitational singularity (Penrose–Hawking theorems):</span> Singulaariitiin dhohiinsa hursaa jabaa keessatti uumamuun isaa dirqama ta'uu Roger Penrose fi Stephen Hawking mirkaneessan.</li>
+    <li><span class="term">Ring singularity:</span> Bifa qubessaa (ring) qabdu kan boolla gurraacha naanna'u (Kerr) giddu-galeessatti uumamtu.</li>
+    <li><span class="term">Naked singularity:</span> Daangaa event horizon kanaan hin haguugamne, kan ala irraa ijaan argamuu dandeessu jedhamee yaadamu (seera Cosmic Censorship kanaan dhowwamaadha).</li>
+  </ul>
+
+  <h3 class="subsection-title">Moodeloota Tiyoorii fi Dorgomtoota</h3>
+  <ul class="lvl1">
+    <li><span class="term">Primordial black hole:</span> Dhiphaa dhaloota hawaa jalqabaa (Big Bang) irratti dhiibbaa rukkutaatiin uumame jedhamee amanama.</li>
+    <li><span class="term">Gravastar:</span> Giddu-galeessa isaa gaasii dark energy dhiibbaa alaa uumu, qofoo wanta jabaa qabu (singulaariitii hin qabu).</li>
+    <li><span class="term">Fuzzball:</span> Tiyoorii jinfuu keessatti, boolli gurraachi singulaariitii dhiphaa osoo hin taane kuusaa jinfuwwan kuwaantumii walitti micingani jedha.</li>
+    <li><span class="term">MECO:</span> Moodela urjii garmalee walitti dhiphachaa jirtu garuu daangaa event horizon osoo hin uumin dirree maagneetii jabaa argisiistu. Dark star fi Dark energy star moodeloota kofla walfakkaataa qabani.</li>
+    <li><span class="term">Quasistar:</span> Urjii garmalee gurguddoo dhaloota hawaa jalqabaa keessatti uumamte, giddu-galeessa isheetti boolla gurraacha dhiphaa qabdi.</li>
+  </ul>
+
+  <h3 class="subsection-title">Hawaa Gidduu fi Boolla Adii</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Moodela Herregaa</th><th>Hiika fi Ibsa Isaa</th></tr></thead>
+    <tbody>
+      <tr><td>White hole</td><td>Faallaa boolla gurraachaa: wanti tokko itti seenuu hin dandeenye garuu wanti keessaa baha.</td></tr>
+      <tr><td>Wormhole</td><td>Rarra'iinsa hawaa kofla fageenya lama walitti hidhuun karaa gabaabaa ta'a.</td></tr>
+      <tr><td>Kugelblitz</td><td>Dhiibbaa anniisaa carallaa ifaa (fotonni) walitti kuusame irraa uumama.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Tiyoorii fi Meeshaalee Qorannoo</h3>
+  <p><span class="term">Membrane paradigm:</span> boolla gurraacha akka dhangala'oo qofoo elektromaagneetii qabduutti fudhatanii fiiziksii ishee salphaatti shallagan. <span class="term">Immirzi parameter:</span> tiyoorii Loop Quantum Gravity keessatti bal'ina kofla event horizon shallaguuf. <span class="term">Black star:</span> moodela dhiibbaa kuwaantumii hursaa gidduu jiruun singulaariitii dhowwu.</p>
+</section>
+
+<!-- SECTION 12 -->
+<section class="chapter" id="s12">
+  <h2 class="section-title"><span class="num">12</span> Duumessa Hawaa fi Wanta Urjiilee Gidduu</h2>
+  <div class="section-rule"></div>
+
+  <h3 class="subsection-title">Wanta Urjiilee Gidduu fi Duumessoota</h3>
+  <ul class="lvl1">
+    <li><span class="term">Interstellar matter (ISM):</span> Kuusaa gaazii (baay'een isaa Haayidiroojiinii) fi dhukkee dhiphaa hawaa keessatti tamsa'ee argamu, ka'umsa urjiilee haaraaf.</li>
+    <li><span class="term">Nebula (Duumessa Hawaa):</span> Duumessa garmalee bal'aa gaazii fi dhukkee hawaa irraa uumame; gosa adda addaa qaba, dhalaa urjii fi harca'iinsa dhohiinsaa isaa keessaa ni argamu.</li>
+  </ul>
+
+  <h3 class="subsection-title">Naannolee Haayidiroojiinii</h3>
+  <ul class="lvl1">
+    <li><span class="term">H I region:</span> Atomonni haayidiroojiinii hundi neutral (tiyaala-malee) ta'anii ho'a gadi bu'aa qabani; carallaa $21\,\text{cm}$ maddisiisu.</li>
+    <li><span class="term">H II region:</span> Atomonni haayidiroojiinii carallaa urjiilee ho'ootti dhihaachuun eelektiroonii dhabanii ionized ta'ani; iddoo urjiileen haaraan itti dhalatanii.</li>
+  </ul>
+
+  <h3 class="subsection-title">Fakkeenya Nebulae fi Tuuta Urjii Beekamoo</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Maqaa</th><th>Ibsa Astrofiiziksii fi Amala Isaa</th></tr></thead>
+    <tbody>
+      <tr><td>Orion Nebula (M42)</td><td>Fakkeenya H II region dhiyoo fi ijaan ifatti mul'atu, naannoo urjiin itti dhalatu.</td></tr>
+      <tr><td>Crab Nebula (M1)</td><td>Harca'iinsa suupparnovaa (SNR) kan SN 1054 irraa hafe, giddu-galeessatti pulsar qaba.</td></tr>
+      <tr><td>Planetary nebula</td><td>Duumessa bifa qabuu; urjiin masa giddu-galeessaa (fkn aduu) dhuma jireenya isheerratti gadi lakkifti.</td></tr>
+      <tr><td>Pleiades (M45)</td><td>Tuuta urjii banamaa naannoo Taurus, urjiilee dargaggeeyyii, reflection nebula keessatti argama.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- SECTION 13 -->
+<section class="chapter" id="s13">
+  <h2 class="section-title"><span class="num">13</span> Galaktikoota (Galaxies)</h2>
+  <div class="section-rule"></div>
+  <p>Galaktikaan sirna fiizikaalaa humna hursaa (gravity) jabaan walitti hidhamee dha; caasaan kun urjiilee, caccaba urjiilee, gaazii naannoo urjiilee jiru, dhukkee hawaa, fi dark matter of keessaa qaba. Jecha <em>Galaxy</em> jedhu jecha Giriikii <em>galaxias</em> irraa kan dhufe yoo ta'u, hiikni isaa "milky" (kan aannaniiti) jechuudha; kunis galaktika keenya <em>Milky Way</em> (Ruda Aannani) kan sirna Aduu of keessaa qabu sana agarsiisa.</p>
+
+  <h3 class="subsection-title">Hamma fi Baay'ina Urjiilee</h3>
+  <ul class="lvl1">
+    <li>Galaktikaan tokko giddu-galeessaan urjiilee miliyoona 100 ($10^8$) qabaachuu danda'a.</li>
+    <li><span class="term">Dwarf galaxies:</span> Urjiilee kuma tokko gadi qabaachuu danda'u.</li>
+    <li><span class="term">Supergiant galaxies:</span> Urjiilee triliyoona dhibba tokko ($10^{14}$) gahanii fi handhuura giddu-galeessa masa isaanii maranii naanna'an qabaachuu danda'u.</li>
+  </ul>
+
+  <blockquote>Hubachiisa: Masi galaktika tokkoo keessaa dhibbantaa baay'ee guddaan bifa dark matter kanaan kan uumame yoo ta'u, masi ijaan mul'atu (urjiilee fi nebulae) dhibbantaa muraasa qofa uuma. Giddu-galeessa galaktikoota baay'ee keessatti boolla gurraacha garmalee jabaa (Supermassive black hole) argamuun amala beekamaa dha.</blockquote>
+
+  <h3 class="subsection-title">Teessuma Hawaa keessaa (Cosmic Hierarchy)</h3>
+  <p style="font-family:'JetBrains Mono',monospace; font-size:.85rem; color:var(--star-dim); line-height:2;">
+  Milky Way → Milky Way Subgroup → Local Group → Local Sheet → Local Volume → Virgo Supercluster → Laniakea Supercluster → Pisces–Cetus Supercluster Complex → Local Hole → Observable Universe → Universe.
+  </p>
+
+  <h3 class="subsection-title">Giddu-galeessa Galaktikaa (Galactic Center)</h3>
+  <ul class="lvl1">
+    <li><span class="term">Sagittarius A*:</span> Boolla gurraacha garmalee jabaa (SMBH) handhuura galaktika keenyaa irratti argamu.</li>
+    <li><span class="term">Fermi bubbles:</span> Kuusaa raadiyeeshinii Gamma-ray fi X-ray garmalee gurguddoo handhuura irraa gara gadii fi oliitti dhiibaman.</li>
+    <li><span class="term">Galactic Center Phenomenon:</span> GeV excess, Filaments, fi Radio Arc (sararoota maagneetii carallaa raadiyoo maddisiisan).</li>
+  </ul>
+
+  <h3 class="subsection-title">Harkoota Baallonni (Disk &amp; Spiral Arms)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Harkoota Gurguddoo</th><th>Harkoota Muraasa</th><th>Kutaa 3 kpc Arms</th></tr></thead>
+    <tbody>
+      <tr><td>Perseus Arm</td><td>Carina–Sagittarius Arm</td><td>Near 3 kpc Arm</td></tr>
+      <tr><td>Scutum–Centaurus Arm</td><td>Norma–Cygnus Arm</td><td>Far 3 kpc Arm</td></tr>
+      <tr><td>—</td><td>Orion–Cygnus Arm (Aduun itti argamtu)</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Naannoo Baallonni Alaa fi Galaktikoota Garbaa</h3>
+  <ul class="lvl1">
+    <li><span class="term">Stellar Streams:</span> Aquarius, Fimbulthul, Helmi, Palomar 5, Pisces–Eridanus, Sagittarius, fi Virgo Stream.</li>
+    <li><span class="term">Caasaalee Gurguddoo:</span> Gaia Sausage (caccaba rigiinsa durii), Magellanic Stream (lolaa gaazii), Monoceros Ring.</li>
+    <li><span class="term">Magellanic Clouds:</span> Large Magellanic Cloud (LMC), Small Magellanic Cloud (SMC), Magellanic Bridge.</li>
+    <li><span class="term">Galaktikoota Dhiphaa:</span> Canis Major, SagDEG, Crater 2, Antlia II, Draco, Fornax, Carina, Sculptor, Sextans, Ursa Major (I, II, III), Ursa Minor, Boötes (I, II, III), Leo (I, II, IV, V, T), fi Willman 1.</li>
+  </ul>
+
+  <h3 class="subsection-title">Dhimmoota Kofla Waliinii</h3>
+  <p><span class="term">Andromeda–Milky Way collision:</span> Waggaa biliyoona 4–5 keessatti rigiinsa Andromeda fi Ruda Aannani gidduutti uumamuuf jira. <span class="term">Baade's Window</span> (fodda dhukkee maleeyyii handhuura ilaaluuf) fi <span class="term">Zone of Avoidance</span> (naannoo dhukkeen galaktika keenyaa ifa galaktikoota alaa itti haguugu) dhimmoota astroonoomii beekamoodha.</p>
+</section>
+
+<!-- SECTION 14 -->
+<section class="chapter" id="s14">
+  <h2 class="section-title"><span class="num">14</span> Seerota fi Foormulaawwan Astiroonoomii/Astiroofiiziksii</h2>
+  <div class="section-rule"></div>
+
+  <h3 class="subsection-title">Seerota Marsaa fi Hursaa (Orbital &amp; Gravitational Laws)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Maqaa Seerichaa</th><th>Nama Argate</th><th>Yaada Seerichaa fi Foormulaa</th></tr></thead>
+    <tbody>
+      <tr><td>Kepler's Laws (I–III)</td><td>Johannes Kepler</td><td>(1) Pilaaneetonni daandii killee (elliptical) hordofuun aduu naanna'u, aduun handhuura killee (foci) lamaan keessaa tokko irra teessi. (2) Sararri aduu-pilaaneetii yeroo wal-qixa keessatti bal'ina lafaa wal-qixa haqaa deema. (3) $T^2 \propto a^3$. Sirreeffamni relatiivistikii ($\Delta\phi = \frac{6\pi GM}{c^2 a(1-e^2)}$) Albert Einstein irraa maddan.</td></tr>
+      <tr><td>Newton's Law of Universal Gravitation</td><td>Sir Isaac Newton</td><td>$F = G\dfrac{M_1 M_2}{r^2}$</td></tr>
+      <tr><td>Law of Inertia (Newton's 1st Law)</td><td>Sir Isaac Newton</td><td>Qaamni samii tokko yoo humna alaa irratti hin hojjenne, bakka isaa tureen ykn ariitii dhaabbataa ta'een sochii isaa itti fufa.</td></tr>
+      <tr><td>Keplerian Rotation</td><td>Johannes Kepler</td><td>Ariitii naanna'aa: $v = \sqrt{\dfrac{GM}{r}}$</td></tr>
+      <tr><td>Roche Lobe Potential</td><td>Édouard Roche</td><td>$\Phi(\mathbf{r}) = -\dfrac{GM_1}{|\mathbf{r}-\mathbf{r}_1|} - \dfrac{GM_2}{|\mathbf{r}-\mathbf{r}_2|} - \frac{1}{2}\Omega^2 r_{\perp}^2$ (contact binary stars gidduu)</td></tr>
+      <tr><td>Tidal Force</td><td>Tidal Theory</td><td>$F_t \approx \dfrac{2GMr}{d^3}$ (contact binary stars gidduutti)</td></tr>
+      <tr><td>Surface Gravity</td><td>Newtonian Physics</td><td>$g = \dfrac{GM}{R^2}$</td></tr>
+      <tr><td>Virial Theorem</td><td>Rudolf Clausius</td><td>Hidhata anniisaa hursaa ($U$) fi sochii ($K$): $2\langle K \rangle + \langle U \rangle = 0$; sirni tokko akka hin diigamne tasgabbii itti argatu.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Seerota Carallaa fi Ifa (Radiation &amp; Luminosity Laws)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Maqaa Seerichaa</th><th>Nama Argate</th><th>Yaada Seerichaa fi Foormulaa</th></tr></thead>
+    <tbody>
+      <tr><td>Stefan-Boltzmann Law</td><td>Josef Stefan &amp; Ludwig Boltzmann</td><td>$E = \sigma T^4$</td></tr>
+      <tr><td>Wien's Displacement Law</td><td>Wilhelm Wien</td><td>$\lambda_{\max} = \dfrac{b}{T}$; qaamni caalaatti oo'u dheerina dambalii gabaabaa maddisiisa.</td></tr>
+      <tr><td>Planck's Law</td><td>Max Planck</td><td>$I(\nu,T) = \dfrac{2h\nu^3}{c^2}\dfrac{1}{e^{h\nu/k_BT}-1}$</td></tr>
+      <tr><td>Inverse Square Law / Flux-Luminosity Relation</td><td>Sir Isaac Newton</td><td>$I \propto \dfrac{1}{d^2}$, ykn $F = \dfrac{L}{4\pi d^2}$</td></tr>
+      <tr><td>Doppler Shift Formula</td><td>Christian Doppler</td><td>$\dfrac{\Delta\lambda}{\lambda} = \dfrac{v}{c}$</td></tr>
+      <tr><td>Eddington Luminosity Limit</td><td>Arthur Eddington</td><td>Daangaa anniisaa (luminosity) urjiin ykn handhuura gaalaaksii tokko dhiibbaa carallaa (radiation pressure) fi hursaa wal-madaalchisee qabaachuu danda'u isa guddaa.</td></tr>
+      <tr><td>Luminosity-Mass Relation</td><td>Arthur Eddington</td><td>$L \approx M^{3.5}$ (Main sequence)</td></tr>
+      <tr><td>Optical Depth</td><td>Astrophysics Standard</td><td>$d\tau = \kappa \rho\, ds$</td></tr>
+      <tr><td>Stellar Pulsation Equation</td><td>Arthur Eddington</td><td>Akkaataa urjiileen (Cepheids) itti dhadha'an madaala dhiibbaa fi hursaa irratti hundaa'e.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Seerota Koosmooloojii</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Maqaa Seerichaa</th><th>Nama Argate</th><th>Yaada Seerichaa fi Foormulaa</th></tr></thead>
+    <tbody>
+      <tr><td>Hubble–Lemaître Law</td><td>Edwin Hubble &amp; Georges Lemaître</td><td>$v = H_0 d$</td></tr>
+      <tr><td>Friedmann Equations</td><td>Alexander Friedmann</td><td>Seerota herregaa lama kan bal'ina uumama samiifi lafaa (universe expansion) kan dhiibbaa maatarii fi dark energy irratti hunda'u ibsan.</td></tr>
+      <tr><td>Friedmann–Lemaître–Robertson–Walker (FLRW)</td><td>A. Friedmann, G. Lemaître, H. Robertson, A. Walker</td><td>$ds^2 = -c^2dt^2 + a^2(t)\left[\dfrac{dr^2}{1-kr^2} + r^2(d\theta^2+\sin^2\theta\,d\phi^2)\right]$</td></tr>
+      <tr><td>Olbers' Paradox</td><td>Heinrich Wilhelm Olbers</td><td>Gaaffii "samiin halkan maaliif gurraacha ta'a?" (deebiin bal'aan Kutaa 5 keessatti dhiyaateera).</td></tr>
+      <tr><td>Big Bang Nucleosynthesis</td><td>George Gamow, Ralph Alpher</td><td>Uumama elementota salphaa (Hydrogen, Helium, Lithium) daqiiqota jalqabaa uumama samiifi lafaa keessatti.</td></tr>
+      <tr><td>Tully-Fisher Relation</td><td>R. Brent Tully &amp; J. Richard Fisher</td><td>Hidhata empirikaalaa gaalaaksiiwwan siriiba (spiral) gidduu: luminosity fi ariitii naanna'aa (rotational velocity) gidduu hidhata guddaa.</td></tr>
+      <tr><td>Faber-Jackson Relation</td><td>Sandra Faber &amp; Robert Jackson</td><td>Gaalaaksiiwwan killee (elliptical): luminosity fi faca'iinsa ariitii urjiilee (velocity dispersion) gidduu hidhata.</td></tr>
+      <tr><td>Drake Equation</td><td>Frank Drake</td><td>Lakkoofsa jireenya uumamaa biroo (civilizations) tilmaamuuf gargaaru.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Seerota Qaamolee Dhiphoo fi Relatiivitii</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Maqaa Seerichaa</th><th>Nama/Gareen</th><th>Yaada Ijoo fi Foormulaa</th></tr></thead>
+    <tbody>
+      <tr><td>Einstein's Mass-Energy Equivalence</td><td>Albert Einstein</td><td>$E = mc^2$</td></tr>
+      <tr><td>Einstein Field Equations</td><td>Albert Einstein</td><td>$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R + g_{\mu\nu}\Lambda = \dfrac{8\pi G}{c^4}T_{\mu\nu}$</td></tr>
+      <tr><td>Schwarzschild Radius &amp; Metric</td><td>Karl Schwarzschild</td><td>$R_s = \dfrac{2GM}{c^2}$; metric: $ds^2 = -(1-\frac{2GM}{rc^2})c^2dt^2 + (1-\frac{2GM}{rc^2})^{-1}dr^2 + r^2 d\Omega^2$</td></tr>
+      <tr><td>Kerr Metric</td><td>Roy Kerr</td><td>Ibsa bakkee-yeroo boolla gurraacha naanna'u (rotating black hole); $ds^2 = -(1-\frac{2Mr}{\rho^2})dt^2 - \frac{4aMr\sin^2\theta}{\rho^2}dtd\phi + \frac{\rho^2}{\Delta}dr^2 + \rho^2 d\theta^2 + \dots$</td></tr>
+      <tr><td>Chandrasekhar Limit</td><td>Subrahmanyan Chandrasekhar</td><td>Daangaa masii white dwarf ($1.4\,M_\odot$); yoo darbe gara niiwutiroonii ykn black hole tti jijjiirama.</td></tr>
+      <tr><td>Mass-Radius Relation (White Dwarf)</td><td>E.C. Stoner/S. Chandrasekhar</td><td>$R \propto M^{-1/3}$</td></tr>
+      <tr><td>TOV Equation</td><td>R.C. Tolman, J.R. Oppenheimer, G.M. Volkoff</td><td>$\dfrac{dP}{dr} = -\dfrac{G(\rho+P/c^2)(M+4\pi r^3 P/c^2)}{r^2(1-2GM/rc^2)}$ (urjii niiwutiroonii)</td></tr>
+      <tr><td>Bekenstein-Hawking Entropy</td><td>Jacob Bekenstein, Stephen Hawking</td><td>$S = \dfrac{k_B c^3 A}{4G\hbar}$ (entiroopii boolla gurraachaa)</td></tr>
+      <tr><td>Raychaudhuri Equation</td><td>Amal Kumar Raychaudhuri</td><td>Guddina/hir'ina bal'ina samii fi bakkee-yeroo keessatti sochii gartuu qabiyyee irratti hundaa'e.</td></tr>
+      <tr><td>Blandford-Znajek Process</td><td>Roger Blandford</td><td>Akkaataa anniisaan black hole naanna'u gara dambalii elektiroomaagneetikaatti itti jijjiiramu.</td></tr>
+      <tr><td>Bondi Accretion</td><td>Hermann Bondi</td><td>Maatarii guddina urjii/black hole irratti kuufu (spherical accretion).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="subsection-title">Seerota Caasaa fi Dinaamiksii Urjiilee</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Maqaa Seerichaa</th><th>Nama/Gareen</th><th>Yaada Ijoo fi Foormulaa</th></tr></thead>
+    <tbody>
+      <tr><td>Lane-Emden Equation</td><td>Jonathan Lane, Robert Emden</td><td>$\dfrac{1}{\xi^2}\dfrac{d}{d\xi}\left(\xi^2\dfrac{d\theta}{d\xi}\right) = -\theta^n$ (polytropic model)</td></tr>
+      <tr><td>Polytropic Equation of State</td><td>Robert Emden</td><td>$P = K\rho^{1+1/n}$</td></tr>
+      <tr><td>Jeans Instability &amp; Jeans Mass</td><td>James Jeans</td><td>$\lambda_J = \sqrt{\dfrac{15k_BT}{4\pi G\rho\mu m_H}}$; $M_J \approx \left(\dfrac{5k_BT}{G\mu m_H}\right)^{3/2}\left(\dfrac{3}{4\pi\rho}\right)^{1/2}$</td></tr>
+      <tr><td>Saha Ionization Equation</td><td>Meghnad Saha</td><td>$\dfrac{n_{i+1}n_e}{n_i} = \dfrac{2}{\lambda^3}\dfrac{g_{i+1}}{g_i}\exp\left[-\dfrac{\epsilon_{i+1}-\epsilon_i}{k_BT}\right]$</td></tr>
+      <tr><td>Magnetic Braking</td><td>Mestel &amp; Spitzer</td><td>Akkaataa urjiileen naanna'an dambalii maagneetikaa gargaaramuun ariitii naanna'aa isaanii itti dhaban.</td></tr>
+      <tr><td>Eddington-Sweet Circulation</td><td>Arthur Eddington</td><td>Akkaataa anniisaan urjii keessatti naanna'ee (meridional circulation) madaala uumu.</td></tr>
+      <tr><td>Fermi Acceleration</td><td>Enrico Fermi</td><td>Akkaataa dirree maagneetii uumama samiifi lafaa keessa jiru koroonaa (cosmic rays) itti saffisiisu.</td></tr>
+      <tr><td>Hoyle-Lyttleton Accretion</td><td>Fred Hoyle</td><td>Akkaataa urjiileen maataarii naannoo isaanii irraa itti liqimsuun guddina isaanii itti dabalan.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- SECTION 15 -->
+<section class="chapter" id="s15">
+  <h2 class="section-title"><span class="num">15</span> Meeshaalee Astiroonoomii: Seenaa, Kalaqtota fi Faayidaa Isaanii</h2>
+  <div class="section-rule"></div>
+  <p>Qorannoo astiroonoomii keessatti meeshaaleen daawwannaa fi safartoo dhimma bu'uuraati; yeroo teleskooppiin hin uumamin dura ija qullaan hawaa daawwachuuf gargaaraa turan irraa kaasee, hanga teleskooppota hawaa ammayyaa sfeektiramii elektiroomaagneetikii adda addaa safaraniitti dabalata.</p>
+
+  <div class="table-wrap"><table>
+    <caption>Meeshaalee Astiroonoomii, Kalaqtota fi Faayidaa Isaanii</caption>
+    <thead><tr><th>Maqaa Meeshaafi</th><th>Bara Kalaqame</th><th>Nama/Uummata Kalaqe</th><th>Faayidaa Isaanii</th></tr></thead>
+    <tbody>
+      <tr><td>Gnomon</td><td>c. 2500 BC</td><td>Awurooppaa fi Eeshiyaa Durii</td><td>Utubaa gabaabaa gaaddidduu aduutiin sa'aatii fi socho'aa aduu safaruuf gargaaru.</td></tr>
+      <tr><td>Astrolabe</td><td>c. 220–150 BC</td><td>Apollonius / Giriikota durii</td><td>Teessuma urjiilee safaruu, sa'aatii murteessuu fi dhimma urjii lakkaahuuf gargaara.</td></tr>
+      <tr><td>Armillary Sphere</td><td>c. 200 BC</td><td>Eratosthenes / Chaayinaa Durii</td><td>Modelii dhaan-samii geengoo ta'ee, sararoota waaltina hawaa fi dizaayinii marsaa agarsiisu.</td></tr>
+      <tr><td>Quadrant</td><td>Saarraa 2ffaa</td><td>Ptolemy / Astronomoota Islaamaa</td><td>Ol-ka'iinsa (altitude) urjiilee fi aduu sarara handhuuraa irraa safaruuf hojjeta.</td></tr>
+      <tr><td>Sextant</td><td>1757 AD</td><td>John Campbell / John Hadley</td><td>Fageenya koflaa qaamolee samii lama gidduu jiru (aduu fi sarara bishaan galaanaa) safaruun kallattii baasuuf.</td></tr>
+      <tr><td>Refracting Telescope</td><td>1608 AD</td><td>Hans Lippershey / Galileo Galilei</td><td>Linsii fayyadamuun ifa sassaabee qaamolee samii fageenya jiran guddisee agarsiisa.</td></tr>
+      <tr><td>Reflecting Telescope</td><td>1668 AD</td><td>Sir Isaac Newton</td><td>Ofi (mirrors) fayyadamuun dogoggora bifa ifaa (chromatic aberration) malee urjiilee fageenya jiran qorata.</td></tr>
+      <tr><td>Spectroscope</td><td>1814 AD</td><td>Joseph von Fraunhofer</td><td>Ifa urjiilee facaasuun (prism gargaaramee) elementota keemikaalaa urjichaa adda baasa.</td></tr>
+      <tr><td>Photometer</td><td>1861 AD</td><td>Astiroonoomota kofla 19ffaa</td><td>Hamma ifaa ykn addeenya (intensity/brightness) qaamolee samii sirriitti safara.</td></tr>
+      <tr><td>Coronagraph</td><td>1930 AD</td><td>Bernard Lyot</td><td>Ifa aduu isa handhuuraa haguuguun qorqorroo aduu (corona) akka ilaalamu taasisa.</td></tr>
+      <tr><td>Radio Telescope</td><td>1932 AD</td><td>Karl Jansky</td><td>Dambalii raadiyoo hawaa fageenya keessaa dhufu sassaabee unka dataatti jijjiira.</td></tr>
+      <tr><td>Space Telescope (HST)</td><td>1990 AD</td><td>NASA / ESA</td><td>Atmosfeera lafaatiin osoo hin daangeffamin suuraa hawaa ifa qulqulluun waraaba.</td></tr>
+      <tr><td>X-ray Telescope</td><td>1999 AD</td><td>NASA (Chandra X-ray)</td><td>Taateewwan anniisaa ol'aanaa qaban (black holes, neutron stars) carallaa X-ray isaanii safara.</td></tr>
+      <tr><td>Infrared Space Telescope (JWST)</td><td>2021 AD</td><td>NASA / ESA / CSA</td><td>Ifa infrared fudhatuun gaalaaksota jalqaba uumaman fi eksopilaaneetota qorata.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- SECTION 16 -->
+<section class="chapter" id="s16">
+  <h2 class="section-title"><span class="num">16</span> Meeshaalee Hawaa Dabalataa: Saatalayitoota, Dooniiwwan Hawaa fi Rovers</h2>
+  <div class="section-rule"></div>
+
+  <div class="table-wrap"><table>
+    <caption>Saatalayitoota, Dooniiwwan Hawaa fi Meeshaalee Gurguddoo Biroo</caption>
+    <thead><tr><th>Maqaa Meeshaafi</th><th>Bara Hojjetame</th><th>Nama/Dhaabbata</th><th>Faayidaa Isaanii</th></tr></thead>
+    <tbody>
+      <tr><td>Sputnik 1</td><td>1957 AD</td><td>Riisooloojii Sooviyet (USSR)</td><td>Saatalayitii nam-tolchee ishee jalqabaa; dambalii raadiyoo erguun qorannoo ionosphere jalqabsiiste.</td></tr>
+      <tr><td>Vostok 1</td><td>1961 AD</td><td>Sirna Sooviyet (USSR)</td><td>Doonii hawaa nama jalqabaa (Yuri Gagarin) gara marsaa Lafaatti baattee naanneessite.</td></tr>
+      <tr><td>Apollo Lunar Module</td><td>1969 AD</td><td>NASA (USA)</td><td>Namoota jalqabaa (Neil Armstrong fi Buzz Aldrin) Ji'a irratti qubsiifte.</td></tr>
+      <tr><td>Voyager 1 &amp; 2</td><td>1977 AD</td><td>NASA</td><td>Pilaaneetota alaa (Jupiter, Saturn, Uranus, Neptune) qorachuun daangaa sirna aduu bira dabaranii hawaa gidduu-urjiilee keessa jiran.</td></tr>
+      <tr><td>Space Shuttle</td><td>1981 AD</td><td>NASA</td><td>Doonii hawaa deebi'ee hojjechuu danda'u; saatalayitoota fe'uufi hojjettoota gara buufata hawaatti geejjibuuf gargaara.</td></tr>
+      <tr><td>Mars Rover (Sojourner)</td><td>1997 AD</td><td>NASA</td><td>Mashiinii xiqqoo dizaayinii konkolaattataa qabu, immersion jalqabaatiin Mars irratti socho'ee dhagaa qorate.</td></tr>
+      <tr><td>International Space Station (ISS)</td><td>1998 AD</td><td>NASA, Roscosmos, ESA, JAXA, CSA</td><td>Buufata Hawaa Idil-addunyaa; namoonni keessa qorannoo fiiziksii, baayoloojii fi astiroonoomii gaggeessan.</td></tr>
+      <tr><td>Cassini-Huygens</td><td>1997 AD</td><td>NASA / ESA</td><td>Pilaaneetii Saatoornii fi ji'oota ishee (Titan, Enceladus) irratti qorannoo waggoota baay'ee gaggeessite.</td></tr>
+      <tr><td>New Horizons</td><td>2006 AD</td><td>NASA</td><td>Bara 2015tti pilaaneetii dotee Pluto suuraa fi data qulqulluun fiduun seenaa uumte.</td></tr>
+      <tr><td>Kepler Space Telescope</td><td>2009 AD</td><td>NASA</td><td>Eksopilaaneetota kumaatamaan lakkaawwaman mala transitiitiin argate.</td></tr>
+      <tr><td>Gaia Spacecraft</td><td>2013 AD</td><td>ESA</td><td>Caasaa Milky Way kaartaa 3D uumuuf urjiilee biliyoona dhibba baay'ee safarti.</td></tr>
+      <tr><td>Hayabusa2</td><td>2014 AD</td><td>JAXA (Jaappaan)</td><td>Asteroyidii Ryugu irraa ragaa waraabdee bara 2020tti fakkeenya maatarii dhaan-samii gara Lafaatti buuste.</td></tr>
+      <tr><td>Curiosity &amp; Perseverance</td><td>2012 / 2021 AD</td><td>NASA</td><td>Mashiinota (rovers) laaboratoorii qaban kanneen haala jireenya durii Mars irratti barbaadan.</td></tr>
+      <tr><td>TIANWEN-1 &amp; Zhurong</td><td>2020 AD</td><td>CNSA (Chaayinaa)</td><td>Mashiinii fi doonii hawaa Mars irratti qubatee qorannoo ji'oolojii bal'aa gaggeessite.</td></tr>
+      <tr><td>OSIRIS-REx</td><td>2016 AD</td><td>NASA</td><td>Asteroyidii Bennu irra qubatte dustii fi dhagaa waraabuun bara 2023tti gara Lafaatti deebiste.</td></tr>
+      <tr><td>Parker Solar Probe</td><td>2018 AD</td><td>NASA</td><td>Aduutti baay'ee dhihaachuun qorqorroo aduu (corona) fi bubbee aduu gadi fageenyaan qoratti.</td></tr>
+      <tr><td>Event Horizon Telescope (EHT)</td><td>2019 AD</td><td>Qorattoota Idil-addunyaa</td><td>Riinbii teleskooppota raadiyoo walitti hidhamanii suuraa Black Hole isa jalqabaa (M87*) argamsiisan.</td></tr>
+      <tr><td>LIGO</td><td>2015 AD</td><td>Caltech / MIT (USA)</td><td>Dambalii hursaa (gravitational waves) dhohiinsa urjiilee niwutiroonii fi wal-fudhachuu boolla gurraachaa irraa maddan safara.</td></tr>
+      <tr><td>ETRSS-1</td><td>2019 AD</td><td>Itoophiyaa (ESSTI)</td><td>Saatalayitii Itoophiyaa ishee jalqabaa; odeeffannoo qonnaa, bishaanii fi hordoffii naannoo Lafaatiif gargaartu.</td></tr>
+      <tr><td>SpaceX Starship</td><td>2020s AD</td><td>SpaceX</td><td>Sirna doonii hawaa baay'ee guddaa Lafa, Ji'a fi Mars gidduutti geejjiba masiif dizaayinii godhame.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>Astiroonoomii fi Astiroofiiziksii · Kootii Qorannoo Hawaa</footer>
+
+</main>
+</div>
+</div>
+</body>
+</html>
