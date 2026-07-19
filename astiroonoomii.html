@@ -1674,14 +1674,76 @@ section.page.page-active{ display:block; animation:fadeIn .3s ease; }
     <div class="note-card"><h5>Seera 1ffaa</h5><p>$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ — pilaaneetonni karaa killeetiin naanna'u.</p></div>
     <div class="note-card"><h5>Seera 2ffaa</h5><p>$\dfrac{dA}{dt}=$ dhaabbataa — yeroo wal-qixa keessatti bal'ina wal-qixa uumu.</p></div>
     <div class="note-card"><h5>Seera 3ffaa</h5><p>$T^2 \propto a^3$ — yeroo naannoo fi fageenya walitti hidha.</p></div>
+ <h3 class="subsection-title" id="s17-8">Seerota Raadiyeeshinii "Blackbody"</h3>
+  <p>Seerota kunneen ho'a urjii tokkoo irratti hundaa'uun anniisaa fi halluu ishee addaan baasuuf gargaaru.</p>
+  
+  <!-- Kutaa Taabii (Tab Buttons) -->
+  <div class="tabbar" data-tabgroup="rad17" style="display: flex; gap: 5px; margin-bottom: 10px;">
+    <button class="tabbtn active" data-tab="wien" onclick="jijjiiriTab(event, 'wien')" style="padding: 10px 15px; border: none; background-color: #1E90FF; color: white; cursor: pointer; border-radius: 4px; font-weight: bold;">Seera Wien</button>
+    <button class="tabbtn" data-tab="sb" onclick="jijjiiriTab(event, 'sb')" style="padding: 10px 15px; border: none; background-color: #ccc; color: black; cursor: pointer; border-radius: 4px; font-weight: bold;">Stefan–Boltzmann</button>
+    <button class="tabbtn" data-tab="planck" onclick="jijjiiriTab(event, 'planck')" style="padding: 10px 15px; border: none; background-color: #ccc; color: black; cursor: pointer; border-radius: 4px; font-weight: bold;">Seera Planck</button>
   </div>
 
-  <h3 class="subsection-title" id="s17-8">Seerota Raadiyeeshinii "Blackbody"</h3>
-  <p>Seerota kunneen ho'a urjii tokkoo irratti hundaa'uun anniisaa fi halluu ishee addaan baasuuf gargaaru.</p>
-  <div class="tabbar" data-tabgroup="rad17">
-    <button class="tabbtn active" data-tab="wien">Seera Wien</button>
-    <button class="tabbtn" data-tab="sb">Stefan–Boltzmann</button>
-    <button class="tabbtn" data-tab="planck">Seera Planck</button>
+  <!-- Qabiyyee Taabotaa (Tab Contents) -->
+  <div class="tab-contents" style="border: 1px solid #1E90FF; padding: 15px; border-radius: 6px; background-color: #f9f9f9; color: #333; font-family: sans-serif;">
+    
+    <!-- 1. Seera Wien -->
+    <div id="wien" class="tab-content-item" style="display: block;">
+      <h4>Seera Wien (Wien's Displacement Law)</h4>
+      <p>Dambaliin raadiyeeshinii inni guddaan ($\lambda_{\text{max}}$) ho'a (T) guutummaa blackbody wajjin wal-faallessa.</p>
+      <div style="background-color: #fff; padding: 10px; border-left: 4px solid #1E90FF; font-size: 18px; margin: 10px 0; font-family: 'Courier New', Courier, monospace;">
+        <strong>$\lambda_{\text{max}} \cdot T = b$</strong>
+      </div>
+      <p style="font-size: 14px; color: #666;">($b \approx 2.897 \times 10^{-3} \text{ m}\cdot\text{K}$ konstantii Wien dha.)</p>
+    </div>
+
+    <!-- 2. Stefan-Boltzmann -->
+    <div id="sb" class="tab-content-item" style="display: none;">
+      <h4>Seera Stefan–Boltzmann</h4>
+      <p>Anniisaan waliigalaa fuula blackbody irraa gadilakkifamu ho'a absolute irraa dacha afuriin ($T^4$) wal-madaala.</p>
+      <div style="background-color: #fff; padding: 10px; border-left: 4px solid #1E90FF; font-size: 18px; margin: 10px 0; font-family: 'Courier New', Courier, monospace;">
+        <strong>$E = \sigma \cdot T^4$</strong>
+      </div>
+      <p style="font-size: 14px; color: #666;">($\sigma \approx 5.670 \times 10^{-8} \text{ W}\cdot\text{m}^{-2}\cdot\text{K}^{-4}$ konstantii Stefan-Boltzmann dha.)</p>
+    </div>
+
+    <!-- 3. Seera Planck -->
+    <div id="planck" class="tab-content-item" style="display: none;">
+      <h4>Seera Planck (Planck's Law)</h4>
+      <p>Seerri kun hamma anniisaa dambalii raadiyeeshinii adda addaa irratti ho'a murtaa'een ibsa.</p>
+      <div style="background-color: #fff; padding: 10px; border-left: 4px solid #1E90FF; font-size: 16px; margin: 10px 0; font-family: 'Courier New', Courier, monospace;">
+        <strong>$B_\lambda(\lambda, T) = \frac{2hc^2}{\lambda^5} \frac{1}{e^{\frac{hc}{\lambda k_B T}} - 1}$</strong>
+      </div>
+      <p style="font-size: 14px; color: #666;">(Kuni qaanqee anniisaa ka'umsa mechanics kuwaantamiiti.)</p>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Taabota Sochooksuuf (Dhuma irratti dabalami) -->
+  <script>
+    function jijjiiriTab(evt, tabName) {
+      // Qabiyyee taabii hunda dhoksi
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tab-content-item");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Button-oota calaqqisan hunda irraa 'active' fi halluu balleessi
+      tablinks = document.getElementsByClassName("tabbtn");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "#ccc";
+        tablinks[i].style.color = "black";
+        tablinks[i].classList.remove("active");
+      }
+
+      // Isa amma cuqaasame qofa agarsiisi, button isaas halluu jijjiiri
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.style.backgroundColor = "#1E90FF";
+      evt.currentTarget.style.color = "white";
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
   </div>
   <div class="tabpanel active" data-tabgroup="rad17" data-tab="wien">
     <div class="formula-block">$$\lambda_{\max} = \dfrac{b}{T}$$</div>
