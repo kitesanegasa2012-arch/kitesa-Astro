@@ -397,9 +397,13 @@ section.page.page-active{ display:block; animation:fadeIn .3s ease; }
   <p class="sub"> Qorannoo hawaa — seenaa Astiroonoomii, yaad-rimeewwan bu'uuraa, sirna aduu, urjiilee, wantoota suntuuraman, gaalaksoota, koosmooloojii, relatiivitii, seerota fi meeshaalee Astiroonoomii</p>
 
   <div class="cover-photos">
-    <div class="cover-photo-slot">🖼️<br>Suura 1<br><span style="opacity:.7;">qixxeessaa.jpg</span></div>
-    <div class="cover-photo-slot">🖼️<br>Suura 2<br><span style="opacity:.7;">telescope.jpg</span></div>
-  </div>
+    <div class="cover-photo-slot">
+        <img src="{{ url_for('static', filename='qixxeessaa.jpg') }}" alt="Qixxeessaa">
+    </div>
+    <div class="cover-photo-slot">
+        <img src="{{ url_for('static', filename='telescope.jpg') }}" alt="Telescope">
+    </div>
+</div>
 
   <div class="cover-orbit">
     <div class="orbit-beam"></div>
