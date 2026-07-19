@@ -1701,12 +1701,9 @@ section.page.page-active{ display:block; animation:fadeIn .3s ease; }
       </div>
       <p style="color: #E0E0E0; font-size: 14px; margin-bottom: 0;">Isquweeriin yeroo naannoo ($T^2$) dacha sadii fageenya giddugaleessaa ($a^3$) wajjin kallattiin wal-madaala.</p>
     </div>
-  </div>
-
-  <!-- 2. KUTAA RAADIYEESHINII "BLACKBODY" -->
-  <h3 class="subsection-title" id="s17-8" style="color: #1E90FF; font-family: sans-serif; margin-top: 40px;">Seerota Raadiyeeshinii "Blackbody"</h3>
+ <h3 class="subsection-title" id="s17-8" style="color: #1E90FF; font-family: sans-serif;">Seerota Raadiyeeshinii "Blackbody"</h3>
   <p style="color: #FFFFFF; font-family: sans-serif;">Seerota kunneen ho'a urjii tokkoo irratti hundaa'uun anniisaa fi halluu ishee addaan baasuuf gargaaru.</p>
-    
+  
   <!-- Kutaa Taabii (Tab Buttons) -->
   <div class="tabbar" data-tabgroup="rad17" style="display: flex; gap: 5px; margin-bottom: 10px;">
     <button class="tabbtn active" id="btn-wien" onclick="jijjiiriTab(event, 'wien')" style="padding: 10px 15px; border: none; background-color: #1E90FF; color: white; cursor: pointer; border-radius: 4px; font-weight: bold;">Seera Wien</button>
@@ -1714,9 +1711,9 @@ section.page.page-active{ display:block; animation:fadeIn .3s ease; }
     <button class="tabbtn" id="btn-planck" onclick="jijjiiriTab(event, 'planck')" style="padding: 10px 15px; border: none; background-color: #444; color: white; cursor: pointer; border-radius: 4px; font-weight: bold;">Seera Planck</button>
   </div>
 
-  <!-- Qabiyyee Taabotaa -->
-  <div class="tab-contents" style="border: 2px solid #1E90FF; padding: 20px; border-radius: 8px; background-color: #111111; color: #FFFFFF; font-family: sans-serif; box-shadow: 0px 4px 10px rgba(0,0,0,0.5); margin-bottom: 20px;">
-      
+  <!-- Qabiyyee Taabotaa (Tab Contents - Box kana keessa Gurraacha goonee barreeffama ifa goona) -->
+  <div class="tab-contents" style="border: 2px solid #1E90FF; padding: 20px; border-radius: 8px; background-color: #111111; color: #FFFFFF; font-family: sans-serif; box-shadow: 0px 4px 10px rgba(0,0,0,0.5);">
+    
     <!-- 1. Seera Wien -->
     <div id="wien" class="tab-content-item" style="display: block;">
       <h4 style="color: #1E90FF; margin-top: 0;">Seera Wien (Wien's Displacement Law)</h4>
@@ -1742,33 +1739,37 @@ section.page.page-active{ display:block; animation:fadeIn .3s ease; }
       <h4 style="color: #1E90FF; margin-top: 0;">Seera Planck (Planck's Law)</h4>
       <p style="color: #E0E0E0;">Seerri kun hamma anniisaa dambalii raadiyeeshinii adda addaa irratti ho'a murtaa'een ibsa.</p>
       <div style="background-color: #222; padding: 15px; border-left: 5px solid #1E90FF; font-size: 18px; margin: 15px 0; font-family: 'Courier New', Courier, monospace; color: #00FF00; border-radius: 4px; font-weight: bold; text-align: center;">
-        $B_\lambda(\lambda, T) = \frac{2hc^2}{\lambda^5} \frac{1; e^{\frac{hc}{\lambda k_B T}} - 1}$
+        $B_\lambda(\lambda, T) = \frac{2hc^2}{\lambda^5} \frac{1}{e^{\frac{hc}{\lambda k_B T}} - 1}$
       </div>
       <p style="font-size: 14px; color: #A0A0A0;">(Kuni qaanqee anniisaa ka'umsa mechanics kuwaantamiiti.)</p>
     </div>
 
   </div>
 
-</div> <!-- WRAPPER KUN ASITTI CUFAMA (Layout kee guutummaatti ni nagaa baasa) -->
+  <!-- JavaScript Taabota Sochooksuuf -->
+  <script>
+    function jijjiiriTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      
+      // Qabiyyee taabii hunda dhoksi
+      tabcontent = document.getElementsByClassName("tab-content-item");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
 
-<!-- JAVASCRIPT -->
-<script>
-  function jijjiiriTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tab-content-item");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
+      // Button-oota calaqqisan hunda irraa halluu deebisi (Dark theme button style)
+      tablinks = document.getElementsByClassName("tabbtn");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "#444";
+        tablinks[i].style.color = "white";
+      }
+
+      // Isa amma cuqaasame qofa agarsiisi, button isaas halluu ifaa (Blue) goodhi
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.style.backgroundColor = "#1E90FF";
+      evt.currentTarget.style.color = "white";
     }
-    tablinks = document.getElementsByClassName("tabbtn");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].style.backgroundColor = "#444";
-      tablinks[i].style.color = "white";
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.style.backgroundColor = "#1E90FF";
-    evt.currentTarget.style.color = "white";
-  }
-</script>
+  </script>
   </div>
 </section>
 
