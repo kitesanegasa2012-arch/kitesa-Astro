@@ -1902,6 +1902,182 @@ section.page.page-active{ display:block; animation:fadeIn .3s ease; }
   <p>Urjiin niiwutiroonii tokko yeroo naanna'u, anniisaa isaa bifa electromagnetic radiation fi gravitational waves-tiin of irraa gadi lakkisa. Anniisaan gadi lakkifamu kun sochii naannoo (frequency, $f$) waliin walqabsiisa addaa qaba:</p>
   <div class="formula-block">$$\dot{E} \propto f^6$$</div>
   <p style="margin:0;">Kun walqabsiisa <em>model-agnostic</em> ta'ee, astiroofiiziksii keessatti amaloota evoluushinii urjiilee niiwutiroonii qorachuuf gargaara.</p>
+<!-- ================= KUTAA ANIMAASINII RADIATIVE ENERGY LOSS ================= -->
+<div class="physics-section-wrapper" style="width: 100%; display: block; clear: both; box-sizing: border-box; margin-top: 30px; margin-bottom: 30px;">
+  
+  <h3 class="subsection-title" style="color: #1E90FF; font-family: sans-serif;">Animaasinii Gadilakkisa Anniisaa (Radiative Energy Loss)</h3>
+  <p style="color: #FFFFFF; font-family: sans-serif;">Animaasiniin kun yeroo urjiin tokko naanna'u anniisaa bifa dambalii raadiyeeshiniitiin gadi lakkistu agarsiisa. Anniisaan badu kun saffisa naannoo urjittii (spin-down) xiqqaachaa akka deemu taasisa.</p>
+
+  <div style="display: flex; flex-direction: column; align-items: center; background-color: #111111; padding: 20px; border-radius: 8px; border: 2px solid #1E90FF; box-shadow: 0px 4px 10px rgba(0,0,0,0.5);">
+    
+    <!-- Iddoo Animaasinii -->
+    <canvas id="radiationCanvas" width="500" height="350" style="background-color: #050505; border-radius: 6px; max-width: 100%; border: 1px solid #333;"></canvas>
+    
+    <!-- Meeshaalee To'annoo (Controls) -->
+    <div style="margin-top: 15px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+      <button id="btnRadPlay" onclick="toggleRadAnimation()" style="padding: 10px 20px; background-color: #1E90FF; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: sans-serif; min-width: 120px;">Dhaabi / Tababsi</button>
+      <button id="btnRadReset" onclick="resetRadAnimation()" style="padding: 10px 20px; background-color: #444444; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: sans-serif; min-width: 120px;">Harkaa Ka'i (Reset)</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- JAVASCRIPT ANIMAASINII -->
+<script>
+  const canvas = document.getElementById('radiationCanvas');
+  const ctx = canvas.getContext('2d');
+
+  let animationId;
+  let isRunning = true;
+
+  // Haala Ka'umsaa (Initial States)
+  let angle = 0;
+  let omega = 4.0; // Saffisa naannoo jalqabaa (Spin rate)
+  let energy = 100.0; // Anniisaa jalqabaa (%)
+  let waves = [];
+  let time = 0;
+
+  function drawScene() {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    
+    // Canvas qulqulleessuu
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 1. Dambaliwwan Raadiyeeshinii (Radiated Waves) Urjii irraa ba'an
+    if (isRunning && time % 8 === 0 && omega > 0.1) {
+      waves.push({ r: 20, alpha: 1.0, angle: angle });
+      waves.push({ r: 20, alpha: 1.0, angle: angle + Math.PI }); // Beams lamaan afaan walitti
+    }
+
+    for (let i = waves.length - 1; i >= 0; i--) {
+      let w = waves[i];
+      w.r += 2.5; // Saffisa dambalichi ittin babal'atu
+      w.alpha -= 0.01; // Suuta jedhee akka dhabamu
+
+      if (w.alpha <= 0) {
+        waves.splice(i, 1);
+        continue;
+      }
+
+      // Sararuu dambalichaa (Wave arcs)
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(w.angle);
+      ctx.beginPath();
+      ctx.arc(0, 0, w.r, -0.3, 0.3);
+      ctx.strokeStyle = `rgba(0, 255, 255, ${w.alpha})`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // 2. Beams (Raajii ifaa Urjii irraa bahu)
+    if (omega > 0.1) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      
+      let gradient = ctx.createLinearGradient(0, 0, 120, 0);
+      gradient.addColorStop(0, 'rgba(30, 144, 255, 0.8)');
+      gradient.addColorStop(1, 'rgba(30, 144, 255, 0)');
+      
+      ctx.fillStyle = gradient;
+      
+      // Beam 1
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(120, -15);
+      ctx.lineTo(120, 15);
+      ctx.closePath();
+      ctx.fill();
+
+      // Beam 2 (Gara faallaa)
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(-120, -15);
+      ctx.lineTo(-120, 15);
+      ctx.closePath();
+      ctx.fill();
+      
+      ctx.restore();
+    }
+
+    // 3. Giddu-gala Urjittii (Central Compact Object)
+    ctx.beginPath();
+    ctx.arc(cx, cy, 22, 0, 2 * Math.PI);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowBlur = 20;
+    ctx.shadowColor = '#1E90FF';
+    ctx.fill();
+    ctx.shadowBlur = 0; // Reset shadow
+
+    // Sarara qaxxaamura urjii (To show rotation visually)
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(angle);
+    ctx.beginPath();
+    ctx.moveTo(-22, 0);
+    ctx.lineTo(22, 0);
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.restore();
+
+    // 4. Data Raajii Gabatee (Live Dashboard Text Overlay)
+    ctx.fillStyle = '#E0E0E0';
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillText(`Saffisa Naannoo (Ω): ${omega.toFixed(3)} rad/s`, 15, 25);
+    ctx.fillText(`Anniisaa Hafee (E): ${energy.toFixed(1)} %`, 15, 45);
+    ctx.fillText(`Gadilakkisa Anniisaa (dE/dt) ∝ Ω⁴`, 15, 65);
+
+    // Physics Update Formula (Spin-down relation)
+    if (isRunning) {
+      time++;
+      angle += omega * 0.02;
+      
+      // Saffisni fi anniisaan raadiyeeshiniin gadi jachaa deemu
+      if (omega > 0.05) {
+        let lossRate = 0.0001 * Math.pow(omega, 4); 
+        omega -= lossRate * 1.5;
+        energy -= lossRate * 25;
+      } else {
+        omega = 0;
+        if (energy < 0) energy = 0;
+      }
+    }
+  }
+
+  function tick() {
+    drawScene();
+    animationId = requestAnimationFrame(tick);
+  }
+
+  function toggleRadAnimation() {
+    const btn = document.getElementById('btnRadPlay');
+    if (isRunning) {
+      isRunning = false;
+      btn.innerText = 'Tababsi (Play)';
+      btn.style.backgroundColor = '#228B22';
+    } else {
+      isRunning = true;
+      btn.innerText = 'Dhaabi (Pause)';
+      btn.style.backgroundColor = '#1E90FF';
+    }
+  }
+
+  function resetRadAnimation() {
+    angle = 0;
+    omega = 4.0;
+    energy = 100.0;
+    waves = [];
+    time = 0;
+    drawScene();
+  }
+
+  // Animaasinii jalqabsiisuu
+  tick();
+</script>
 </section>
 
 <!-- SECTION 21 -->
